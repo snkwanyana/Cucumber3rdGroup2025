@@ -1,5 +1,6 @@
 package StepDefs;
 
+import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -11,46 +12,60 @@ import org.testng.Assert;
 
 public class NdosiStepDefs {
 
-    WebDriver driver;
+    public WebDriver driver;
+
+    @Before
+    public void setUp() {
+        driver = new ChromeDriver();
+    }
 
     @Given("The user is on the Ndosi login page")
     public void the_user_is_on_the_ndosi_login_page() {
-        // Initialize WebDriver and navigate to Ndosi login page
-        driver = new ChromeDriver();
-        driver.get("https://gray-island-0bd788c1e.2.azurestaticapps.net/#overview ");
+        driver.get("https://gray-island-0bd788c1e.2.azurestaticapps.net/#overview");
         driver.manage().window().maximize();
+        throw new io.cucumber.java.PendingException();
     }
 
     @When("The user navigates to Learning Materials page")
     public void the_user_navigates_to_learning_materials_page() {
-        // Code to navigate to Learning Materials page
         driver.findElement(By.xpath("//button[contains(.,'Learning Materials')]")).click();
-        //xpath=//button[contains(.,'Learning Materials')]
+        throw new io.cucumber.java.PendingException();
     }
 
     @And("The user clicks on Sign Up Here link")
     public void the_user_clicks_on_sign_up_here_link() {
-        // Code to click on Sign Up Here link
         driver.findElement(By.xpath("//button[contains(.,'Sign Up Here')]")).click();
-        //xpath=//button[contains(.,'Sign Up Here')]
+        throw new io.cucumber.java.PendingException();
     }
 
     @Then("The user is redirected to the Sign Up page")
     public void the_user_should_be_redirected_to_the_sign_up_page() {
-        // Code to verify redirection to Sign Up page
         String actualElement = driver.findElement(By.xpath("//button[contains(.,'Create Account')]")).getText();
-        //xpath=//button[contains(.,'Create Account')]
         Assert.assertEquals(actualElement, "Create Account");
+        throw new io.cucumber.java.PendingException();
     }
 
-    @When("The user enters the firstname \"{string}\" , lastname \"{string}\", email \"{string}\" , password \"{string}\" and confirmPassword \"{string}\"")
+    @When("The user enters the firstname {string} , lastname {string}, email {string} , password {string} and confirmPassword {string}")
     public void the_user_enters_the_firstname_lastname_email_password_and_confirmPassword(String firstname, String lastname, String email, String password, String confirmPassword) {
-        // Code to enter user details
         driver.findElement(By.xpath("//input[@placeholder='First Name']")).sendKeys(firstname);
-        //xpath=//input[@value='Lebo']
         driver.findElement(By.xpath("//input[@placeholder='Last Name']")).sendKeys(lastname);
         driver.findElement(By.xpath("//input[@placeholder='Email']")).sendKeys(email);
         driver.findElement(By.xpath("//input[@placeholder='Password']")).sendKeys(password);
         driver.findElement(By.xpath("//input[@placeholder='Confirm Password']")).sendKeys(confirmPassword);
+        throw new io.cucumber.java.PendingException();
     }
+
+    @And("The user clicks on the create account button")
+    public void the_user_clicks_on_the_create_account_button() {
+        driver.findElement(By.xpath("//button[contains(.,'Create Account')]")).click();
+        throw new io.cucumber.java.PendingException();
     }
+
+    @Then("The pop up message \"Account created successfully\" is displayed")
+    public void the_pop_up_message_account_created_successfully_is_displayed() {
+        String actualMessage = driver.findElement(By.xpath("//div[contains(text(),'Registration successful')]")).getText();
+        Assert.assertEquals(actualMessage, "Registration successful");
+        driver.findElement(By.xpath("//input[@value='']")).click();
+        throw new io.cucumber.java.PendingException();
+    }
+}

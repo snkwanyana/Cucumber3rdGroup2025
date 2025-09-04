@@ -14,7 +14,8 @@ public class StepDefinition {
     @Given("The user is already on the login page")
     public void the_user_is_already_on_the_login_page() {
         driver = new ChromeDriver();
-        driver.get("https://www.saucedemo.com/");
+        //driver.get("https://gray-island-0bd788c1e.2.azurestaticapps.net/#overview");
+       driver.get("https://www.saucedemo.com/");
 
     }
 

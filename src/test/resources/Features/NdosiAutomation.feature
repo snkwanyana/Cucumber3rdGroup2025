@@ -7,8 +7,8 @@ Feature: Ndosi Test Automation
     Then The user is redirected to the Sign Up page
     When The user enters the firstname "<firstname>" , lastname "<lastname>", email "<email>" , password "<password>" and confirmPassword "<confirmPassword>"
     And The user clicks on the create account button
-    Then The User should be redirected to the homepage
+    Then The pop up message "Account created successfully" is displayed
 
     Examples:
       | firstname | lastname  | email               | password | confirmPassword |
-      | Lebo      | Lesedi    | Lesedi@test.com     | Test@111 | Test@111        |
+      | Lebo1     | Lesedi1   | Lesedi1@test.com    | Test@111 | Test@111        |
