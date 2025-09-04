@@ -6,11 +6,11 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/resources/Features/NdosiAutomation.feature",
+        features = "src/test/resources/Features/SauceDemo.feature",
         glue = "StepDefs",
         plugin = {"pretty", "html:target/cucumber-report.html"},
         monochrome = true
 )
-public class Runner {
+public class RunnerSauceDemo {
     // No code needed here — Cucumber handles everything
 }
