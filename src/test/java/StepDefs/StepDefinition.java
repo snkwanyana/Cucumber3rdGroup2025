@@ -9,6 +9,7 @@ public class StepDefinition extends Base {
     public void user_is_on_the_signup_page() {
         landingPage.verifyLearnAutomationTheRightWayIsDisplayed();
         landingPage.clickLearnMoreButton();
+        loginPage.clickSignupButton();
 
     }
 
