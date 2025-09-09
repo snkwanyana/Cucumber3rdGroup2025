@@ -1,8 +1,10 @@
 package PageObjects;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 public class SignupPage {
 
@@ -21,8 +23,6 @@ public class SignupPage {
 
     @FindBy(xpath = "//button[contains(text(),'Create Account')]")
     WebElement createCreate_xpath;
-    @FindBy(id = "login-toggle")
-    WebElement signupButton_id;
 
     public SignupPage(WebDriver driver) {
         this.driver = driver;
@@ -52,8 +52,11 @@ public class SignupPage {
         createCreate_xpath.click();
     }
 
-    public void confirmIfSignupPageIsDisplayed() {
-        signupButton_id.isDisplayed();
+    public void confirmIfErrorMessageIsDisplayed(String errorMessage) {
+        Alert alert = driver.switchTo().alert();
+        String alertText = alert.getText();
+        Assert.assertEquals(alertText, errorMessage);
+        alert.accept();
     }
 
 }
