@@ -1,8 +1,9 @@
 package PageObjects;
 
+import Utils.Base;
 import org.openqa.selenium.WebDriver;
 
-public class LoginPage {
+public class LoginPage extends Base {
 
     WebDriver driver;
 

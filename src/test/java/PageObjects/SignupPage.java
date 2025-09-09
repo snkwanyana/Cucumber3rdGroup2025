@@ -1,10 +1,11 @@
 package PageObjects;
 
+import Utils.Base;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class SignupPage {
+public class SignupPage extends Base {
 
     WebDriver driver;
 
