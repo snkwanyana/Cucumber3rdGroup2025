@@ -18,6 +18,7 @@ public class LandingPage {
     WebElement LearnAutomationTheRightWay_id;
 
     public void verifyLearnAutomationTheRightWayIsDisplayed() {
+
         LearnAutomationTheRightWay_id.isDisplayed();
     }
 
