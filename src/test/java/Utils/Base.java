@@ -1,24 +1,20 @@
 package Utils;
-import PageObjects.SignupPage;
-import Utils.BrowserFactory; // Adjust the package if needed
-import org.openqa.selenium.WebDriver;
 
-import static Utils.BrowserFactory.driver;
+import PageObjects.LandingPage;
+import PageObjects.LoginPage;
+import PageObjects.SignupPage;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
 public class Base {
 
+    BrowserFactory browserFactory = new BrowserFactory();
+    final WebDriver driver = browserFactory.startBrowser("chrome", "https://www.ndosiautomation.co.za/" +
+            " " );
+
+    public LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+    public SignupPage signupPage = PageFactory.initElements(driver, SignupPage.class);
+    public LandingPage landingPage = PageFactory.initElements(driver, LandingPage.class);
 
 
-    public static void setUp(String browser, String url) {
-        driver = BrowserFactory.startBrowser(browser, url);
-        final WebDriver driver = BrowserFactory.startBrowser(browser, "https://gray-island-0bd788c1e.2.azurestaticapps.net/#practice");
-        //signupPage = new SignupPage(driver);
-    }
-
-    public static void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
 }
-
