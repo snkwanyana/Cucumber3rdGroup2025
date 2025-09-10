@@ -1,3 +1,4 @@
+@signup
 Feature: Sign up screen for the user to create login details
 
   Scenario Outline: As a user, I want to sign up to get access to Ndosi automation platform
