@@ -10,6 +10,12 @@ public class LoginPage {
 
     @FindBy(id = "signup-toggle")
     WebElement signupButton_id;
+    @FindBy(id = "login-email")
+    WebElement emailField_id;
+    @FindBy(id = "login-password")
+    WebElement passwordField_id;
+    @FindBy(id = "login-submit")
+    WebElement loginButton_id;
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -19,5 +25,13 @@ public class LoginPage {
         signupButton_id.click();
     }
 
+    public void verifyLogintoAccessLearningMaterialsIsDisplayed() {
 
+    }
+
+
+    public void verifyLearnAutomationTheRightWayIsDisplayed() {
+
+
+    }
 }
