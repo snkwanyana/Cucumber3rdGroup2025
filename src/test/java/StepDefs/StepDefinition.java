@@ -1,43 +1,57 @@
 package StepDefs;
 
+import Utils.Base;
 import io.cucumber.java.en.*;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
 
-public class StepDefinition {
+public class StepDefinition extends Base {
 
-    WebDriver driver;
-
-    @Given("The user is already on the login page")
-    public void the_user_is_already_on_the_login_page() {
-        driver = new ChromeDriver();
-        //driver.get("https://gray-island-0bd788c1e.2.azurestaticapps.net/#overview");
-       //driver.get("https://www.saucedemo.com/");
+    @Given("User is on the signup page")
+    public void user_is_on_the_signup_page() {
+        landingPage.verifyLearnAutomationTheRightWayIsDisplayed();
+        landingPage.clickLearnMoreButton();
+        loginPage.clickSignupButton();
 
     }
 
-    @When("The user enters the username {}")
-    public void the_user_enters_the_username(String username) {
-        driver.findElement(By.id("user-name")).sendKeys(username);
+    @When("User enters name {}")
+    public void user_enters_name(String name) {
+        signupPage.enterFirstName(name);
+
     }
 
-    @And("The user enters the password {}")
-    public void the_user_enters_the_password(String password) {
-        driver.findElement(By.id("password")).sendKeys(password);
+    @And("User enters last name {}")
+    public void user_enters_last_name(String lastName) {
+        signupPage.enterLastName(lastName);
+
     }
 
-    @And("The user clicks on the login button")
-    public void the_user_clicks_on_the_login_button() {
-        driver.findElement(By.id("login-button")).click();
+    @And("User enters email {}")
+    public void user_enters_email(String email) {
+        signupPage.enterEmail(email);
+
     }
 
-    @Then("The user should be redirected to the homepage")
-    public void the_user_should_be_redirected_to_the_homepage() {
-        String actualElement =  driver.findElement(By.xpath("//span[contains(text(),'Products')]")).getText();
-        Assert.assertEquals(actualElement, "Products");
+    @And("User enters new password {}")
+    public void user_enters_new_password(String password) {
+        signupPage.enterPassword(password);
+
+    }
+
+    @And("User enters confirm password {}")
+    public void user_enters_confirm_password(String comfirmPassword) {
+        signupPage.enterConfirmPassword(comfirmPassword);
+    }
+
+    @And("User clicks on the create account button")
+    public void user_clicks_on_the_create_account_button() {
+        signupPage.clickCreateAccount();
+
+    }
+
+    @Then("User should see an error message {}")
+    public void user_should_see_an_error_message(String errorMessage) {
+
+        signupPage.confirmIfErrorMessageIsDisplayed(errorMessage);
 
     }
 
