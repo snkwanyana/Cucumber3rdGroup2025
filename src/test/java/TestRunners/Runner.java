@@ -9,7 +9,7 @@ import io.cucumber.testng.CucumberOptions;
             glue = {"StepDefs"},
             plugin = {"pretty", "html:target/cucumber-reports.html"},
             monochrome = true,
-            tags = "@signup"
+            tags = "@webAssessment"
     )
     public class Runner extends AbstractTestNGCucumberTests {
     }

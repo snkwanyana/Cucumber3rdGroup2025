@@ -2,19 +2,25 @@ package Utils;
 
 import PageObjects.LandingPage;
 import PageObjects.LoginPage;
+import PageObjects.PracticeAssessmentsPage;
 import PageObjects.SignupPage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
 
 public class Base {
 
-    BrowserFactory browserFactory = new BrowserFactory();
-    final WebDriver driver = browserFactory.startBrowser("chrome", "https://www.ndosiautomation.co.za/" +
-            " " );
+    protected WebDriver driver;
+    protected LoginPage loginPage;
+    protected SignupPage signupPage;
+    protected LandingPage landingPage;
+    protected PracticeAssessmentsPage practiceAssessmentsPage;
 
-    public LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
-    public SignupPage signupPage = PageFactory.initElements(driver, SignupPage.class);
-    public LandingPage landingPage = PageFactory.initElements(driver, LandingPage.class);
+    public Base() throws InterruptedException {
+        BrowserFactory browserFactory = new BrowserFactory();
+        driver = BrowserFactory.startBrowser("chrome", "https://www.ndosiautomation.co.za/");
 
-
+        loginPage = new LoginPage(driver);
+        signupPage = new SignupPage(driver);
+        landingPage = new LandingPage(driver);
+        practiceAssessmentsPage = new PracticeAssessmentsPage(driver); // assign to class variable
+    }
 }
