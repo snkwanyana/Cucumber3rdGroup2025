@@ -10,6 +10,8 @@ public class LoginPage {
 
     @FindBy(id = "signup-toggle")
     WebElement signupButton_id;
+    @FindBy(id ="nav-btn-practice")
+    WebElement learningmaterial_id;
     @FindBy(id = "login-email")
     WebElement emailField_id;
     @FindBy(id = "login-password")
@@ -25,13 +27,26 @@ public class LoginPage {
         signupButton_id.click();
     }
 
-    public void verifyLogintoAccessLearningMaterialsIsDisplayed() {
+    public void verifyLearnAutomationtheRightWayisDisplayed() {
 
     }
 
+    public  void clicklearningmaterialButton(){
+        learningmaterial_id.click();
+    }
 
-    public void verifyLearnAutomationTheRightWayIsDisplayed() {
+    public  void enterEmailAddress(String emailadd) {
+        emailField_id.sendKeys(emailadd);
+    }
 
+
+    public  void enterPassword(String password) {
+        passwordField_id.sendKeys(password);
+    }
+
+    public void clickloginButton() {
+        loginButton_id.click();
 
     }
 }
+

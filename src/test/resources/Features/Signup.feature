@@ -13,7 +13,7 @@ Feature: Sign up screen for the user to create login details
 
     Examples:
       | name   | lastname | email          | password    | confirmPassword | #errorMessage                                |
-      | Summer | Gusheshe  | sama@gmail.com | Password123 | Password123     | Please fill in all fields                   |
+      | Summer | Gusheshe  | sama2@gmail.com | Password123 | Password123     | Please fill in all fields                   |
       #| myName | surname  | test@gmail     | Password123 | Password123     | Please enter a valid email address          |
       #| myName | surname  | test@gmail.com | Passw       | Passw           | Password must be at least 8 characters long |
       #| myName | surname  | test@gmail.com | Password123 | Password        | Passwords do not match!                     |
