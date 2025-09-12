@@ -8,6 +8,15 @@ public class LoginPage {
 
     WebDriver driver;
 
+    @FindBy(id = "login-email")
+    WebElement emailField_id;
+
+    @FindBy(id = "login-password")
+    WebElement passwordField_id;
+
+    @FindBy(id = "login-submit")
+    WebElement loginButton_id;
+
     @FindBy(id = "signup-toggle")
     WebElement signupButton_id;
 
@@ -16,8 +25,18 @@ public class LoginPage {
     }
 
     public void clickSignupButton() {
-
         signupButton_id.click();
+    }
+    public void enterEmail(String email) {
+        emailField_id.sendKeys(email);
+    }
+    public void enterPassword(String password) {
+        passwordField_id.sendKeys(password);
+    }
+    public void clickLoginButton() {
+        emailField_id.clear();
+        passwordField_id.clear();
+        loginButton_id.click();
     }
 
 
