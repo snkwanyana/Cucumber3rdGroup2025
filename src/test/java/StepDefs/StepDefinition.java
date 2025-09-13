@@ -1,5 +1,6 @@
 package StepDefs;
 
+import PageObjects.PracticeAssessmentsPage;
 import Utils.Base;
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.*;
@@ -74,12 +75,13 @@ public class StepDefinition extends Base {
 
     @And("User clicks on the login button")
     public void user_clicks_on_the_login_button() {
+
         loginPage.clickLoginButton();
     }
 
     @Then("User should be redirected to learning material page")
     public void user_should_be_redirected_to_learning_material_page() {
-
+        PracticeAssessmentsPage.verifyPracticeAssessmentIsDisplayed();
     }
 
 }

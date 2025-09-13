@@ -34,8 +34,6 @@ public class LoginPage {
         passwordField_id.sendKeys(password);
     }
     public void clickLoginButton() {
-        emailField_id.clear();
-        passwordField_id.clear();
         loginButton_id.click();
     }
 
