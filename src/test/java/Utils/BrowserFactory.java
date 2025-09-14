@@ -13,7 +13,7 @@ public class BrowserFactory {
         switch (browserChoice.toLowerCase()){
             case "chrome":
                 ChromeOptions chromeOptions = new ChromeOptions();
-               // chromeOptions.addArguments("--headless");
+                chromeOptions.addArguments("incognito");
                 driver = new ChromeDriver(chromeOptions);
                 break;
             case "firefox":
@@ -26,5 +26,12 @@ public class BrowserFactory {
         driver.get(url);
         driver.manage().window().maximize();
         return driver;
+    }
+
+
+    public static void closeBrowser() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }

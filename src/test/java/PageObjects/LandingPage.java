@@ -12,7 +12,10 @@ public class LandingPage {
     }
 
     @FindBy(id = "nav-btn-practice")
-    WebElement LearnMoreButton_id;
+    WebElement learnMaterialsTab_id;
+
+    @FindBy(id = "nav-btn-contact")
+    WebElement contactDetailsTab_id;
 
     @FindBy(id = "overview-hero")
     WebElement LearnAutomationTheRightWay_id;
@@ -21,8 +24,12 @@ public class LandingPage {
         LearnAutomationTheRightWay_id.isDisplayed();
     }
 
-    public void clickLearnMoreButton() {
-        LearnMoreButton_id.click();
+    public void clickLearnMaterialsTab() {
+        learnMaterialsTab_id.click();
+    }
+
+    public void clickContactDetailsTab() {
+        contactDetailsTab_id.click();
     }
 
 
