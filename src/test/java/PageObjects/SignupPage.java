@@ -52,7 +52,8 @@ public class SignupPage {
         createCreate_xpath.click();
     }
 
-    public void confirmIfErrorMessageIsDisplayed(String errorMessage) {
+    public void confirmIfErrorMessageIsDisplayed(String errorMessage) throws InterruptedException {
+        Thread.sleep(6000);
         Alert alert = driver.switchTo().alert();
         String alertText = alert.getText();
         Assert.assertEquals(alertText, errorMessage);

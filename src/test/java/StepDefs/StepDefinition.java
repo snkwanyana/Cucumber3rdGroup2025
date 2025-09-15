@@ -49,10 +49,27 @@ public class StepDefinition extends Base {
     }
 
     @Then("User should see an error message {}")
-    public void user_should_see_an_error_message(String errorMessage) {
+    public void user_should_see_an_error_message(String errorMessage) throws InterruptedException {
 
         signupPage.confirmIfErrorMessageIsDisplayed(errorMessage);
 
     }
 
+    @Given("User is on the login page")
+    public void userIsOnTheLoginPage() {
+        landingPage.verifyLearnAutomationTheRightWayIsDisplayed();
+        landingPage.clickLearnMoreButton();
+    }
+//    @When("User enters email {}")
+//    public void userEntersEmail(String email) {
+//        loginPage.EnterEmail(email);
+//    }
+    @And("User enters password {}")
+    public void userEntersPassword(String password) {
+        loginPage.EnterPassword(password);
+    }
+    @And("User clicks on the login button")
+    public void userClicksOnTheLoginButton() {
+        loginPage.clickLoginButton();
+    }
 }
