@@ -1,5 +1,7 @@
 target/
-test-output/
+test-output/PDFReport
+test-output/SparkReport
+Screenshots/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
