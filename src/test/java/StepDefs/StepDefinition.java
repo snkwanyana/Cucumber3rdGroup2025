@@ -1,8 +1,10 @@
 package StepDefs;
 
 import Utils.Base;
+import io.cucumber.java.After;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterTest;
 
 public class StepDefinition extends Base {
 
@@ -61,6 +63,11 @@ public class StepDefinition extends Base {
 
         signupPage.confirmIfErrorMessageIsDisplayed(errorMessage);
 
+    }
+
+    @After
+    public void quitBrowser() {
+        driver.quit();
     }
 
 }
