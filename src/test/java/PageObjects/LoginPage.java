@@ -16,6 +16,7 @@ public class LoginPage {
     }
 
     public void clickSignupButton() {
+
         signupButton_id.click();
     }
 

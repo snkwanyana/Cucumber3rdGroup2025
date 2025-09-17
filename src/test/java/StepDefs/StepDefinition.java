@@ -1,9 +1,18 @@
 package StepDefs;
 
 import Utils.Base;
+import io.cucumber.java.After;
 import io.cucumber.java.en.*;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterTest;
 
 public class StepDefinition extends Base {
+
+    public WebDriver driver;
+
+    public StepDefinition() {
+        this.driver = super.driver;
+    }
 
     @Given("User is on the signup page")
     public void user_is_on_the_signup_page() {
@@ -16,6 +25,7 @@ public class StepDefinition extends Base {
     @When("User enters name {}")
     public void user_enters_name(String name) {
         signupPage.enterFirstName(name);
+        takeScreenshots.takesSnapShot(driver, "Signup Page");
 
     }
 
@@ -53,6 +63,11 @@ public class StepDefinition extends Base {
 
         signupPage.confirmIfErrorMessageIsDisplayed(errorMessage);
 
+    }
+
+    @After
+    public void quitBrowser() {
+        driver.quit();
     }
 
 }
