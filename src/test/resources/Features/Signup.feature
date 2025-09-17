@@ -17,4 +17,4 @@ Feature: Sign up screen for the user to create login details
 #      | myName | surname  | test@gmail     | Password123 | Password123     | Please enter a valid email address                           |
 #      | myName | surname  | test@gmail.com | Passw       | Passw           | Password must be at least 8 characters long                  |
 #      | myName | surname  | test@gmail.com | Password123 | Password        | Passwords do not match!                                      |
-      | Tester | test     | Danaa@gmail.com | Test123.    | Test123.        | Registration successful! Please login with your credentials. |
+      | Tester | test     | miyan@gmail.com | Test123.    | Test123.        | Registration successful! Please login with your credentials. |

@@ -19,8 +19,7 @@ public class LoginPage {
     @FindBy(id = "login-password")
     WebElement Password_id;
 
-    @FindBy(id = "practice-header")
-    WebElement racticeassessment_id;
+
 
 
     public LoginPage(WebDriver driver) {
@@ -30,18 +29,19 @@ public class LoginPage {
     public void clickSignupButton() {
         signupButton_id.click();
     }
-    public  void EnterEmail(String email){
+
+    public void EnterEmail(String email) {
         emai_id.sendKeys(email);
     }
-    public  void EnterPassword(String password){
+
+    public void EnterPassword(String password) {
         Password_id.sendKeys(password);
     }
+
     public void clickLoginButton() {
+
         loginButton_id.click();
     }
 
-    public boolean isPracticeAssessmentDisplayed() {
-        return racticeassessment_id.isDisplayed();
-    }
 
 }

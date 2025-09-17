@@ -1,7 +1,13 @@
 package StepDefs;
 
+import PageObjects.LearningMaterialPage;
 import Utils.Base;
 import io.cucumber.java.en.*;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
+import static java.sql.DriverManager.getDriver;
 
 public class StepDefinition extends Base {
 
@@ -60,16 +66,66 @@ public class StepDefinition extends Base {
         landingPage.verifyLearnAutomationTheRightWayIsDisplayed();
         landingPage.clickLearnMoreButton();
     }
-//    @When("User enters email {}")
-//    public void userEntersEmail(String email) {
-//        loginPage.EnterEmail(email);
-//    }
+
     @And("User enters password {}")
     public void userEntersPassword(String password) {
         loginPage.EnterPassword(password);
     }
+
     @And("User clicks on the login button")
     public void userClicksOnTheLoginButton() {
         loginPage.clickLoginButton();
     }
+
+
+    @Then("User should be successfully logged in and see practice page")
+    public void userShouldBeSuccessfullyLoggedInAndSeePracticePage() {
+        //learningMaterialPage.logoutbtn_idDisplayed();
+
+    }
+
+
+    @Given("user is on learning materials")
+    public void userIsOnLearningMaterials() {
+        landingPage.verifyLearnAutomationTheRightWayIsDisplayed();
+        landingPage.clickLearnMoreButton();
+
+    }
+
+
+    @When("user selects a product to purchase {string},{string},{string},{string},{string},{string},{string},{string},{string}")
+    public void userSelectsAProductToPurchaseUsernamePasswordDeviceTypeBrandStorageColorQuantityDeliveryAddressdiscount(String username, String password, String deviceType, String brand, String storage, String color, String quantity, String deliveryAddress,String discount) throws InterruptedException {
+        loginPage.EnterEmail(username);
+        loginPage.EnterPassword(password);
+        loginPage.clickLoginButton();
+        learningMaterialPage.ClickWebAutomation();
+        learningMaterialPage.SelectDeviceType(deviceType);
+        learningMaterialPage.SelectBrand(brand);
+        learningMaterialPage.SelectStorage(storage);
+        learningMaterialPage.SelectColor(color);
+        learningMaterialPage.EnterQuantity(quantity);
+        learningMaterialPage.EnterDeleveryAddress(deliveryAddress);
+        learningMaterialPage.ClickInventoryNextButton();
+//        learningMaterialPage.enterDiscountCode(discount);
+//        learningMaterialPage.ClickApplyDiscountButton();
+    }
+
+    @Then("user should be able to confirm product details")
+    public void userShouldBeAbleToConfirmProductDetails() {
+        
+    }
+
+    @And("clicks Next button to proceed to checkout")
+    public void clicksNextButtonToProceedToCheckout() {
+        
+    }
+
+    @And("user should be able to complete the purchase")
+    public void userShouldBeAbleToCompleteThePurchase() {
+    }
+//    public  void waitForElementToBeVisible(WebDriverWait driver, String element, int timeoutInSeconds) {
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
+//        wait.until(driver1 -> getDriver().findElement(org.openqa.selenium.By.xpath(element)).isDisplayed());
+//    }
+
 }

@@ -7,7 +7,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class BrowserFactory {
-    static WebDriver driver;
+    public static WebDriver driver;
 
     public static WebDriver startBrowser(String browserChoice, String url){
         switch (browserChoice.toLowerCase()){
