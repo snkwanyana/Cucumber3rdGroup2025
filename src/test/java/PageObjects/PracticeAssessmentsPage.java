@@ -38,6 +38,9 @@ public class PracticeAssessmentsPage {
     @FindBy(id = "address")
     WebElement address_id;
 
+    @FindBy(id="inventory-next-btn")
+    WebElement nextButton_id;
+
     public void selectDeviceType(String deviceType) {
         deviceType_id.click();
         Select select = new Select(deviceType_id);
@@ -76,6 +79,9 @@ public class PracticeAssessmentsPage {
     public void enterAddress(String address) {
         address_id.clear();
         address_id.sendKeys(address);
+    }
+    public  void clickNextButton() {
+        nextButton_id.click();
     }
 }
 

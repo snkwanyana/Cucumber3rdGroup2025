@@ -3,10 +3,17 @@ package StepDefs;
 import PageObjects.LoginPage;
 import PageObjects.PracticeAssessmentsPage;
 import Utils.Base;
+import io.cucumber.java.After;
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.*;
+import org.openqa.selenium.WebDriver;
 
 public class StepDefinition extends Base {
+//    WebDriver driver;
+//    public StepDefinition(WebDriver driver) {
+//        this.driver = driver;
+//    }
+
 
 //    @Given("User is on the signup page")
 //    public void user_is_on_the_signup_page() {
@@ -126,11 +133,22 @@ public class StepDefinition extends Base {
     public void user_selects_color(String color) {
         practiceAssessmentsPage.selectColor(color);
     }
+    @And("User enters delivery address {string}")
+    public void user_enters_delivery_address(String Address) {
+        practiceAssessmentsPage.enterAddress(Address);
+    }
+    @And("User clicks on the next button")
+    public void user_clicks_on_the_next_button() {
+        practiceAssessmentsPage.clickNextButton();
+    }
 
     @Then("User should be redirected to the web automation assessment page")
     public void user_should_be_redirected_to_the_web_automation_assessment_page() {
 
     }
-
+//    @After
+//    public void quitBrowser() {
+//        driver.quit();
+//    }
 
 }

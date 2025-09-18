@@ -16,5 +16,7 @@ Feature: Practice Assessments page to access Web Automation in Ndosi platform
     And User selects brand "Macbook pro"
     And User selects storage "256GB"
     And User selects color "White"
+    And User enters delivery address "123, Baker street, London"
+    And User clicks on the next button
     Then User should be redirected to the web automation assessment page
 
