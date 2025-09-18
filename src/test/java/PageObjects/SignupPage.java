@@ -1,5 +1,6 @@
 package PageObjects;
 
+import Utils.TakeScreenshots;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,6 +9,7 @@ import org.testng.Assert;
 
 public class SignupPage {
 
+//    TakeScreenshots takeScreenshots = new TakeScreenshots();
     WebDriver driver;
 
     @FindBy(id = "register-firstName")
@@ -30,6 +32,7 @@ public class SignupPage {
 
     public void enterFirstName(String firstName) {
         firstNameField_id.sendKeys(firstName);
+//        takeScreenshots.takesSnapShot(driver, "FirstName");
     }
 
     public void enterLastName(String lastName) {
