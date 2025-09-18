@@ -1,3 +1,4 @@
+
 Feature: Login screen to access Ndosi automation platform
 
   Scenario Outline: As a user, I want to log in to access the Ndosi automation platform

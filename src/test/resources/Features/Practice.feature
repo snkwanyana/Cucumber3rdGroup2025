@@ -1,0 +1,20 @@
+@Regression
+
+Feature: Practice Assessments page to access Web Automation in Ndosi platform
+
+  Background:
+    Given User is on the login page
+    When User enters Email PlanJa@gmail.com
+    And User enters password PlanJ@123
+    And User clicks on the login button
+
+
+  Scenario: As a user, I want to access the practice assessments page to take web automation assessment
+    Given User is on the practice assessments page
+    When User clicks on the web automation link
+    And  User selects device type "Laptop"
+    And User selects brand "Macbook pro"
+    And User selects storage "256GB"
+    And User selects color "White"
+    Then User should be redirected to the web automation assessment page
+

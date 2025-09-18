@@ -1,8 +1,14 @@
 package PageObjects;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
+import java.time.Duration;
 
 public class LoginPage {
 
@@ -19,6 +25,11 @@ public class LoginPage {
 
     @FindBy(id = "signup-toggle")
     WebElement signupButton_id;
+    @FindBy(id = "practice-heading")
+    public WebElement practiceAssessment_id;
+
+    @FindBy(id="tab-btn-web")
+    WebElement  webTab_id;
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -36,6 +47,11 @@ public class LoginPage {
     public void clickLoginButton() {
         loginButton_id.click();
     }
-
-
+    public void verifyPracticeAssessmentIsDisplayed() {
+        new WebDriverWait(driver, Duration.ofSeconds(8)).until(ExpectedConditions.visibilityOf(practiceAssessment_id));
+        practiceAssessment_id.isDisplayed();
+    }
+    public void clickWebTab() {
+        webTab_id.click();
+    }
 }
