@@ -109,6 +109,7 @@ public class StepDefinition extends Base {
     @And("User selects device type {string}")
     public void user_selects_device_type(String deviceType) {
         practiceAssessmentsPage.selectDeviceType(deviceType);
+        practiceAssessmentsPage.verifyPricingDetailsDisplayed();
     }
 
     @And("User selects brand {string}")
