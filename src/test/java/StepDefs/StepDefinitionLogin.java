@@ -6,6 +6,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.en_scouse.An;
 import org.openqa.selenium.WebDriver;
 
 public class StepDefinitionLogin extends Base {
@@ -76,10 +77,28 @@ public class StepDefinitionLogin extends Base {
 
     @And("User select the storage")
     public void user_select_the_storage() {
-        selectDevicePage.clickStorage("128GB");
+        selectDevicePage.clickStorage();
     }
 
+    @And("User select the color")
+    public void user_select_the_color() {
+        selectDevicePage.selectColor("Gold");
+    }
 
+//    @And("User select Quantity")
+//    public void user_select_the_quality() {
+//        selectDevicePage.selectquality("2");
+//    }
+
+ @And("User enters Deliveryemailadd {}")
+    public void andUserEntersDeliveryemailaddEmailaddressadd(String emailaddressadd) {
+        selectDevicePage.enterDeliveryemailadd(emailaddressadd);
+    }
+
+    @And("User clicks on the next button")
+    public void user_clicks_on_the_next_button() {
+        selectDevicePage.clickNextButton();
+    }
 
 
 }

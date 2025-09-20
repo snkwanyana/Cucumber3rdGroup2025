@@ -25,9 +25,12 @@ public class SelectDevicePage {
     @FindBy(id = "brand")
     WebElement brand_id;
 
-    @FindBy(id = "storage-128GB")
+    @FindBy(xpath = "//*[@id='storage-128GB']")
 
     WebElement storage_128GB_id;
+
+    @FindBy(id ="address")
+    WebElement addressField_id;
 
     public SelectDevicePage(WebDriver driver) {
         this.driver = driver;
@@ -54,14 +57,33 @@ public class SelectDevicePage {
     }
 
 
-    public void clickStorage(String storage) {
-        WebElement radiobutton = driver.findElement(By.id("storage-128GB" + storage));
-        //Select radiobutton = new Select(radiobutton);
-        if (!radiobutton.isSelected()) {
-            radiobutton.click();
+    public void clickStorage() {
+           WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            WebElement storageOption = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='storage-128GB']")));
+            storageOption.click();
 
         }
 
+        public void selectColor(String color) {
+            WebElement colorElement = driver.findElement(By.id("color"));
+            Select colorDropdown = new Select(colorElement);
+            colorDropdown.selectByVisibleText(color);
+        }
+
+//        public void inputquality(String quality) {
+//
+//        }
+
+    public  void enterDeliveryemailadd(String emailadd) {
+        addressField_id.clear();
+        addressField_id.sendKeys(emailadd.trim());
+
 
     }
-}
+
+    public  void clickNextButton() {
+        WebElement nextButton = driver.findElement(By.id("inventory-next-btn"));
+        nextButton.click();
+
+    }
+    }

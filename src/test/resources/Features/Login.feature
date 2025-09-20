@@ -16,6 +16,10 @@ Feature: Login screen for the user to access Ndosi automation platform
     And User select the device
     And User Select the brand
     And User select the storage
+    And User select the color
+    #And User select Quantity
+    And User enters Deliveryemailadd sama23@gmail.com
+    And User clicks on the next button
 
 
     Examples:
