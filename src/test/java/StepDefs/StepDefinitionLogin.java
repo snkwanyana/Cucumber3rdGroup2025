@@ -1,9 +1,12 @@
 package StepDefs;
 
+import PageObjects.SelectDevicePage;
 import Utils.Base;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriver;
 
 public class StepDefinitionLogin extends Base {
 
@@ -20,8 +23,7 @@ public class StepDefinitionLogin extends Base {
 
     @And("User enters emailaddress {}")
     public void user_enters_emailaddress(String emailaddress) {
-       loginPage.enterEmailAddress(emailaddress);
-
+      loginPage.enterEmailAddress(emailaddress);
     }
 
     @And("User enters password {}")
@@ -34,6 +36,50 @@ public class StepDefinitionLogin extends Base {
     public void user_clicks_on_the_login_button() {
        loginPage.clickloginButton();
     }
+
+    @And("User clicks on About Us button")
+    public void user_clicks_on_the_about_us_button() {
+       loginPage.clickAboutUSbutton();
+    }
+
+    @Then("User should see About Nkosi Cele")
+    public void user_should_see_about_nkosi_cele()
+    {
+        loginPage.verifyAboutNkosiCeleisDisplayed();
+    }
+
+    @And ("User clicks on learning material button")
+    public  void user_clicks_on_learning_material_button(){
+        loginPage.clickslearningmaterialButton();
+    }
+
+    @And("User if forced to login again")
+    public void user_if_forced_to_login_again() {
+        loginPage.login("sama23@gmail.com", "Password123");
+    }
+
+
+    @And("User Clicks on Web Automation Advance")
+    public void user_Clicks_on_Web_Automation_Advance() {
+        selectDevicePage.clickWebAutomationAdvance();
+    }
+
+    @And("User select the device")
+    public void user_select_the_device() {
+        selectDevicePage.selectDropdown("Tablet");
+    }
+
+    @And("User Select the brand")
+    public void user_select_the_brand() {
+        selectDevicePage.selectBrand("Samsung");
+    }
+
+    @And("User select the storage")
+    public void user_select_the_storage() {
+        selectDevicePage.clickStorage("128GB");
+    }
+
+
 
 
 }
