@@ -1,5 +1,6 @@
 package PageObjects;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -31,6 +32,9 @@ public class SelectDevicePage {
 
     @FindBy(id ="address")
     WebElement addressField_id;
+
+    @FindBy(id = "quantity")
+    WebElement quantity_id;
 
     public SelectDevicePage(WebDriver driver) {
         this.driver = driver;
@@ -70,9 +74,12 @@ public class SelectDevicePage {
             colorDropdown.selectByVisibleText(color);
         }
 
-//        public void inputquality(String quality) {
-//
-//        }
+        public void inputquality(String quality) {
+            //WebElement quantityElement = driver.findElement(By.id("quantity"));
+            quantity_id.clear();
+            quantity_id.sendKeys(quality);
+
+        }
 
     public  void enterDeliveryemailadd(String emailadd) {
         addressField_id.clear();
@@ -80,6 +87,34 @@ public class SelectDevicePage {
 
 
     }
+// Validate the subtotal
+public void validatePriceCalculation() {
+    WebElement unitPriceElement = driver.findElement(By.id("unit-price-label"));
+    WebElement quantityElement = driver.findElement(By.id("quantity-label"));
+    WebElement subtotalElement = driver.findElement(By.id("subtotal-label"));
+
+    String unitPriceText = unitPriceElement.getText().replaceAll("[^\\d.]", "").trim();
+//    String quantityText = quantityElement.getText().trim();
+    String quantityText = quantityElement.getText().replace("Qty:", "").trim();
+    String subtotalText = subtotalElement.getText().replace("R", "").replace("Subtotal:", "").trim();
+
+    if (unitPriceText.isEmpty() || subtotalText.isEmpty()) {
+        throw new IllegalStateException("Price or subtotal text is empty. Cannot perform calculation.");
+    }
+
+    double unitPrice = Double.parseDouble(unitPriceText);
+    int quantity = Integer.parseInt(quantityText);
+    double subtotal = Double.parseDouble(subtotalText);
+
+    double expectedSubtotal = unitPrice * quantity;
+
+    Assert.assertEquals("Subtotal calculation mismatch", expectedSubtotal, subtotal, 0.01);
+    //System.out.println("Current Price is: " + subtotal);
+    System.out.println("Unit Price Text: '" + unitPriceText + "'");
+    System.out.println("Quantity Text: '" + quantityText + "'");
+    System.out.println("Subtotal Text: '" + subtotalText + "'");
+}
+
 
     public  void clickNextButton() {
         WebElement nextButton = driver.findElement(By.id("inventory-next-btn"));

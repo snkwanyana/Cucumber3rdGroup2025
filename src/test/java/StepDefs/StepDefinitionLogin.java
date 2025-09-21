@@ -85,20 +85,29 @@ public class StepDefinitionLogin extends Base {
         selectDevicePage.selectColor("Gold");
     }
 
-//    @And("User select Quantity")
-//    public void user_select_the_quality() {
-//        selectDevicePage.selectquality("2");
-//    }
+   @And("User select Quantity")
+    public void user_select_the_quality() {
+       selectDevicePage.inputquality("2");
+    }
 
  @And("User enters Deliveryemailadd {}")
     public void andUserEntersDeliveryemailaddEmailaddressadd(String emailaddressadd) {
         selectDevicePage.enterDeliveryemailadd(emailaddressadd);
     }
 
+   @And("Calculate the total price")
+   public  void validatePriceCalculation()
+    {
+         selectDevicePage.validatePriceCalculation();
+
+   }
+
     @And("User clicks on the next button")
     public void user_clicks_on_the_next_button() {
         selectDevicePage.clickNextButton();
     }
+
+
 
 
 }
