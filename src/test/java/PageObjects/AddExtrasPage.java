@@ -9,6 +9,9 @@ public class AddExtrasPage {
     WebDriver driver;
     public AddExtrasPage(WebDriver driver) {this.driver = driver;}
 
+    @FindBy(id = "inventory-title")
+    WebElement extrasTitle_id;
+
     @FindBy(id = "shipping-option-express")
     WebElement expressShipping_id;
 
@@ -18,6 +21,25 @@ public class AddExtrasPage {
     @FindBy(id ="discount-code")
     WebElement discountCode_id;
 
+    public void verifyinventorytitleIsDisplayed() {
+
+        extrasTitle_id.isDisplayed();
+    }
+
+
+    public void selectExpressShipping() {
+        expressShipping_id.click();
+    }
+
+
+    public void  select2YearWarranty() {
+        warranty2Years_id.click();
+    }
+
+    public void enterDiscountCode(String discountcode) {
+        discountCode_id.clear();
+        discountCode_id.sendKeys(discountcode.trim());
+    }
 
 
 
