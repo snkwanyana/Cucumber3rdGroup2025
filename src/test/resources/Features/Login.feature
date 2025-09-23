@@ -9,5 +9,5 @@ Feature: Login screen to access Ndosi automation platform
     Then User should be redirected to learning material page
 
     Examples:
-      | email            | password  |
-      | PlanJa@gmail.com | PlanJ@123 |
+      | email             | password  |
+      | JohnDoe@gmail.com | John@1234 |

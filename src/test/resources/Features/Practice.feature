@@ -4,8 +4,8 @@ Feature: Practice Assessments page to access Web Automation in Ndosi platform
 
   Background:
     Given User is on the login page
-    When User enters Email PlanJa@gmail.com
-    And User enters password PlanJ@123
+    When User enters Email JohnDoe@gmail.com
+    And User enters password John@1234
     And User clicks on the login button
 
 
@@ -16,7 +16,10 @@ Feature: Practice Assessments page to access Web Automation in Ndosi platform
     And User selects brand "Macbook pro"
     And User selects storage "256GB"
     And User selects color "White"
+    And User enters quantity 4
     And User enters delivery address "123, Baker street, London"
     And User clicks on the next button
-    Then User should be redirected to the web automation assessment page
+    And User selects shipping method "Express"
+
+
 

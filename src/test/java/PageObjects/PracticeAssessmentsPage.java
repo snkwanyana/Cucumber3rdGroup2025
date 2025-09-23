@@ -38,17 +38,18 @@ public class PracticeAssessmentsPage {
     @FindBy(id = "address")
     WebElement address_id;
 
-    @FindBy(id="inventory-next-btn")
+    @FindBy(id = "inventory-next-btn")
     WebElement nextButton_id;
 
-    @FindBy(xpath="//*[@id=\"step1-pricing-summary\"]/div/div[2]/span[1]/text()[1]")
+    @FindBy(xpath = "//*[@id=\"step1-pricing-summary\"]/div/div[2]/span[1]/text()[1]")
     WebElement unitPrice_id;
 
-    @FindBy(xpath="//*[@id=\"step1-pricing-summary\"]/div/div[2]/span[2]/text()[1]")
+    @FindBy(xpath = "//*[@id=\"step1-pricing-summary\"]/div/div[2]/span[2]/text()[1]")
     WebElement qty_id;
 
-    @FindBy(xpath="//*[@id=\"step1-pricing-summary\"]/div/div[2]/span[3]/text()[1]")
+    @FindBy(xpath = "//*[@id=\"step1-pricing-summary\"]/div/div[2]/span[3]/text()[1]")
     WebElement subTot_id;
+
 
 
     public void selectDeviceType(String deviceType) {
@@ -90,23 +91,20 @@ public class PracticeAssessmentsPage {
         address_id.clear();
         address_id.sendKeys(address);
     }
-    public  void clickNextButton() {
+
+    public void clickNextButton() {
         nextButton_id.click();
     }
+
     public void verifyPricingDetailsDisplayed() {
         if (deviceType_id.isSelected()) {
-            System.out.println(unitPrice_id.getText() + qty_id.getText() + subTot_id.getText() );
-        }else if (deviceType_id.isSelected() && !quantity_id.getText().equalsIgnoreCase("")){
-            System.out.println(unitPrice_id.getText() + qty_id.getText() + subTot_id.getText() );
-        }else {
+            System.out.println(unitPrice_id.getText() + qty_id.getText() + subTot_id.getText());
+        } else if (deviceType_id.isSelected() && !quantity_id.getText().equalsIgnoreCase("")) {
+            System.out.println(unitPrice_id.getText() + qty_id.getText() + subTot_id.getText());
+        } else {
             System.out.println("Unit Price, Quantity and Sub Total are not displayed correctly");
         }
-//
-//        }else if(qty_id.getText().contains("R")){
-//            System.out.println("Unit Price is not displayed correctly");
-//        }else if(subTot_id.getText().contains("R")){
-//            System.out.println("Sub Total is not displayed correctly");
-//        }
     }
+
 }
 

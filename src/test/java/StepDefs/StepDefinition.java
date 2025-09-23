@@ -1,19 +1,17 @@
 package StepDefs;
 
-import PageObjects.LoginPage;
-import PageObjects.PracticeAssessmentsPage;
+
 import Utils.Base;
-import io.cucumber.java.After;
-import io.cucumber.java.PendingException;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.WebDriver;
 
-public class StepDefinition extends Base {
-//    WebDriver driver;
-//    public StepDefinition(WebDriver driver) {
-//        this.driver = driver;
-//    }
 
+public class StepDefinition extends Base {
+   public WebDriver driver;
+
+   public StepDefinition(){
+       this.driver = super.driver;
+   }
 
 //    @Given("User is on the signup page")
 //    public void user_is_on_the_signup_page() {
@@ -74,11 +72,13 @@ public class StepDefinition extends Base {
     @And("User enters Email {}")
     public void user_enters_Email(String emails) {
         loginPage.enterEmail(emails);
+        takeScreenshots.takeScreenshot(driver,"LoginPage");
     }
 
     @And("User enters password {}")
     public void user_enters_password_plan_j(String Password) {
         loginPage.enterPassword(Password);
+        takeScreenshots.takeScreenshot(driver,"LoginPage");
     }
 
     @And("User clicks on the login button")
@@ -100,9 +100,12 @@ public class StepDefinition extends Base {
         loginPage.verifyPracticeAssessmentIsDisplayed();
     }
 
-    @When("User clicks on the web automation link")
+    @And("User clicks on the web automation link")
     public void user_clicks_on_the_web_automation_link() {
-        loginPage.clickWebTab();
+//        new org.openqa.selenium.support.ui.WebDriverWait(getDriver(), java.time.Duration.ofSeconds(10))
+//            .until(org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable(
+                    loginPage.clickWebTab();
+//                    ));
         // practiceAssessmentsPage.selectDeviceType(deviceType);
     }
 
@@ -134,22 +137,60 @@ public class StepDefinition extends Base {
     public void user_selects_color(String color) {
         practiceAssessmentsPage.selectColor(color);
     }
+
+    @And("User enters quantity{}")
+    public void user_enters_quantity(String quantity) {
+        practiceAssessmentsPage.enterQuantity(quantity);
+    }
+
     @And("User enters delivery address {string}")
     public void user_enters_delivery_address(String Address) {
         practiceAssessmentsPage.enterAddress(Address);
     }
+
     @And("User clicks on the next button")
     public void user_clicks_on_the_next_button() {
         practiceAssessmentsPage.clickNextButton();
+    }
+
+    /// /////////////////////////////////Extras Page Steps ///////////////////////
+    @And("User selects shipping method {string}")
+    public void user_selects_standard_shipping_option(String method) {
+        if (method.equals("Standard")) {
+            extras.selectStandardShipping(method);
+        } else if (method.equals("Express (+R25)")) {
+            extras.selectExpressShipping(method);
+        }
+
+    }
+    @And("User selects warranty {string}")
+    public void select_warranty(String warranty) {
+        if (warranty.equals("None (R0)")) {
+            extras.selectNoWarranty(warranty);
+        } else if (warranty.equals("1 Year (+R49)")) {
+            extras.select1YearWarranty(warranty);
+        } else if (warranty.equals("2 Year (+R89)")) {
+            extras.select2YearWarranty(warranty);
+        }
+
+    }
+    @And("User enters a discount code {string}")
+    public void user_enters_discount_code(String code) {
+        extras.enterDiscountCode(code);
+    }
+    @And("User clicks on apply discount button")
+    public void user_clicks_on_the_apply_discount_button() {
+        extras.clickApplyDiscount();
+    }
+    @And("User clicks on the confirm purchase button")
+    public void user_clicks_on_confirm_purchase_button() {
+        extras.clickCorfirmPurchase();
     }
 
     @Then("User should be redirected to the web automation assessment page")
     public void user_should_be_redirected_to_the_web_automation_assessment_page() {
 
     }
-//    @After
-//    public void quitBrowser() {
-//        driver.quit();
-//    }
+
 
 }
