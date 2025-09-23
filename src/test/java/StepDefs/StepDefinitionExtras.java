@@ -20,7 +20,6 @@ public class StepDefinitionExtras extends Base {
     }
     @And("User clicks on warranty radio button")
     public void user_clicks_on_warranty_radio_button() {
-
        addExtrasPage.select2YearWarranty();
     }
     @And("User enters discount code {}")

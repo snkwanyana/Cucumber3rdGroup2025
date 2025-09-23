@@ -6,7 +6,7 @@ Feature: Login screen for the user to access Ndosi automation platform
     Given User is on the extras page
     When User clicks on the shipping method radio button
     And User clicks on warranty radio button
-    And User enters discount code
+    And User enters discount code <DiscountCode>
     And User clicks on Apply button
 
 
