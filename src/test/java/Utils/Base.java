@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 public class Base {
 
     BrowserFactory browserFactory = new BrowserFactory();
-    protected final WebDriver driver = browserFactory.startBrowser("chrome", "https://gray-island-0bd788c1e.2.azurestaticapps.net/#overview" +
+    protected final WebDriver driver = browserFactory.startBrowser("chrome", "www.ndosiautomation.co.za" +
             " " );
 
     public LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
