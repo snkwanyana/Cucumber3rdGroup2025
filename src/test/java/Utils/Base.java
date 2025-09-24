@@ -1,6 +1,7 @@
 package Utils;
 
 import PageObjects.*;
+import StepDefs.Hooks;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
@@ -17,6 +18,8 @@ public class Base {
     public LandingPage landingPage = PageFactory.initElements(driver, LandingPage.class);
     public SelectDevicePage selectDevicePage = PageFactory.initElements(driver, SelectDevicePage.class);
     public AddExtrasPage addExtrasPage = PageFactory.initElements(driver, AddExtrasPage.class);
+    public ScenarioContext scenarioContext = new ScenarioContext();
+    public Hooks hooks = new Hooks();
     //public PaymentPage paymentPage = PageFactory.initElements(driver, PaymentPage.class);
 
 

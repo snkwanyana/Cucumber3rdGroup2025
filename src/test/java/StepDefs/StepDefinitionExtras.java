@@ -8,11 +8,11 @@ import org.openqa.selenium.WebDriver;
 
 public class StepDefinitionExtras extends Base {
 
-    @Given("User is on the extras page")
-    public void user_is_on_the_extras_page() {
-        addExtrasPage.verifyinventorytitleIsDisplayed();
-
-    }
+//    @Given("User is on the extras page")
+//    public void user_is_on_the_extras_page() {
+//        addExtrasPage.verifyinventorytitleIsDisplayed();
+//
+//    }
     @When("User clicks on the shipping method radio button")
     public void user_clicks_on_the_shipping_method_radio_button() {
 

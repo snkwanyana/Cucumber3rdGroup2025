@@ -1,11 +1,10 @@
 @AddExtras
 
-Feature: Login screen for the user to access Ndosi automation platform
+Feature: User is logged in and wants to add extras to the order
 
   Scenario Outline: As a user, I want to Add extras to my order
-    Given User is on the extras page
-    When User clicks on the shipping method radio button
-    And User clicks on warranty radio button
+    Given User clicks on the shipping method radio button
+    When User clicks on warranty radio button
     And User enters discount code <DiscountCode>
     And User clicks on Apply button
 

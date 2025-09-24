@@ -22,8 +22,6 @@ Feature: Login screen for the user to access Ndosi automation platform
     And Calculate the total price
     And User clicks on the next button
 
-
-
     Examples:
       | emailaddress       | password    |
-      |sama23@gmail.com  | Password123 |
+      |testuser  | password123 |

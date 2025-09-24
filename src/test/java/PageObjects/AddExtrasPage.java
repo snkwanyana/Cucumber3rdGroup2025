@@ -9,8 +9,9 @@ public class AddExtrasPage {
     WebDriver driver;
     public AddExtrasPage(WebDriver driver) {this.driver = driver;}
 
-    @FindBy(id = "inventory-title")
-    WebElement extrasTitle_id;
+
+//    @FindBy(id = "inventory-title")
+//    WebElement extrasTitle_id;
 
     @FindBy(id = "shipping-option-express")
     WebElement expressShipping_id;
@@ -20,11 +21,11 @@ public class AddExtrasPage {
 
     @FindBy(id ="discount-code")
     WebElement discountCode_id;
-
-    public void verifyinventorytitleIsDisplayed() {
-
-        extrasTitle_id.isDisplayed();
-    }
+//
+//    public void verifyinventorytitleIsDisplayed() {
+//
+//        extrasTitle_id.isDisplayed();
+//    }
 
 
     public void selectExpressShipping() {

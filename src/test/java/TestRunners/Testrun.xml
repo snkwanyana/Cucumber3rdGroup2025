@@ -1,0 +1,12 @@
+<suite name="Ndosi Suite">
+    <test name="Login First">
+        <classes>
+            <class name="TestRunners.LoginPage"/>
+        </classes>
+    </test>
+    <test name="AddExtras Second">
+        <classes>
+            <class name="TestRunners.AddExtrasPage"/>
+        </classes>
+    </test>
+</suite>

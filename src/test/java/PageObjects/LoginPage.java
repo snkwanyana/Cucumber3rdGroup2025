@@ -14,7 +14,7 @@ public class LoginPage {
 
     @FindBy(id = "signup-toggle")
     WebElement signupButton_id;
-    @FindBy(id ="nav-btn-practice")
+    @FindBy(id = "nav-btn-practice")
     WebElement learningmaterial_id;
     @FindBy(id = "login-email")
     WebElement emailField_id;
@@ -22,8 +22,8 @@ public class LoginPage {
     WebElement passwordField_id;
     @FindBy(id = "login-submit")
     WebElement loginButton_id;
-    @FindBy (id = "nav-btn-about")
-    WebElement  nav_btn_about_id;
+    @FindBy(id = "nav-btn-about")
+    WebElement nav_btn_about_id;
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -37,7 +37,7 @@ public class LoginPage {
 
     }
 
-    public  void clicklearningmaterialButton(){
+    public void clicklearningmaterialButton() {
         learningmaterial_id.click();
     }
 
@@ -57,15 +57,15 @@ public class LoginPage {
 
     }
 
-  public void clickAboutUSbutton() {
-      nav_btn_about_id.click();
+    public void clickAboutUSbutton() {
+        nav_btn_about_id.click();
     }
 
     public void verifyAboutNkosiCeleisDisplayed() {
 
     }
 
-    public  void clickslearningmaterialButton(){
+    public void clickslearningmaterialButton() {
         learningmaterial_id.click();
     }
 
@@ -76,7 +76,6 @@ public class LoginPage {
         enterPassword(password);
         clickloginButton();
     }
-
 
 
 }

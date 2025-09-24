@@ -56,7 +56,7 @@ public class StepDefinitionLogin extends Base {
 
     @And("User if forced to login again")
     public void user_if_forced_to_login_again() {
-        loginPage.login("sama23@gmail.com", "Password123");
+        loginPage.login("testuser", "password123");
     }
 
 
