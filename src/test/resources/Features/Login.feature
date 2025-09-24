@@ -21,7 +21,11 @@ Feature: Login screen for the user to access Ndosi automation platform
     And User enters Deliveryemailadd sama23@gmail.com
     And Calculate the total price
     And User clicks on the next button
+    And User clicks on the shipping method radio button
+    And User clicks on warranty radio button
+    And User enters discount code <DiscountCode>
+    And User clicks on Apply button
 
     Examples:
-      | emailaddress       | password    |
-      |testuser  | password123 |
+      | emailaddress | password    | DiscountCode |
+      | testuser     | password123 | save20       |
