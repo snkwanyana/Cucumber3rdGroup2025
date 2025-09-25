@@ -25,6 +25,8 @@ Feature: Login screen for the user to access Ndosi automation platform
     And User clicks on warranty radio button
     And User enters discount code <DiscountCode>
     And User clicks on Apply button
+    Then User Verifies the discount is applied
+    #And User clicks on the next button
 
     Examples:
       | emailaddress | password    | DiscountCode |

@@ -17,40 +17,38 @@ public class StepDefinitionLogin extends Base {
     }
 
     @When("User clicks on the learning material button")
-    public  void user_clicks_on_the_learning_material_button()
-    {
+    public void user_clicks_on_the_learning_material_button() {
         loginPage.clicklearningmaterialButton();
     }
 
     @And("User enters emailaddress {}")
     public void user_enters_emailaddress(String emailaddress) {
-      loginPage.enterEmailAddress(emailaddress);
+        loginPage.enterEmailAddress(emailaddress);
     }
 
     @And("User enters password {}")
-    public  void user_enters_password(String password) {
-          loginPage.enterPassword(password);
+    public void user_enters_password(String password) {
+        loginPage.enterPassword(password);
     }
 
 
     @And("User clicks on the login button")
     public void user_clicks_on_the_login_button() {
-       loginPage.clickloginButton();
+        loginPage.clickloginButton();
     }
 
     @And("User clicks on About Us button")
     public void user_clicks_on_the_about_us_button() {
-       loginPage.clickAboutUSbutton();
+        loginPage.clickAboutUSbutton();
     }
 
     @Then("User should see About Nkosi Cele")
-    public void user_should_see_about_nkosi_cele()
-    {
+    public void user_should_see_about_nkosi_cele() {
         loginPage.verifyAboutNkosiCeleisDisplayed();
     }
 
-    @And ("User clicks on learning material button")
-    public  void user_clicks_on_learning_material_button(){
+    @And("User clicks on learning material button")
+    public void user_clicks_on_learning_material_button() {
         loginPage.clickslearningmaterialButton();
     }
 
@@ -85,58 +83,60 @@ public class StepDefinitionLogin extends Base {
         selectDevicePage.selectColor("Gold");
     }
 
-   @And("User select Quantity")
+    @And("User select Quantity")
     public void user_select_the_quality() {
-       selectDevicePage.inputquality("2");
+        selectDevicePage.inputquality("2");
     }
 
- @And("User enters Deliveryemailadd {}")
+    @And("User enters Deliveryemailadd {}")
     public void andUserEntersDeliveryemailaddEmailaddressadd(String emailaddressadd) {
         selectDevicePage.enterDeliveryemailadd(emailaddressadd);
     }
 
-   @And("Calculate the total price")
-   public  void validatePriceCalculation()
-    {
-         selectDevicePage.validatePriceCalculation();
+    @And("Calculate the total price")
+    public void validatePriceCalculation() {
+        selectDevicePage.validatePriceCalculation();
 
-   }
+    }
 
     @And("User clicks on the next button")
     public void user_clicks_on_the_next_button() {
         selectDevicePage.clickNextButton();
     }
 
-  //add the extra page here
-  @When("User clicks on the shipping method radio button")
-  public void user_clicks_on_the_shipping_method_radio_button() {
+    //add the extra page here
+    @When("User clicks on the shipping method radio button")
+    public void user_clicks_on_the_shipping_method_radio_button() {
 
-      addExtrasPage.selectExpressShipping();
-  }
+        addExtrasPage.selectExpressShipping();
+    }
+
     @And("User clicks on warranty radio button")
     public void user_clicks_on_warranty_radio_button() {
         addExtrasPage.select2YearWarranty();
     }
+
     @And("User enters discount code {}")
     public void user_enters_discount_code(String DiscountCode) {
 
         addExtrasPage.enterDiscountCode(DiscountCode);
     }
+
     @And("User clicks on Apply button")
     public void user_clicks_on_apply_button() {
 
+        addExtrasPage.clickApplyButton();
+    }
 
+    @Then("User Verifies the discount is applied")
+
+    public void user_verifies_the_discount_is_applied() {
+        addExtrasPage.Verifiesdiscount();
     }
 
 
-
-
-
-
-
-
 }
-//Add the steps for extra page here
+
 
 
 
