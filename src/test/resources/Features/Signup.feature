@@ -12,8 +12,8 @@ Feature: Sign up screen for the user to create login details
    # Then User should see an error message <errorMessage>
 
     Examples:
-      | name   | lastname | email          | password    | confirmPassword | #errorMessage                                |
-      | Summer | Gusheshe  | sama23@gmail.com | Password123 | Password123     | Please fill in all fields                   |
+      | name   | lastname | email | password         | confirmPassword | #errorMessage                                |
+      | BeautifulLady | Gusheshe  | sama23@gmail.com | Password123      | Password123 | Please fill in all fields                   |
       #| myName | surname  | test@gmail     | Password123 | Password123     | Please enter a valid email address          |
       #| myName | surname  | test@gmail.com | Passw       | Passw           | Password must be at least 8 characters long |
       #| myName | surname  | test@gmail.com | Password123 | Password        | Passwords do not match!                     |

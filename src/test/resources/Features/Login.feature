@@ -24,10 +24,11 @@ Feature: Login screen for the user to access Ndosi automation platform
     And User clicks on the shipping method radio button
     And User clicks on warranty radio button
     And User enters discount code <DiscountCode>
+    And User reenters discount code <DiscountsCode>
     And User clicks on Apply button
     Then User Verifies the discount is applied
     #And User clicks on the next button
 
     Examples:
-      | emailaddress | password    | DiscountCode |
-      | testuser     | password123 | save20       |
+      | emailaddress         | password    | DiscountCode |DiscountsCode|
+      | sama23@gmail.com     | Password123 | save10       |save20       |

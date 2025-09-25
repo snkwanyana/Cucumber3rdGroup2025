@@ -54,7 +54,7 @@ public class StepDefinitionLogin extends Base {
 
     @And("User if forced to login again")
     public void user_if_forced_to_login_again() {
-        loginPage.login("testuser", "password123");
+        loginPage.login("sama23@gmail.com", "Password123");
     }
 
 
@@ -121,6 +121,14 @@ public class StepDefinitionLogin extends Base {
 
         addExtrasPage.enterDiscountCode(DiscountCode);
     }
+
+    @And("User reenters discount code {}")
+            public  void user_reenters_discount_code(String DiscountsCode)
+    {
+        addExtrasPage.reenterDiscountCode(DiscountsCode);
+    }
+
+
 
     @And("User clicks on Apply button")
     public void user_clicks_on_apply_button() {

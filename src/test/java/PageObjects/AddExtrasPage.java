@@ -47,6 +47,12 @@ public class AddExtrasPage {
         discountCode_id.sendKeys(discountcode.trim());
     }
 
+    public void reenterDiscountCode(String discountscode) {
+        discountCode_id.clear();
+        discountCode_id.sendKeys(discountscode.trim());
+    }
+
+
     public  void clickApplyButton() {
         applyDiscount_id.click();
     }
