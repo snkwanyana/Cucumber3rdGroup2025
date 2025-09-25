@@ -12,17 +12,21 @@ public class SignupPage {
 
     @FindBy(id = "register-firstName")
     WebElement firstNameField_id;
+
     @FindBy(id="register-lastName")
     WebElement LastNameField_id;
-    @FindBy(xpath = "//input[@placeholder='Email']")
-    WebElement emailField_xpath;
-    @FindBy(xpath = "//input[@placeholder='Password']")
-    WebElement passwordField_xpath;
-    @FindBy(xpath = "//input[@placeholder='Confirm Password']")
-    WebElement confirmPasswordField_xpath;
 
-    @FindBy(xpath = "//button[contains(text(),'Create Account')]")
-    WebElement createCreate_xpath;
+    @FindBy(id = "register-email")
+    WebElement emailField_id;
+
+    @FindBy(id = "register-password")
+    WebElement passwordField_id;
+
+    @FindBy(id = "register-confirmPassword")
+    WebElement confirmPasswordField_id;
+
+    @FindBy(id = "register-submit")
+    WebElement createCreate_id;
 
     public SignupPage(WebDriver driver) {
         this.driver = driver;
@@ -37,19 +41,19 @@ public class SignupPage {
     }
 
     public void enterEmail(String email) {
-        emailField_xpath.sendKeys(email);
+        emailField_id.sendKeys(email);
     }
 
     public void enterPassword(String password) {
-        passwordField_xpath.sendKeys(password);
+        passwordField_id.sendKeys(password);
     }
 
     public void enterConfirmPassword(String confirmPassword) {
-        confirmPasswordField_xpath.sendKeys(confirmPassword);
+        confirmPasswordField_id.sendKeys(confirmPassword);
     }
 
     public void clickCreateAccount() {
-        createCreate_xpath.click();
+        createCreate_id.click();
     }
 
     public void confirmIfErrorMessageIsDisplayed(String errorMessage) {

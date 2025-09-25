@@ -2,66 +2,67 @@ package StepDefs;
 
 
 import Utils.Base;
+import io.cucumber.java.After;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.WebDriver;
 
 
 public class StepDefinition extends Base {
-   public WebDriver driver;
+    public WebDriver driver;
 
-   public StepDefinition(){
-       this.driver = super.driver;
-   }
+    public StepDefinition() {
+        this.driver = super.driver;
+    }
+/// ///////////////////////////// Sign Up //////////////////////////////////////////
+    @Given("User is on the signup page")
+    public void user_is_on_the_signup_page() {
+        landingPage.verifyLearnAutomationTheRightWayIsDisplayed();
+        landingPage.clickLearnMoreButton();
+        loginPage.clickSignupButton();
 
-//    @Given("User is on the signup page")
-//    public void user_is_on_the_signup_page() {
-//        landingPage.verifyLearnAutomationTheRightWayIsDisplayed();
-//        landingPage.clickLearnMoreButton();
-//        loginPage.clickSignupButton();
-//
-//    }
-//
-//    @When("User enters name {}")
-//    public void user_enters_name(String name) {
-//        signupPage.enterFirstName(name);
-//
-//    }
-//
-//    @And("User enters last name {}")
-//    public void user_enters_last_name(String lastName) {
-//        signupPage.enterLastName(lastName);
-//
-//    }
-//
-//    @And("User enters email {}")
-//    public void user_enters_email(String email) {
-//        signupPage.enterEmail(email);
-//
-//    }
-//
-//    @And("User enters new password {}")
-//    public void user_enters_new_password(String password) {
-//        signupPage.enterPassword(password);
-//
-//    }
-//
-//    @And("User enters confirm password {}")
-//    public void user_enters_confirm_password(String comfirmPassword) {
-//        signupPage.enterConfirmPassword(comfirmPassword);
-//    }
-//
-//    @And("User clicks on the create account button")
-//    public void user_clicks_on_the_create_account_button() {
-//        signupPage.clickCreateAccount();
-//
-//    }
-//
-//    @Then("User should see an error message {}")
-//    public void user_should_see_an_error_message(String errorMessage) {
-//
-//        signupPage.confirmIfErrorMessageIsDisplayed(errorMessage);
-//
-//    }
+    }
+
+    @When("User enters name {}")
+    public void user_enters_name(String name) {
+        signupPage.enterFirstName(name);
+
+    }
+
+    @And("User enters last name {}")
+    public void user_enters_last_name(String lastName) {
+        signupPage.enterLastName(lastName);
+
+    }
+
+    @And("User enters email {}")
+    public void user_enters_email(String email) {
+        signupPage.enterEmail(email);
+
+    }
+
+    @And("User enters new password {}")
+    public void user_enters_new_password(String password) {
+        signupPage.enterPassword(password);
+
+    }
+
+    @And("User enters confirm password {}")
+    public void user_enters_confirm_password(String comfirmPassword) {
+        signupPage.enterConfirmPassword(comfirmPassword);
+    }
+
+    @And("User clicks on the create account button")
+    public void user_clicks_on_the_create_account_button() {
+        signupPage.clickCreateAccount();
+
+    }
+
+    @Then("User should see an error message {}")
+    public void user_should_see_an_error_message(String errorMessage) {
+
+        signupPage.confirmIfErrorMessageIsDisplayed(errorMessage);
+
+    }
 
     /// ///////////////Log in Steps ///////////////////////
     @Given("User is on the login page")
@@ -72,27 +73,20 @@ public class StepDefinition extends Base {
     @And("User enters Email {}")
     public void user_enters_Email(String emails) {
         loginPage.enterEmail(emails);
-        takeScreenshots.takeScreenshot(driver,"LoginPage");
+        takeScreenshots.takeScreenshot(driver, "LoginPage");
     }
 
     @And("User enters password {}")
     public void user_enters_password_plan_j(String Password) {
         loginPage.enterPassword(Password);
-        takeScreenshots.takeScreenshot(driver,"LoginPage");
+        takeScreenshots.takeScreenshot(driver, "LoginPage");
     }
 
-    @And("User clicks on the login button")
+    @Then("User clicks on the login button")
     public void user_clicks_on_the_login_button() {
-
         loginPage.clickLoginButton();
-
     }
 
-    @Then("User should be redirected to learning material page")
-    public void user_should_be_redirected_to_learning_material_page() {
-        loginPage.verifyPracticeAssessmentIsDisplayed();
-
-    }
 
     /// ///Practice Assessments Steps /////
     @Given("User is on the practice assessments page")
@@ -102,25 +96,21 @@ public class StepDefinition extends Base {
 
     @And("User clicks on the web automation link")
     public void user_clicks_on_the_web_automation_link() {
-//        new org.openqa.selenium.support.ui.WebDriverWait(getDriver(), java.time.Duration.ofSeconds(10))
-//            .until(org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable(
-                    loginPage.clickWebTab();
-//                    ));
-        // practiceAssessmentsPage.selectDeviceType(deviceType);
+        loginPage.clickWebTab();
     }
 
-    @And("User selects device type {string}")
+    @And("User selects device type {}")
     public void user_selects_device_type(String deviceType) {
         practiceAssessmentsPage.selectDeviceType(deviceType);
         practiceAssessmentsPage.verifyPricingDetailsDisplayed();
     }
 
-    @And("User selects brand {string}")
+    @And("User selects brand {}")
     public void user_selects_brand(String brand) {
         practiceAssessmentsPage.selectBrand(brand);
     }
 
-    @And("User selects storage {string}")
+    @And("User selects storage {}")
     public void user_selects_storage(String storage) {
         if (storage.equals("64GB")) {
             practiceAssessmentsPage.selectStorage128(storage);
@@ -133,7 +123,7 @@ public class StepDefinition extends Base {
         }
     }
 
-    @And("User selects color {string}")
+    @And("User selects color {}")
     public void user_selects_color(String color) {
         practiceAssessmentsPage.selectColor(color);
     }
@@ -143,18 +133,18 @@ public class StepDefinition extends Base {
         practiceAssessmentsPage.enterQuantity(quantity);
     }
 
-    @And("User enters delivery address {string}")
+    @And("User enters delivery address {}")
     public void user_enters_delivery_address(String Address) {
         practiceAssessmentsPage.enterAddress(Address);
     }
 
-    @And("User clicks on the next button")
+    @Then("User clicks on the next button")
     public void user_clicks_on_the_next_button() {
         practiceAssessmentsPage.clickNextButton();
     }
 
-    /// /////////////////////////////////Extras Page Steps ///////////////////////
-    @And("User selects shipping method {string}")
+    /// /////////////////////////////////Extras  Steps ///////////////////////
+    @And("User selects shipping method {}")
     public void user_selects_standard_shipping_option(String method) {
         if (method.equals("Standard")) {
             extras.selectStandardShipping(method);
@@ -163,7 +153,8 @@ public class StepDefinition extends Base {
         }
 
     }
-    @And("User selects warranty {string}")
+
+    @And("User selects warranty {}")
     public void select_warranty(String warranty) {
         if (warranty.equals("None (R0)")) {
             extras.selectNoWarranty(warranty);
@@ -174,22 +165,27 @@ public class StepDefinition extends Base {
         }
 
     }
-    @And("User enters a discount code {string}")
+
+    @And("User enters a discount code {}")
     public void user_enters_discount_code(String code) {
         extras.enterDiscountCode(code);
     }
+
     @And("User clicks on apply discount button")
     public void user_clicks_on_the_apply_discount_button() {
         extras.clickApplyDiscount();
     }
+
     @And("User clicks on the confirm purchase button")
     public void user_clicks_on_confirm_purchase_button() {
         extras.clickCorfirmPurchase();
     }
 
-    @Then("User should be redirected to the web automation assessment page")
-    public void user_should_be_redirected_to_the_web_automation_assessment_page() {
 
+
+    @After
+    public void quitBrowser() {
+        driver.quit();
     }
 
 
