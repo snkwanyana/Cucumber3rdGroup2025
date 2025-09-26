@@ -76,13 +76,13 @@ public class AddSecondDevice {
 
     public  void confirmdeviceCurrentPrice() {
         WebElement currentPriceElement = driver.findElement(By.id("unit-price-value"));
-        WebElement QuantityElement = driver.findElement(By.id("quantity"));
+        WebElement currentQuantityElement = driver.findElement(By.id("quantity-value"));
         WebElement subtotalPriceElement = driver.findElement(By.id("subtotal-value"));
 
         String currentPrice = currentPriceElement.getText();
         System.out.println ("Unit Price: " + currentPrice);
 
-        String currentQuantity = QuantityElement.getText();
+        String currentQuantity = currentQuantityElement.getText();
         System.out.println("QTY: " + currentQuantity);
 
         String subtotalPrice = subtotalPriceElement.getText();
