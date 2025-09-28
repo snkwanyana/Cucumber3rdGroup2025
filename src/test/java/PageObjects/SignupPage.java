@@ -9,7 +9,7 @@ import org.testng.Assert;
 
 public class SignupPage {
 
-//    TakeScreenshots takeScreenshots = new TakeScreenshots();
+
     WebDriver driver;
 
     @FindBy(id = "register-firstName")
@@ -25,6 +25,9 @@ public class SignupPage {
 
     @FindBy(xpath = "//button[contains(text(),'Create Account')]")
     WebElement createCreate_xpath;
+
+    @FindBy(id="login-toggle")
+    WebElement loginToggle_id;
 
     public SignupPage(WebDriver driver) {
         this.driver = driver;
@@ -55,11 +58,16 @@ public class SignupPage {
         createCreate_xpath.click();
     }
 
+
     public void confirmIfErrorMessageIsDisplayed(String errorMessage) {
         Alert alert = driver.switchTo().alert();
         String alertText = alert.getText();
+        System.out.println(alertText);
         Assert.assertEquals(alertText, errorMessage);
         alert.accept();
+    }
+    public void clickLoginField() {
+        loginToggle_id.click();
     }
 
 }

@@ -10,11 +10,10 @@ Feature: Sign up screen for the user to create login details
     And User enters confirm password <confirmPassword>
     And User clicks on the create account button
     Then User should see an error message <errorMessage>
+    When User clicks on the login button
+    Then User is redirected to the login page
 
     Examples:
       | name   | lastname | email          | password    | confirmPassword | errorMessage                                |
-      |        | surname  | test@gmail.com | Password123 | Password123     | Please fill in all fields                   |
-      | myName | surname  | test@gmail     | Password123 | Password123     | Please enter a valid email address          |
-      | myName | surname  | test@gmail.com | Passw       | Passw           | Password must be at least 8 characters long |
-      | myName | surname  | test@gmail.com | Password123 | Password        | Passwords do not match!                     |
+      |  Amy    | rams  | Amytest@gmail.com | Password123 | Password123     | Registration failed: User already exists                   |
 

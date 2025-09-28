@@ -1,18 +1,17 @@
 package StepDefs;
 
+import PageObjects.SignupPage;
 import Utils.Base;
 import io.cucumber.java.After;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 
+import java.time.Duration;
+
 public class StepDefinition extends Base {
 
     public WebDriver driver;
-
-    public StepDefinition() {
-        this.driver = super.driver;
-    }
 
     @Given("User is on the signup page")
     public void user_is_on_the_signup_page() {
@@ -25,7 +24,7 @@ public class StepDefinition extends Base {
     @When("User enters name {}")
     public void user_enters_name(String name) {
         signupPage.enterFirstName(name);
-        takeScreenshots.takesSnapShot(driver, "Signup Page");
+      //  takeScreenshots.takesSnapShot(driver, "Signup Page");
 
     }
 
@@ -58,16 +57,29 @@ public class StepDefinition extends Base {
 
     }
 
+
     @Then("User should see an error message {}")
     public void user_should_see_an_error_message(String errorMessage) {
-
+        try {
+            Thread.sleep(20000); // Sleep for 2 seconds
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         signupPage.confirmIfErrorMessageIsDisplayed(errorMessage);
-
+    }
+    @When ("User clicks on the login button")
+    public void user_clicks_on_the_login_button() {
+        signupPage.clickLoginField();
+    }
+    @Then("User is redirected to the login page")
+    public void User_is_redirected_to_the_login_page() {
+        loginPage.verifyLoginHeadingIsDisplayed();
     }
 
-    @After
-    public void quitBrowser() {
-        driver.quit();
-    }
+
+   // @After
+    //public void quitBrowser() {
+    //    driver.quit();
+    //}
 
 }

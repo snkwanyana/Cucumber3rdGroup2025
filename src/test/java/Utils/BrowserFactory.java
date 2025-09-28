@@ -6,25 +6,31 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class BrowserFactory {
-    static WebDriver driver;
+import java.time.Duration;
 
-    public static WebDriver startBrowser(String browserChoice, String url){
-        switch (browserChoice.toLowerCase()){
-            case "chrome":
-                ChromeOptions chromeOptions = new ChromeOptions();
-               // chromeOptions.addArguments("--headless");
-                driver = new ChromeDriver(chromeOptions);
-                break;
-            case "firefox":
-                driver = new FirefoxDriver();
-                break;
-            default:
-                driver = new EdgeDriver();
-                break;
-        }
-        driver.get(url);
-        driver.manage().window().maximize();
+public class BrowserFactory {
+    public static WebDriver driver;
+
+
+    public static WebDriver startBrowser(String browserChoice, String url) {
+
+            switch (browserChoice.toLowerCase()) {
+                case "chrome":
+                    ChromeOptions chromeOptions = new ChromeOptions();
+                    // chromeOptions.addArguments("--headless");
+                    driver = new ChromeDriver(chromeOptions);
+                    break;
+                case "firefox":
+                    driver = new FirefoxDriver();
+                    break;
+                default:
+                    driver = new EdgeDriver();
+                    break;
+            }
+            driver.get(url);
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+            driver.manage().window().maximize();
         return driver;
     }
 }
+
