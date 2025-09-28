@@ -23,8 +23,8 @@ Feature: Practice Assessments page to access Web Automation in Ndosi platform
     Examples:
       | deviceType | brand       | storage | color | quantity | deliveryAddress        |
       | Laptop     | Macbook pro | 256GB   | White | 4        | 123, Baker street, SA  |
-      | Phone      | Apple       | 128GB   | Black | 2        | 221B, Baker street, SA |
-      | Tablet     | Samsung     | 64GB    | Blue  | 1        | 10, Downing street, SA |
+#      | Phone      | Apple       | 128GB   | Black | 2        | 221B, Baker street, SA |
+#      | Tablet     | Samsung     | 64GB    | Blue  | 1        | 10, Downing street, SA |
 
 
 

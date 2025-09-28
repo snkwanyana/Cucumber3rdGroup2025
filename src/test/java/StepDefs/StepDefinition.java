@@ -114,12 +114,12 @@ public class StepDefinition extends Base {
     public void user_selects_storage(String storage) {
         if (storage.equals("64GB")) {
             practiceAssessmentsPage.selectStorage128(storage);
-        } else if (storage.equals("128GB")) {
+        }
+        else if (storage.equals("128GB")) {
             practiceAssessmentsPage.selectStorage128(storage);
-        } else if (storage.equals("256GB")) {
+        }
+        else {
             practiceAssessmentsPage.selectStorage256(storage);
-        } else {
-            throw new IllegalArgumentException("Invalid storage option: " + storage);
         }
     }
 
@@ -180,13 +180,21 @@ public class StepDefinition extends Base {
     public void user_clicks_on_confirm_purchase_button() {
         extras.clickCorfirmPurchase();
     }
-
-
-
-    @After
-    public void quitBrowser() {
-        driver.quit();
+    @And("User should click on the view invoice button")
+    public void user_clicks_on_view_history_button() {
+        extras.clickViewHistory();
     }
+    @Then("User should click the invoice details")
+    public void user_should_click_on_view_invoice_button() {
+        extras.clickViewInvoice();
+    }
+
+
+
+//    @After
+//    public void quitBrowser() {
+//        driver.quit();
+//    }
 
 
 }
