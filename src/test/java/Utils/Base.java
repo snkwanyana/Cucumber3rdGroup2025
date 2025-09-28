@@ -17,6 +17,7 @@ public class Base {
     public SelectDevicePage selectDevicePage = PageFactory.initElements(driver, SelectDevicePage.class);
     public AddExtrasPage addExtrasPage = PageFactory.initElements(driver, AddExtrasPage.class);
     public AddSecondDevice addSecondDevice = PageFactory.initElements(driver, AddSecondDevice.class);
+    public ReviewOrder reviewOrder = PageFactory.initElements(driver, ReviewOrder.class);
 
 //    public ScenarioContext scenarioContext = new ScenarioContext();
 //    public Hooks hooks = new Hooks();

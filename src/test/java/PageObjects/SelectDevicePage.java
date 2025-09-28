@@ -13,7 +13,7 @@ import java.time.Duration;
 
 public class SelectDevicePage {
 
-
+    // Inspecting the elements
     @FindBy(id = "tab-btn-web")
     WebElement practiceTab_id;
 
@@ -30,11 +30,16 @@ public class SelectDevicePage {
 
     WebElement storage_128GB_id;
 
-    @FindBy(id ="address")
+    @FindBy(id = "address")
     WebElement addressField_id;
 
     @FindBy(id = "quantity")
     WebElement quantity_id;
+
+
+
+
+    //Starts the methods
 
     public SelectDevicePage(WebDriver driver) {
         this.driver = driver;
@@ -62,63 +67,68 @@ public class SelectDevicePage {
 
 
     public void clickStorage() {
-           WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            WebElement storageOption = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='storage-128GB']")));
-            storageOption.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement storageOption = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='storage-128GB']")));
+        storageOption.click();
 
-        }
+    }
 
-        public void selectColor(String color) {
-            WebElement colorElement = driver.findElement(By.id("color"));
-            Select colorDropdown = new Select(colorElement);
-            colorDropdown.selectByVisibleText(color);
-        }
+    public void selectColor(String color) {
+        WebElement colorElement = driver.findElement(By.id("color"));
+        Select colorDropdown = new Select(colorElement);
+        colorDropdown.selectByVisibleText(color);
+    }
 
-        public void inputquality(String quality) {
-            //WebElement quantityElement = driver.findElement(By.id("quantity"));
-            quantity_id.clear();
-            quantity_id.sendKeys(quality);
+    public void inputquality(String quality) {
+        //WebElement quantityElement = driver.findElement(By.id("quantity"));
+        quantity_id.clear();
+        quantity_id.sendKeys(quality);
 
-        }
+    }
 
-    public  void enterDeliveryemailadd(String emailadd) {
+    public void enterDeliveryemailadd(String emailadd) {
         addressField_id.clear();
         addressField_id.sendKeys(emailadd.trim());
 
 
     }
-// Validate the subtotal
-public void validatePriceCalculation() {
-    WebElement unitPriceElement = driver.findElement(By.id("unit-price-label"));
-    WebElement quantityElement = driver.findElement(By.id("quantity-label"));
-    WebElement subtotalElement = driver.findElement(By.id("subtotal-label"));
 
-    String unitPriceText = unitPriceElement.getText().replaceAll("[^\\d.]", "").trim();
+    // Validate the subtotal
+    public void validatePriceCalculation() {
+        WebElement unitPriceElement = driver.findElement(By.id("unit-price-label"));
+        WebElement quantityElement = driver.findElement(By.id("quantity-label"));
+        WebElement subtotalElement = driver.findElement(By.id("subtotal-label"));
+
+        String unitPriceText = unitPriceElement.getText().replaceAll("[^\\d.]", "").trim();
 //    String quantityText = quantityElement.getText().trim();
-    String quantityText = quantityElement.getText().replace("Qty:", "").trim();
-    String subtotalText = subtotalElement.getText().replace("R", "").replace("Subtotal:", "").trim();
+        String quantityText = quantityElement.getText().replace("Qty:", "").trim();
+        String subtotalText = subtotalElement.getText().replace("R", "").replace("Subtotal:", "").trim();
 
-    if (unitPriceText.isEmpty() || subtotalText.isEmpty()) {
-        throw new IllegalStateException("Price or subtotal text is empty. Cannot perform calculation.");
+        if (unitPriceText.isEmpty() || subtotalText.isEmpty()) {
+            throw new IllegalStateException("Price or subtotal text is empty. Cannot perform calculation.");
+        }
+
+        double unitPrice = Double.parseDouble(unitPriceText);
+        int quantity = Integer.parseInt(quantityText);
+        double subtotal = Double.parseDouble(subtotalText);
+
+        double expectedSubtotal = unitPrice * quantity;
+
+        Assert.assertEquals("Subtotal calculation mismatch", expectedSubtotal, subtotal, 0.01);
+        //System.out.println("Current Price is: " + subtotal);
+        System.out.println("Unit Price Text: '" + unitPriceText + "'");
+        System.out.println("Quantity Text: '" + quantityText + "'");
+        System.out.println("Subtotal Text: '" + subtotalText + "'");
     }
 
-    double unitPrice = Double.parseDouble(unitPriceText);
-    int quantity = Integer.parseInt(quantityText);
-    double subtotal = Double.parseDouble(subtotalText);
 
-    double expectedSubtotal = unitPrice * quantity;
-
-    Assert.assertEquals("Subtotal calculation mismatch", expectedSubtotal, subtotal, 0.01);
-    //System.out.println("Current Price is: " + subtotal);
-    System.out.println("Unit Price Text: '" + unitPriceText + "'");
-    System.out.println("Quantity Text: '" + quantityText + "'");
-    System.out.println("Subtotal Text: '" + subtotalText + "'");
-}
-
-
-    public  void clickNextButton() {
+    public void clickNextButton() {
         WebElement nextButton = driver.findElement(By.id("inventory-next-btn"));
         nextButton.click();
 
     }
+
+
+
+
     }

@@ -186,9 +186,20 @@ public class StepDefinitionLogin extends Base {
 
     }
 
+    @And("User clicks on the device next button")
+    public void User_clicks_on_the_device_next_button() {
+        addSecondDevice.clickNextbutton();
+    }
 
+    @And("User clicks on the add to care button")
+    public void user_clicks_on_the_add_to_care_button() {
+        addSecondDevice.clickAddToCaretButton();
+    }
 
-
+    @Then("User should see correct cart items and pricing")
+    public void user_should_see_correct_cart_items_and_pricing() {
+        reviewOrder.verify_cart_items_and_pricing();
+    }
 
 
 

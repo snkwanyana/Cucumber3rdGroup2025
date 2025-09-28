@@ -38,6 +38,10 @@ Feature: Login screen for the user to access Ndosi automation platform
     And user Enters deviceqty <deviceqty>
     And User Enters Deliveryaddress <DeliveryAdd>
     And User Confirms DeviceCurrentPrice
+    And User clicks on the device next button
+    And User clicks on the add to care button
+    #User Review the Order and confirm the order before proceeding to payment
+    Then User should see correct cart items and pricing
 
     Examples:
       | emailaddress     | password    | DiscountCode | DiscountsCode |deviceqty|DeliveryAdd         |

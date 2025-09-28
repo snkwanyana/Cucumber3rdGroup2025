@@ -1,6 +1,7 @@
 package PageObjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,8 +10,8 @@ import org.openqa.selenium.support.ui.Select;
 public class AddSecondDevice {
 
 
-
     public static WebDriver driver;
+
     public AddSecondDevice(WebDriver driver) {
         this.driver = driver;
 
@@ -22,13 +23,13 @@ public class AddSecondDevice {
     @FindBy(id = "brand")
     WebElement brands_id;
 
-    @FindBy(id = "storage-256GB" )
+    @FindBy(id = "storage-256GB")
     WebElement storage_256GB_id;
 
     @FindBy(id = "color")
     WebElement colorwhite_id;
 
-    @FindBy(id = "quantity" )
+    @FindBy(id = "quantity")
     WebElement quantity2_id;
 
     @FindBy(id = "address")
@@ -37,11 +38,20 @@ public class AddSecondDevice {
     @FindBy(id = "unit-price-value")
     WebElement currentprice_id;
 
-    @FindBy(id ="subtotal-value")
+    @FindBy(id = "subtotal-value")
     WebElement subtotalprice_id;
 
+    @FindBy(id = "inventory-next-btn")
+    WebElement  inventorynextbutton_id;
 
-  public void selectDeviceType(String laptop) {
+    @FindBy(id = "add-to-cart-btn")
+    WebElement addtocaretbutton_id;
+
+    @FindBy(id ="review-cart-btn")
+    WebElement reviewcartbutton_id;
+
+
+    public void selectDeviceType(String laptop) {
         WebElement dropdownElement = driver.findElement(By.id("deviceType"));
         Select deviceDropdown = new Select(dropdownElement);
         deviceDropdown.selectByVisibleText(laptop);
@@ -74,13 +84,13 @@ public class AddSecondDevice {
     }
 
 
-    public  void confirmdeviceCurrentPrice() {
+    public void confirmdeviceCurrentPrice() {
         WebElement currentPriceElement = driver.findElement(By.id("unit-price-value"));
         WebElement currentQuantityElement = driver.findElement(By.id("quantity-value"));
         WebElement subtotalPriceElement = driver.findElement(By.id("subtotal-value"));
 
         String currentPrice = currentPriceElement.getText();
-        System.out.println ("Unit Price: " + currentPrice);
+        System.out.println("Unit Price: " + currentPrice);
 
         String currentQuantity = currentQuantityElement.getText();
         System.out.println("QTY: " + currentQuantity);
@@ -91,7 +101,21 @@ public class AddSecondDevice {
 
     }
 
+    // click the add to cart button
+    public void clickNextbutton() {
+
+        // Scroll into view
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", inventorynextbutton_id);
+        inventorynextbutton_id.click();
+    }
 
 
+
+    public void clickAddToCaretButton() {
+
+        // Scroll into view
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", addtocaretbutton_id);
+        addtocaretbutton_id.click();
+    }
 
 }
