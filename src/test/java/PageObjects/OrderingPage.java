@@ -72,6 +72,14 @@ All corrected + Next → Step 2 shown.*/
     }
 
     public void selectBrand(String brandName) {
+        // Wait for the brand dropdown to contain the desired option
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(d -> {
+            Select brandSelect = new Select(brand);
+            System.out.println("Available brand options:");
+            brandSelect.getOptions().forEach(option -> System.out.println(option.getText()));
+            return brandSelect.getOptions().stream().anyMatch(option -> option.getText().equalsIgnoreCase(brandName));
+        });
         new Select(brand).selectByVisibleText(brandName);
     }
 

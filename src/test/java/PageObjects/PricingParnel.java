@@ -54,9 +54,17 @@ WebElement shippingStandardRadio;
     @FindBy(id = "apply-discount-btn")
     WebElement applyDiscountBtn;
 
-    @FindBy(id = "discount-feedback ")
+    @FindBy(id = "discount-feedback")
     private WebElement discountMessage;
 
+    @FindBy(id = "add-to-cart-btn")
+    WebElement addToCartButton;
+
+    @FindBy(id = "unit-price-value")
+    WebElement unitPriceValue;
+
+    @FindBy(id = "subtotal-value")
+    WebElement subtotalValue;
 
 
 
@@ -105,6 +113,12 @@ WebElement shippingStandardRadio;
         return "";
     }
 
+    public String getUnitPrice() {
+        return unitPriceValue.getText();
+    }
+    public String getSubtotal() {
+        return subtotalValue.getText();
+    }
 
     //methods for Extras section
     public void selectShipping(String shipping) {
@@ -146,9 +160,10 @@ WebElement shippingStandardRadio;
         discountCodeInput.clear();
     }
 
-
-
-
+    //method to click add to cart button
+    public void clickAddToCart() {
+        addToCartButton.click();
+    }
 
 
 }

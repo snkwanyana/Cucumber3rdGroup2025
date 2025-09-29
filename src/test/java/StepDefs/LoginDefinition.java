@@ -5,6 +5,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.WebDriver;
 import Utils.BrowserFactory;
+import org.openqa.selenium.devtools.DevTools;
 
 
 public class LoginDefinition extends Base {
@@ -40,8 +41,8 @@ public class LoginDefinition extends Base {
         loginPage.clickLoginField();
     }
 
-    @Then("The user should see the message {}")
-    public void the_user_should_see_the_message(String errorMessage) {
+    @Then("The error message should be displayed {}")
+    public void theErrorMessageShouldBeDisplayedMessage(String errorMessage) {
         if (loginPage.isAlertPresent()) {
             loginPage.validateMessagepopup(errorMessage);
         } else {
@@ -57,6 +58,17 @@ public class LoginDefinition extends Base {
             welcomePage.verifyWelcomeHeadingIsDisplayed();
         }
     }
+    @And("The User token presence should be {}")
+    public void the_user_token_presence_should_be(String tokenPresent) {
+        String token = welcomePage.getAuthToken();
+        System.out.println("Auth token: " + token); // Print the token for debugging
+        boolean tokenFound = token != null && !token.isEmpty();
+        if ("true".equals(tokenPresent)) {
+            assert tokenFound : "Token not found in localStorage!";
+        } else {
+            assert !tokenFound : "Token should not be present!";
+        }
+    }
     @After
     public void tearDown() {
         if (Base.driver != null) {
@@ -65,4 +77,16 @@ public class LoginDefinition extends Base {
         }
     }
 
+
+    @When("The user switch to new tab")
+    public void theUserSwitchToNewTab() {
+        welcomePage.clickContactTabButton();
+    }
+
+    @Then("The User should be logged out")
+    public void theUserShouldBeLoggedOut() {
+        landingPage.clickLearnMoreButton();
+        loginPage.verifyLoginHeadingIsDisplayed();
+
+    }
 }

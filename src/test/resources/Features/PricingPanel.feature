@@ -7,36 +7,67 @@ Feature: Step 2 Pricing Panel
    # And the subtotal should display "—"
 
   Scenario Outline: Phone 64GB, quantity 1
-    Given User is on the Form page
-    Then user selects device type price panel <type price panel>
-    And  user selects brand <brand>
-    And  user selects storage <storage>
-    And user selects color <color>
-    And  user enters quantity <quantity>
-    And  user enters address <address>
-    When  user clicks the Next button
-    Then Pricing Panel should be displayed
-    Then the base price should display <basePrice>
-    And the subtotal should display <subtotal>
-    Examples:
-      | type price panel | brand | storage | color | quantity | address                |basePrice|subtotal|
-      | Phone            | Apple | 64GB   | Black | 1        | 123 Main St, Cityville | R400.00   | R400.00 |
+    Given User is on the login page
+    When The user enters email <email>
+    And The user enters new password <password>
+    And The User click on the login button
+    Then The User should be logged in successfully
+    Then User is on the Form page
+    When The User clicks on the Web Automation Button
+    When User selects device type order1 <typeOrder1>
+    And the user selects brand <brand>
+    And the user selects storage <storage>
+    And the user selects color <color>
+    And the user enters quantity <quantity>
+    Then the unit price should be <basePrice>
+    And the subtotal should be <subtotal>
 
- # Scenario: Phone 128GB, quantity 2
-  #  Given the user selects "Phone" as device type
-  #  And the user selects "128GB" as storage
-  #  And the user enters quantity "2"
-   # When the user proceeds to Step 2
-   # Then the base price should display "R480.00"
-   # And the subtotal should display "R960.00"
+
+
+    Examples:
+      | typeOrder1 | brand | storage | color | quantity | basePrice | subtotal | email             | password    |
+      | Phone      | Apple | 64GB    | Black | 1        | R400.00   | R400.00  | testAmy@gmail.com | Password123 |
+
+  Scenario Outline: Phone 128GB, quantity 2
+    Given User is on the login page
+    When The user enters email <email>
+    And The user enters new password <password>
+    And The User click on the login button
+    Then The User should be logged in successfully
+    Then User is on the Form page
+    When The User clicks on the Web Automation Button
+    When User selects device type order1 <typeOrder1>
+    And the user selects brand <brand>
+    And the user selects storage <storage>
+    And the user selects color <color>
+    And the user enters quantity <quantity>
+    Then the unit price should be <basePrice>
+    And the subtotal should be <subtotal>
+
+    Examples:
+      | typeOrder1 | brand | storage | color | quantity | basePrice | subtotal | email             | password    |
+      | Phone      | Apple | 128GB   | Black | 2        | R480.00   | R960.00  | testAmy@gmail.com | Password123 |
 
  # Scenario: Laptop 256GB, quantity 1
-  #  Given the user selects "Laptop" as device type
-  #  And the user selects "256GB" as storage
- #   And the user enters quantity "1"
-  #  When the user proceeds to Step 2
-  #  Then the base price should display "R1,360.00"
-  #  And the subtotal should display "R1,360.00"
+  Scenario Outline: Laptop 256GB, quantity 1
+    Given User is on the login page
+    When The user enters email <email>
+    And The user enters new password <password>
+    And The User click on the login button
+    Then The User should be logged in successfully
+    Then User is on the Form page
+    When The User clicks on the Web Automation Button
+    When User selects device type order1 <typeOrder1>
+    And the user selects brand <brand>
+    And the user selects storage <storage>
+    And the user selects color <color>
+    And the user enters quantity <quantity>
+    Then the unit price should be <basePrice>
+    And the subtotal should be <subtotal>
+
+    Examples:
+      | typeOrder1 | brand | storage | color | quantity | basePrice | subtotal | email             | password    |
+      | Laptop     | other | 256GB   | Black | 1        | R1360.00  | R1360.00 | testAmy@gmail.com | Password123 |
 
  # Scenario: Clear device selection
  #   Given the user selects "Phone" as device type

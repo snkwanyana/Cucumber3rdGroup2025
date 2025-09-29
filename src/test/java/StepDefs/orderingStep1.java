@@ -1,20 +1,28 @@
 package StepDefs;
 import Utils.Base;
 import io.cucumber.java.en.*;
+import io.cucumber.java.Before;
 
 
 public class orderingStep1 extends Base {
 
+    @Before
+    public void setUp() {
+        initializePages(); // Ensure page objects are initialized before each scenario
+    }
+
 
     @Given("User is on the Form page")
     public void user_is_on_the_form_page() {
-        landingPage.clickLearnMoreButton();
-        loginPage.enterEmail("Amytest@gmail.com");
-        loginPage.enterPassword("Password123");
-        loginPage.clickLoginField();
+        welcomePage.verifyWelcomeHeadingIsDisplayed();
+    }
+
+    @When("The User clicks on the Web Automation Button")
+    public void theUserClicksOnTheWebAutomationButton() {
         welcomePage.clickWebTabButton();
 
     }
+
     @When("User selects device type order1 {}")
     public void user_selects_device_type_order1(String type) {
         orderingPage.selectDeviceType(type);
