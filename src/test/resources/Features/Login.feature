@@ -42,6 +42,9 @@ Feature: Login screen for the user to access Ndosi automation platform
     And User clicks on the add to care button
     #User Review the Order and confirm the order before proceeding to payment
     Then User should see correct cart items and pricing
+    And User clicks on remove button
+    Then reconfirms the cart items and pricing
+
 
     Examples:
       | emailaddress     | password    | DiscountCode | DiscountsCode |deviceqty|DeliveryAdd         |

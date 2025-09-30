@@ -201,7 +201,15 @@ public class StepDefinitionLogin extends Base {
         reviewOrder.verify_cart_items_and_pricing();
     }
 
+    @And("User clicks on remove button")
+    public void user_clicks_on_remove_button() {
+        reviewOrder.clickremove_item_from_cart();
+    }
 
+    @Then("reconfirms the cart items and pricing")
+    public void reconfirms_the_cart_items_and_pricing() {
+        reviewOrder.reconfirms_total_price();
+    }
 
 
 
