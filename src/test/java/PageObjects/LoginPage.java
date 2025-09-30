@@ -3,6 +3,10 @@ package PageObjects;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class LoginPage {
 
@@ -18,8 +22,6 @@ public class LoginPage {
 
     @FindBy(id = "login-password")
     WebElement Password_id;
-
-
 
 
     public LoginPage(WebDriver driver) {
@@ -39,9 +41,20 @@ public class LoginPage {
     }
 
     public void clickLoginButton() {
-
+        new WebDriverWait(driver, Duration.ofSeconds(50)).until(ExpectedConditions.visibilityOf(loginButton_id));
         loginButton_id.click();
+
+        // Get the current window handle
+        String originalWindow = driver.getWindowHandle();
+
+        // Loop through all open windows
+        for (String windowHandle : driver.getWindowHandles()) {
+            if (!originalWindow.contentEquals(windowHandle)) {
+                driver.switchTo().window(windowHandle);
+                break;
+            }
+
+
+        }
     }
-
-
 }

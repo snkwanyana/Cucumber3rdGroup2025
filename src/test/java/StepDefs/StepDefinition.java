@@ -2,12 +2,9 @@ package StepDefs;
 
 import PageObjects.LearningMaterialPage;
 import Utils.Base;
+import io.cucumber.java.After;
 import io.cucumber.java.en.*;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-
-import static java.sql.DriverManager.getDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class StepDefinition extends Base {
 
@@ -75,12 +72,15 @@ public class StepDefinition extends Base {
     @And("User clicks on the login button")
     public void userClicksOnTheLoginButton() {
         loginPage.clickLoginButton();
+        driver.getTitle();
+        learningMaterialPage.getWebautomationId();
     }
 
 
     @Then("User should be successfully logged in and see practice page")
-    public void userShouldBeSuccessfullyLoggedInAndSeePracticePage() {
-        //learningMaterialPage.logoutbtn_idDisplayed();
+    public void userShouldBeSuccessfullyLoggedInAndSeePracticePage() throws InterruptedException {
+        learningMaterialPage.VerifyPracticeTextAppeared();
+        learningMaterialPage.ClickLogoutButton();
 
     }
 
@@ -94,8 +94,28 @@ public class StepDefinition extends Base {
 
 
     @When("user selects a product to purchase {string},{string},{string},{string},{string},{string},{string},{string},{string}")
-    public void userSelectsAProductToPurchaseUsernamePasswordDeviceTypeBrandStorageColorQuantityDeliveryAddressdiscount(String username, String password, String deviceType, String brand, String storage, String color, String quantity, String deliveryAddress,String discount) throws InterruptedException {
+    public void userSelectsAProductToPurchaseUsernamePasswordDeviceTypeBrandStorageColorQuantityDeliveryAddressdiscount(String username, String password, String deviceType, String brand, String storage, String color, String quantity, String deliveryAddress, String discount) throws InterruptedException {
         loginPage.EnterEmail(username);
+        loginPage.EnterPassword(password);
+        loginPage.clickLoginButton();
+        learningMaterialPage.ClickWebAutomation();
+        learningMaterialPage.isDeviceTypeSelected(deviceType);
+        learningMaterialPage.SelectDeviceType(deviceType);
+        learningMaterialPage.isBrandSelected(brand);
+        learningMaterialPage.SelectBrand(brand);
+        learningMaterialPage.SelectStorage(storage);
+        learningMaterialPage.SelectColor(color);
+        learningMaterialPage.EnterQuantity(quantity);
+        learningMaterialPage.EnterDeleveryAddress(deliveryAddress);
+        learningMaterialPage.ClickInventoryNextButton();
+        learningMaterialPage.ClickConfirmPurchaseButton();
+        learningMaterialPage.verifysuccespurchase();
+
+    }
+
+    @When("user selects a product to purchase and Discount {string},{string},{string},{string},{string},{string},{string},{string},{string}")
+    public void userSelectsAProductToPurchaseAndDiscountUsernamePasswordDeviceTypeBrandStorageColorQuantityDeliveryAddressDiscount(String Username, String password, String deviceType, String brand, String storage, String color, String quantity, String deliveryAddress, String discount) throws InterruptedException {
+        loginPage.EnterEmail(Username);
         loginPage.EnterPassword(password);
         loginPage.clickLoginButton();
         learningMaterialPage.ClickWebAutomation();
@@ -106,26 +126,156 @@ public class StepDefinition extends Base {
         learningMaterialPage.EnterQuantity(quantity);
         learningMaterialPage.EnterDeleveryAddress(deliveryAddress);
         learningMaterialPage.ClickInventoryNextButton();
-//        learningMaterialPage.enterDiscountCode(discount);
-//        learningMaterialPage.ClickApplyDiscountButton();
+        learningMaterialPage.enterDiscountCode(discount);
+        learningMaterialPage.ClickApplyDiscountButton();
+        learningMaterialPage.ClickConfirmPurchaseButton();
+        learningMaterialPage.verifysuccespurchase();
     }
 
     @Then("user should be able to confirm product details")
     public void userShouldBeAbleToConfirmProductDetails() {
-        
+
     }
 
     @And("clicks Next button to proceed to checkout")
     public void clicksNextButtonToProceedToCheckout() {
-        
+
     }
 
     @And("user should be able to complete the purchase")
     public void userShouldBeAbleToCompleteThePurchase() {
     }
-//    public  void waitForElementToBeVisible(WebDriverWait driver, String element, int timeoutInSeconds) {
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
-//        wait.until(driver1 -> getDriver().findElement(org.openqa.selenium.By.xpath(element)).isDisplayed());
-//    }
+//===========================================================================================================================
+
+
+    @When("user selects a product to purchase and Discount {string},{string},{string},{string},{string},{string},{string},{string},{string},{string}")
+    public void userSelectsAProductToPurchaseAndDiscountUsernamePasswordDeviceTypeBrandStorageColorQuantityDeliveryAddressDiscountQuantityErrorMsg(String Username, String password, String deviceType, String brand, String storage, String color, String quantity, String deliveryAddress, String discount, String quantityErrorMsg) throws InterruptedException {
+        loginPage.EnterEmail(Username);
+        loginPage.EnterPassword(password);
+        loginPage.clickLoginButton();
+        learningMaterialPage.ClickWebAutomation();
+        learningMaterialPage.SelectDeviceType(deviceType);
+        learningMaterialPage.SelectBrand(brand);
+        learningMaterialPage.SelectStorage(storage);
+        learningMaterialPage.SelectColor(color);
+        learningMaterialPage.EnterQuantity(quantity);
+        learningMaterialPage.EnterDeleveryAddress(deliveryAddress);
+        learningMaterialPage.ClickInventoryNextButton();
+        learningMaterialPage.quantityErrorMsg(quantityErrorMsg);
+//        learningMaterialPage.enterDiscountCode(discount);
+//        learningMaterialPage.ClickApplyDiscountButton();
+//        learningMaterialPage.ClickConfirmPurchaseButton();
+//        learningMaterialPage.verifysuccespurchase();
+    }
+
+
+    @When("login  and do not select device and Storage {string},{string}")
+    public void loginAndDoNotSelectDeviceAndStorageUsernamePassword(String Username, String password) throws InterruptedException {
+
+        loginPage.EnterEmail(Username);
+        loginPage.EnterPassword(password);
+        loginPage.clickLoginButton();
+        learningMaterialPage.ClickWebAutomation();
+
+
+    }
+
+    @Then("user to confirm price details is desh")
+    public void userToConfirmPriceDetailsIsDesh() {
+        learningMaterialPage.UnitPriceVerification();
+        learningMaterialPage.SubVerification();
+    }
+
+
+    @When("user selects device type and storage {string},{string},{string},{string},{string}")
+    public void userSelectsDeviceTypeAndStorageUsernamePasswordDeviceTypeStorageQuantity(String Username, String password, String deviceType, String Storage, String Quantity) throws InterruptedException {
+        loginPage.EnterEmail(Username);
+        loginPage.EnterPassword(password);
+        loginPage.clickLoginButton();
+        learningMaterialPage.ClickWebAutomation();
+        learningMaterialPage.SelectDeviceType(deviceType);
+        learningMaterialPage.SelectStorage(Storage);
+        learningMaterialPage.EnterQuantity(Quantity);
+    }
+
+    @Then("user should be able to confirm price details is R400")
+    public void userShouldBeAbleToConfirmPriceDetailsIsR400() {
+        learningMaterialPage.UnitPriceVerification();
+        learningMaterialPage.SubVerification();
+    }
+
+    @Then("user should be able to confirm shipping price details{string}")
+    public void userShouldBeAbleToConfirmShippingPriceDetailsShippingPrice(String sipmentOption) throws InterruptedException {
+        learningMaterialPage.selectShippingOption(sipmentOption);
+    }
+
+    @When("user selects a product to purchase {string},{string},{string},{string},{string},{string},{string},{string},{string},{string}")
+    public void userSelectsAProductToPurchaseUsernamePasswordDeviceTypeBrandStorageColorQuantityDeliveryAddressDiscountDiscountfeedback(String Username, String password, String deviceType,String Brand, String Storage,String Color, String Quantity,String discount, String deliveryAddress, String feedback) throws InterruptedException {
+        loginPage.EnterEmail(Username);
+        loginPage.EnterPassword(password);
+        loginPage.clickLoginButton();
+        learningMaterialPage.ClickWebAutomation();
+        learningMaterialPage.SelectDeviceType(deviceType);
+        learningMaterialPage.SelectBrand(Brand);
+        learningMaterialPage.SelectStorage(Storage);
+        learningMaterialPage.SelectColor(Color);
+        learningMaterialPage.EnterQuantity(Quantity);
+        learningMaterialPage.EnterDeleveryAddress(deliveryAddress);
+        learningMaterialPage.ClickInventoryNextButton();
+        learningMaterialPage.enterDiscountCode(discount);
+        learningMaterialPage.ClickApplyDiscountButton();
+        learningMaterialPage.DiscountFeedback(feedback);
+
+
+
+    }
+    @Given("user is on the inventory form step two")
+    public void userIsOnTheInventoryFormStepTwo() throws InterruptedException {
+        loginPage.clickLoginButton();
+        learningMaterialPage.ClickWebAutomation();
+    }
+    @When("user selects a products to purchase  {string},{string},{string},{string},{string},{string},{string},{string},{string}")
+    public void userSelectsAProductsToPurchaseUsernamePasswordDeviceTypeBrandStorageColorQuantityDeliveryAddressDiscount(String Username,String password,String deviceType,String Brand,String Storage,String color,String Quantity,String deliveryAddress,String discount) throws InterruptedException {
+        loginPage.EnterEmail(Username);
+        loginPage.EnterPassword(password);
+        loginPage.clickLoginButton();
+        learningMaterialPage.ClickWebAutomation();
+        learningMaterialPage.SelectDeviceType(deviceType);
+        learningMaterialPage.SelectBrand(Brand);
+        learningMaterialPage.SelectStorage(Storage);
+        learningMaterialPage.SelectColor(color);
+        learningMaterialPage.EnterQuantity(Quantity);
+        learningMaterialPage.EnterDeleveryAddress(deliveryAddress);
+        learningMaterialPage.ClickInventoryNextButton();
+        learningMaterialPage.enterDiscountCode(discount);
+        learningMaterialPage.ClickApplyDiscountButton();
+        learningMaterialPage.ClickAddToCartButton();
+    }
+    @Then("user should be able to add multiple items to the cart {string},{string},{string},{string},{string},{string}")
+    public void userShouldBeAbleToAddMultipleItemsToTheCartDeviceTypeBrandStorageColorQuantityDeliveryAddress(String deviceType,String Brand,String Storage,String color,String Quantity,String deliveryAddress) {
+        learningMaterialPage.SelectDeviceType(deviceType);
+        learningMaterialPage.SelectBrand(Brand);
+        learningMaterialPage.SelectStorage(Storage);
+        learningMaterialPage.SelectColor(color);
+        learningMaterialPage.EnterQuantity(Quantity);
+        learningMaterialPage.EnterDeleveryAddress(deliveryAddress);
+        learningMaterialPage.ClickInventoryNextButton();
+        learningMaterialPage.ClickAddToCartButton();
+        learningMaterialPage.ClickReviewCartButton();
+        learningMaterialPage.ClickPlaceOrderButton();
+
+
+    }
+
+    @After
+    public void quitBrowser() {
+
+        //driver.quit();
+    }
+
+
 
 }
+
+
+

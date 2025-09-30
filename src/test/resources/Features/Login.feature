@@ -10,9 +10,9 @@ Feature: Login screen for the user to access Ndosi automation platform
 
 	Examples:
 	  | email          | password | errorMessage                       |
-	  | Dani@gmail.com | Test12   | Login failed: Authentication failed |
+	  | Doll@gmail.com | Test123.   | Login failed: Authentication failed |
 
-  @login
+  @loginLogout
   Scenario Outline: As a user, I should successfully log in with valid credentials
 	Given User is on the login page
 	When User enters email <email>
@@ -21,7 +21,7 @@ Feature: Login screen for the user to access Ndosi automation platform
 	Then User should be successfully logged in and see practice page
 	Examples:
 	  | email | password |
-	  |Dani@gmail.com | Test123.      |
+	  |Doll@gmail.com | Test123.     |
 
   @purchase
 	Scenario Outline: As a user,I should be able to purchase products after logging in
@@ -32,5 +32,101 @@ Feature: Login screen for the user to access Ndosi automation platform
 	  And user should be able to complete the purchase
 	Examples:
 	  | Username       | password | DeviceType | brand       | Storage | color | Quantity | deliveryAddress | discount |
-	  | dani@gmail.com | Test123. | Laptop     | Macbook air | 128GB   | Black | 1        | Nairobi         | Save10   |
+	  | Doll@gmail.com | Test123. | Laptop     | Macbook air | 128GB   | Black | 1 1       | Nairobi         | Save10   |
+
+
+  @Discountpurchase
+  Scenario Outline: As a user,I should be able to purchase products after logging in
+	Given  user is on learning materials
+	When user selects a product to purchase and Discount '<Username>','<password>','<DeviceType>','<brand>','<Storage>','<color>','<Quantity>','<deliveryAddress>','<discount>'
+	And clicks Next button to proceed to checkout
+	Then user should be able to confirm product details
+	And user should be able to complete the purchase
+	Examples:
+	  | Username | password | DeviceType | brand       | Storage | color | Quantity | deliveryAddress | discount |
+	  | Doll@gmail.com | Test123.  | Laptop     | Macbook air | 128GB   | Black | 1        | Nairobi         | Save10   |
+
+  @ValidateQuantity
+  Scenario Outline: As a user,I want to validate quantity error message is displayed correctly
+	Given  user is on learning materials
+	When user selects a product to purchase and Discount '<Username>','<password>','<DeviceType>','<brand>','<Storage>','<color>','<Quantity>','<deliveryAddress>','<discount>','<quantityErrorMsg>'
+	And clicks Next button to proceed to checkout
+	Then user should be able to confirm product details
+	And user should be able to complete the purchase
+	Examples:
+	  | Username       | password | DeviceType | brand       | Storage | color | Quantity | deliveryAddress | discount | quantityErrorMsg     |
+	  | Doll@gmail.com | Test123. | Laptop     | Macbook air | 128GB   | Black | 0        | Nairobi         | Save10   | QUANTITY MUST BE ≥ 1 |
+	  | Doll@gmail.com | Test123. | Laptop     | Macbook air | 128GB   | Black | 12       | Nairobi         | Save10   | QUANTITY MUST BE ≤ 10  |
+
+  @pricingPanel1
+  Scenario Outline: As a user,I want to validate price details is desh(-) if no device and Storage is selected
+	Given  user is on learning materials
+	When login  and do not select device and Storage '<Username>','<password>'
+	Then user to confirm price details is desh
+	Examples:
+	  | Username       | password |
+	  | Doll@gmail.com | Test123. |
+
+  @pricingPanel1
+  Scenario Outline: As a user,I want to validate price details is 400 if device is phone and Storage is 64GB
+	Given  user is on learning materials
+	When user selects device type and storage '<Username>','<password>','<DeviceType>','<Storage>','<Quantity>'
+	Then user should be able to confirm price details is R400
+	Examples:
+	  | Username | password    | DeviceType | Storage | Quantity |
+	  | Doll@gmail.com | Test123. | Phone      | 64GB    | 1        |
+
+  @pricingPanel1
+  Scenario Outline: As a user,I want to validate price details is 400 if device is phone and Storage is 64GB
+	Given  user is on learning materials
+	When user selects device type and storage '<Username>','<password>','<DeviceType>','<Storage>','<Quantity>'
+	Then user should be able to confirm price details is R400
+	Examples:
+	  | Username | password    | DeviceType | Storage | Quantity |
+	  | Doll@gmail.com | Test123. | Phone      | 128GB    | 2       |
+
+  @pricingPanel1
+  Scenario Outline: As a user,I want to validate price details is 400 if device is phone and Storage is 64GB
+	Given  user is on learning materials
+	When user selects device type and storage '<Username>','<password>','<DeviceType>','<Storage>','<Quantity>'
+	Then user should be able to confirm price details is R400
+	Examples:
+	  | Username | password    | DeviceType | Storage | Quantity |
+	  | Doll@gmail.com | Test123. | Laptop     | 256GB   | 1        |
+
+
+  @Extrasprices
+  Scenario Outline: As a user,I should be able to verify prices for extras
+	Given  user is on learning materials
+	When user selects a product to purchase '<Username>','<password>','<DeviceType>','<brand>','<Storage>','<color>','<Quantity>','<deliveryAddress>','<discount>'
+	And clicks Next button to proceed to checkout
+	Then user should be able to confirm shipping price details'<shippingPrice>'
+
+	Examples:
+	  | Username       | password | DeviceType | brand       | Storage | color | Quantity | deliveryAddress | discount | shippingPrice  |
+	  | Doll@gmail.com | Test123. | Laptop     | Macbook air | 128GB   | Black | 1        | Nairobi         | Save10   | Express |
+
+  @DiscountCodesSingleItem
+  Scenario Outline: As a user,I should be able to verify Discount codes for single item purchase
+	Given  user is on learning materials
+	When user selects a product to purchase '<Username>','<password>','<DeviceType>','<brand>','<Storage>','<color>','<Quantity>','<deliveryAddress>','<discount>','<Discountfeedback>'
+	And clicks Next button to proceed to checkout
+
+
+	Examples:
+	  | Username       | password | DeviceType | brand       | Storage | color | Quantity | deliveryAddress | discount | Discountfeedback |
+	  | Doll@gmail.com | Test123. | Laptop     | Macbook air | 128GB   | Black | 1        | Save10          | Save10   | Code SAVE10 applied: -10% |
+	  | Doll@gmail.com | Test123. | Laptop     | Macbook air | 128GB   | Black | 1        | Save20          | Save20   | Code SAVE20 applied: -20% |
+
+
+  @AddToCartMultiItem
+  Scenario Outline: As a user,I should be able to purchase products after logging in
+	Given  user is on learning materials
+	When user selects a products to purchase  '<Username>','<password>','<DeviceType>','<brand>','<Storage>','<color>','<Quantity>','<deliveryAddress>','<discount>'
+	And clicks Next button to proceed to checkout
+	Then user should be able to add multiple items to the cart '<DeviceType>','<brand>','<Storage>','<color>','<Quantity>','<deliveryAddress>'
+
+	Examples:
+	  | Username       | password | DeviceType | brand       | Storage | color | Quantity | deliveryAddress | discount |
+	  | Doll@gmail.com | Test123. | Laptop     | Macbook air | 128GB   | Black | 1        | Nairobi         | Save10   |
 
