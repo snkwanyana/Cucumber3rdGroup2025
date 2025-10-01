@@ -18,11 +18,12 @@ Feature: Practice Assessments page to access Web Automation in Ndosi platform
     And User selects color <color>
     And User enters quantity <quantity>
     And User enters delivery address <deliveryAddress>
+    And User verify the subtotal is correct <expectedSubtotal>
     Then User clicks on the next button
 
     Examples:
-      | deviceType | brand       | storage | color | quantity | deliveryAddress        |
-      | Laptop     | Macbook pro | 256GB   | White | 4        | 123, Baker street, SA  |
+      | deviceType | brand       | storage | color | quantity | deliveryAddress       | expectedSubtotal |
+      | Laptop     | Macbook pro | 256GB   | White | 4        | 123, Baker street, SA | 5440.00          |
 #      | Phone      | Apple       | 128GB   | Black | 2        | 221B, Baker street, SA |
 #      | Tablet     | Samsung     | 64GB    | Blue  | 1        | 10, Downing street, SA |
 

@@ -3,6 +3,7 @@ package StepDefs;
 
 import Utils.Base;
 import io.cucumber.java.After;
+import io.cucumber.java.PendingException;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.WebDriver;
 
@@ -68,18 +69,19 @@ public class StepDefinition extends Base {
     @Given("User is on the login page")
     public void user_is_on_the_login_page() {
         landingPage.clickLearnMoreButton();
+        loginPage.verifyLogin();
     }
 
     @And("User enters Email {}")
     public void user_enters_Email(String emails) {
         loginPage.enterEmail(emails);
-        takeScreenshots.takeScreenshot(driver, "LoginPage");
+        //takeScreenshots.takeScreenshot(driver, "LoginPage");
     }
 
     @And("User enters password {}")
     public void user_enters_password_plan_j(String Password) {
         loginPage.enterPassword(Password);
-        takeScreenshots.takeScreenshot(driver, "LoginPage");
+        //takeScreenshots.takeScreenshot(driver, "LoginPage");
     }
 
     @Then("User clicks on the login button")
@@ -102,7 +104,7 @@ public class StepDefinition extends Base {
     @And("User selects device type {}")
     public void user_selects_device_type(String deviceType) {
         practiceAssessmentsPage.selectDeviceType(deviceType);
-        practiceAssessmentsPage.verifyPricingDetailsDisplayed();
+       /// practiceAssessmentsPage.verifyPricingDetailsDisplayed();
     }
 
     @And("User selects brand {}")
@@ -138,6 +140,10 @@ public class StepDefinition extends Base {
         practiceAssessmentsPage.enterAddress(Address);
     }
 
+    @And("User verify the subtotal is correct {}")
+    public void userVerifyTheSubtotalIsCorrect(String Subtot) {
+        practiceAssessmentsPage.verifyPricingDetailsDisplayed(Subtot);
+    }
     @Then("User clicks on the next button")
     public void user_clicks_on_the_next_button() {
         practiceAssessmentsPage.clickNextButton();
@@ -195,6 +201,7 @@ public class StepDefinition extends Base {
 //    public void quitBrowser() {
 //        driver.quit();
 //    }
+
 
 
 }

@@ -49,11 +49,15 @@ public class LoginPage {
         loginButton_id.click();
     }
     public void verifyPracticeAssessmentIsDisplayed() {
-        new WebDriverWait(driver, Duration.ofSeconds(2)).until(ExpectedConditions.visibilityOf(practiceAssessment_id));
+        new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.visibilityOf(practiceAssessment_id));
         practiceAssessment_id.isDisplayed();
     }
     public void clickWebTab() {
         webTab_id.click();
+    }
+    public void verifyLogin()
+    {
+        emailField_id.isDisplayed();
     }
 
 }

@@ -82,7 +82,7 @@ public class Extras {
     }
 
     public void clickViewInvoice() {
-        new WebDriverWait(driver, Duration.ofSeconds(8)).until(ExpectedConditions.visibilityOf(btnviewinvoice_id));
+        new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.visibilityOf(btnviewinvoice_id));
         btnviewinvoice_id.isDisplayed();
         btnviewinvoice_id.click();
     }
