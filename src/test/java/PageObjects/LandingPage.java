@@ -17,8 +17,8 @@ public class LandingPage {
     @FindBy(id = "overview-hero")
     WebElement LearnAutomationTheRightWay_id;
 
-    public void
-    verifyLearnAutomationTheRightWayIsDisplayed() {
+    public void verifyLearnAutomationTheRightWayIsDisplayed() {
+
         LearnAutomationTheRightWay_id.isDisplayed();
     }
 
