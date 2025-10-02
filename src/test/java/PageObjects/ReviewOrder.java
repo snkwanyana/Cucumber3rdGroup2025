@@ -104,23 +104,17 @@ public class ReviewOrder {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+public  void click_Remove_remaining_item_from_the_cart() {
+        try {
+            WebElement remove_item = driver.findElement(By.xpath("/html/body/div/div/main/section/div[3]/div/div[2]/div[2]/div/button"));
+            if (remove_item.isDisplayed()) {
+                remove_item.click();
+                System.out.println("✅ Remaining item removed from cart");
+            }
+        } catch (NoSuchElementException e) {
+            System.out.println("❌ No remaining item to remove.");
+        }
+    }
 
 }
 

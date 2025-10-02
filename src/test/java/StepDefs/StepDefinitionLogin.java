@@ -147,7 +147,8 @@ public class StepDefinitionLogin extends Base {
     public void user_clicks_on_add_to_cart_button() {
         addExtrasPage.clickAddToCartButton();
     }
-// Select Product from second device page
+
+    // Select Product from second device page
     @And("User select DeviceType")
     public void user_select_DeviceType() {
         addSecondDevice.selectDeviceType("Laptop");
@@ -158,7 +159,7 @@ public class StepDefinitionLogin extends Base {
         addSecondDevice.selectdeviceBrand("Macbook pro");
     }
 
-   @And("User Select deviceStorage")
+    @And("User Select deviceStorage")
     public void user_Select_deviceStorage() {
         addSecondDevice.selectdeviceStorage256GB();
 
@@ -176,13 +177,13 @@ public class StepDefinitionLogin extends Base {
     }
 
     @And("User Enters Deliveryaddress {}")
-        public void user_Enters_Deliveryaddress(String DeliveryAdd) {
-       addSecondDevice.enterdeviceDeliveryAddress(DeliveryAdd);
+    public void user_Enters_Deliveryaddress(String DeliveryAdd) {
+        addSecondDevice.enterdeviceDeliveryAddress(DeliveryAdd);
     }
 
     @And("User Confirms DeviceCurrentPrice")
     public void user_Confirms_DeviceCurrentPrice() {
-    addSecondDevice.confirmdeviceCurrentPrice();
+        addSecondDevice.confirmdeviceCurrentPrice();
 
     }
 
@@ -211,10 +212,13 @@ public class StepDefinitionLogin extends Base {
         reviewOrder.reconfirms_total_price();
     }
 
+    @And("Remove the remaining item from the cart")
+    public void user_clicks_on_remove_remaining_item_from_the_cart() {
+        reviewOrder.click_Remove_remaining_item_from_the_cart();
 
+
+    }
 
 }
-
-
 
 

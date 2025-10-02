@@ -44,6 +44,8 @@ Feature: Login screen for the user to access Ndosi automation platform
     Then User should see correct cart items and pricing
     And User clicks on remove button
     Then reconfirms the cart items and pricing
+    And Remove the remaining item from the cart
+    #And I want to Add the Device to the cart again
 
 
     Examples:
