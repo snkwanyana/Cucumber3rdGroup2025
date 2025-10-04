@@ -70,7 +70,7 @@ public class LoginPage {
     }
 
     public void login(String email, String password) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(emailField_id));
         enterEmailAddress(email);
         enterPassword(password);

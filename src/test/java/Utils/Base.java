@@ -1,7 +1,6 @@
 package Utils;
 
 import PageObjects.*;
-import StepDefs.Hooks;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
@@ -18,6 +17,7 @@ public class Base {
     public AddExtrasPage addExtrasPage = PageFactory.initElements(driver, AddExtrasPage.class);
     public AddSecondDevice addSecondDevice = PageFactory.initElements(driver, AddSecondDevice.class);
     public ReviewOrder reviewOrder = PageFactory.initElements(driver, ReviewOrder.class);
+    public AddDeviceAfterRemoval addaDeviceAgainAter = PageFactory.initElements(driver, AddDeviceAfterRemoval.class);
 
 //    public ScenarioContext scenarioContext = new ScenarioContext();
 //    public Hooks hooks = new Hooks();

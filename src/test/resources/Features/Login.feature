@@ -45,11 +45,30 @@ Feature: Login screen for the user to access Ndosi automation platform
     And User clicks on remove button
     Then reconfirms the cart items and pricing
     And Remove the remaining item from the cart
-    #And I want to Add the Device to the cart again
+    #Order an Item again after it was removed
+    And User select the deviceA
+    And User Select the brandA
+    And User select the colorA
+    And User select QuantityA
+    And User enters DeliveryemailaddA Thulamahashe 1365
+   # And Calculate the total priceA
+    And User clicks on the next buttonA
+    And User select the storageA
+    And User clicks on the next buttonN
+    And User clicks on the Add to cart buttonA
+    Then User should see correct cart items and pricingA
+    And User clicks on the Review button
+    And User clicks on Cancel button
+    And User clicks on the ReviewA button
+
+
+
+
 
 
     Examples:
-      | emailaddress     | password    | DiscountCode | DiscountsCode |deviceqty|DeliveryAdd         |
-      | sama23@gmail.com | Password123 | save10       | save20        |1        |Thulamahashe 1365   |
+      | emailaddress     | password    | DiscountCode | DiscountsCode |deviceqty|DeliveryAdd       |
+      | sama23@gmail.com | Password123 | save10       | save20        |1        |Thulamahashe 1365  |
+
 
 

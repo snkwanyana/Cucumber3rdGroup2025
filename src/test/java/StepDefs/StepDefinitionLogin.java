@@ -1,5 +1,6 @@
 package StepDefs;
 
+import PageObjects.AddDeviceAfterRemoval;
 import PageObjects.SelectDevicePage;
 import Utils.Base;
 import io.cucumber.java.en.And;
@@ -218,6 +219,74 @@ public class StepDefinitionLogin extends Base {
 
 
     }
+ // Order an Item again after CART ITEM WAS CLEARED
+
+    @And("User select the deviceA")
+    public void user_select_the_deviceA() {
+        addaDeviceAgainAter.selectDropdown("Tablet");
+    }
+
+    @And("User Select the brandA")
+    public void user_select_the_brandA() {
+        addaDeviceAgainAter.selectBrand("Other");
+    }
+
+    @And("User select the colorA")
+    public void user_select_the_colorA() {
+        addaDeviceAgainAter.selectColor("White");
+    }
+
+    @And("User select QuantityA")
+    public void user_select_the_qualityA() {
+        addaDeviceAgainAter.inputquality("1");
+    }
+
+    @And("User enters DeliveryemailaddA {}")
+    public  void user_enters_DeliveryemailaddA(String emailaddressadd) {
+        addaDeviceAgainAter.enterDeliveryemailadd(emailaddressadd);
+    }
+
+    @And("User clicks on the next buttonA")
+    public void user_clicks_on_the_next_buttonA() {
+        addaDeviceAgainAter.clickNextButton();
+    }
+
+    @And("User select the storageA")
+    public void user_select_the_storageA() {
+        addaDeviceAgainAter.clickStorage();
+    }
+
+    @And("User clicks on the next buttonN")
+    public void user_clicks_on_the_next_buttonN() {
+        addaDeviceAgainAter.clickNextButtonN();
+    }
+
+    @And ("User clicks on the Add to cart buttonA")
+    public void user_clicks_on_add_to_cart_buttonA() {
+        addaDeviceAgainAter.clickAddToCartA();
+    }
+
+    @Then("User should see correct cart items and pricingA")
+    public void user_should_see_correct_cart_items_and_pricingA() {
+       addaDeviceAgainAter.CartitemsDisplays();
+    }
+
+    @And("User clicks on the Review button")
+    public void user_clicks_on_the_Review_button() {
+        addaDeviceAgainAter.clickReviewCartA();
+    }
+
+ @And("User clicks on Cancel button")
+    public void user_clicks_on_Cancel_button() {
+        addaDeviceAgainAter.clickCancelCartA();
+    }
+
+   @And("User clicks on the ReviewA button")
+    public void user_Clicks_on_Place_an_order_button() {
+        addaDeviceAgainAter.clickReviewAButton();
+    }
+
+
 
 }
 
