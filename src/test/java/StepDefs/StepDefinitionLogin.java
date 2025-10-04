@@ -219,7 +219,7 @@ public class StepDefinitionLogin extends Base {
 
 
     }
- // Order an Item again after CART ITEM WAS CLEARED
+    // Order an Item again after CART ITEM WAS CLEARED
 
     @And("User select the deviceA")
     public void user_select_the_deviceA() {
@@ -242,7 +242,7 @@ public class StepDefinitionLogin extends Base {
     }
 
     @And("User enters DeliveryemailaddA {}")
-    public  void user_enters_DeliveryemailaddA(String emailaddressadd) {
+    public void user_enters_DeliveryemailaddA(String emailaddressadd) {
         addaDeviceAgainAter.enterDeliveryemailadd(emailaddressadd);
     }
 
@@ -261,14 +261,14 @@ public class StepDefinitionLogin extends Base {
         addaDeviceAgainAter.clickNextButtonN();
     }
 
-    @And ("User clicks on the Add to cart buttonA")
+    @And("User clicks on the Add to cart buttonA")
     public void user_clicks_on_add_to_cart_buttonA() {
         addaDeviceAgainAter.clickAddToCartA();
     }
 
     @Then("User should see correct cart items and pricingA")
     public void user_should_see_correct_cart_items_and_pricingA() {
-       addaDeviceAgainAter.CartitemsDisplays();
+        addaDeviceAgainAter.CartitemsDisplays();
     }
 
     @And("User clicks on the Review button")
@@ -276,18 +276,26 @@ public class StepDefinitionLogin extends Base {
         addaDeviceAgainAter.clickReviewCartA();
     }
 
- @And("User clicks on Cancel button")
+    @And("User clicks on Cancel button")
     public void user_clicks_on_Cancel_button() {
         addaDeviceAgainAter.clickCancelCartA();
     }
 
-   @And("User clicks on the ReviewA button")
-    public void user_Clicks_on_Place_an_order_button() {
+    @And("User clicks on the ReviewA button")
+    public void user_Clicks_on_review_an_order_button() {
         addaDeviceAgainAter.clickReviewAButton();
+    }
+
+    @And("User click on Place an Order")
+    public void user_Clicks_on_place_an_order_button() {
+        addaDeviceAgainAter.clickPlaceOrder();
     }
 
 
 
+
 }
+
+
 
 

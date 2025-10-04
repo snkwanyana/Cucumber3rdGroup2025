@@ -60,6 +60,7 @@ Feature: Login screen for the user to access Ndosi automation platform
     And User clicks on the Review button
     And User clicks on Cancel button
     And User clicks on the ReviewA button
+    And User click on Place an Order
 
 
 

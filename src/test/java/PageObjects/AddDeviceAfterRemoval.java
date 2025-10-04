@@ -35,14 +35,17 @@ public class AddDeviceAfterRemoval {
     @FindBy(id = "add-to-cart-btn")
     WebElement addToCart_id;
 
-    @FindBy(xpath = "review-cart-btn")
+    @FindBy(xpath = "//button[text()='Review Cart Order']")
     WebElement reviewCart_id;
 
     @FindBy(id = "cancel-cart-btn")
     WebElement cancelCart_id;
 
-    @FindBy(id = "review-cart-btn")
+    @FindBy(xpath = "//button[text()='Review Cart Order']")
     WebElement revieworder_id;
+
+    @FindBy(id = "confirm-cart-btn")
+    WebElement confirmcart_id;
 
 
     public AddDeviceAfterRemoval(WebDriver driver) {
@@ -168,18 +171,19 @@ public class AddDeviceAfterRemoval {
 
     public void clickReviewAButton() {
         driver.findElement(By.xpath("//button[@id='review-cart-btn']")).click();
-       // revieworder_id.click();
-        try {
-            Thread.sleep(2000); // Pause to view the alert
-            //driver.switchTo().alert().accept(); // Close the alert
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-
-
+        revieworder_id.click();
         }
 
-
+    public void clickPlaceOrder()
+    {
+        confirmcart_id.click();
     }
+
+
+
+
+
+
 }
 
 
