@@ -56,16 +56,16 @@ public class StepDefinitionLogin extends Base {
         loginPage.clickslearningmaterialButton();
     }
 
-    @And("User if forced to login again")
+    @And("User is forced to login again")
     public void user_if_forced_to_login_again() {
         loginPage.login("sama23@gmail.com", "Password123");
     }
-
 
     @And("User Clicks on Web Automation Advance")
     public void user_Clicks_on_Web_Automation_Advance() {
         selectDevicePage.clickWebAutomationAdvance();
     }
+
 
     @And("User select the device")
     public void user_select_the_device() {
@@ -238,6 +238,7 @@ public class StepDefinitionLogin extends Base {
 
     @And("User select QuantityA")
     public void user_select_the_qualityA() {
+
         addaDeviceAgainAter.inputquality("1");
     }
 
@@ -291,11 +292,19 @@ public class StepDefinitionLogin extends Base {
         addaDeviceAgainAter.clickPlaceOrder();
     }
 
+    @And("User clicks viewInvoice button")
+    public void user_clicks_view_invoice_button() {
+        addaDeviceAgainAter.cliickViewInvoiceButon();
+    }
+
+   @And("User should see the order confirmation details")
+    public void user_should_see_the_order_confirmation_details() {
+        addaDeviceAgainAter.orderConfirmationDetails();
+    }
 
 
 
 }
-
 
 
 

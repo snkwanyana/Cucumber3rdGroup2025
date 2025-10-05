@@ -11,7 +11,7 @@ Feature: Login screen for the user to access Ndosi automation platform
     And User clicks on About Us button
     Then User should see About Nkosi Cele
     And User clicks on the learning material button
-    And User if forced to login again
+    And User is forced to login again
     And User Clicks on Web Automation Advance
     # New Page for selecting the product
     And User select the device
@@ -51,7 +51,7 @@ Feature: Login screen for the user to access Ndosi automation platform
     And User select the colorA
     And User select QuantityA
     And User enters DeliveryemailaddA Thulamahashe 1365
-   # And Calculate the total priceA
+    #And Calculate the total priceA
     And User clicks on the next buttonA
     And User select the storageA
     And User clicks on the next buttonN
@@ -61,15 +61,16 @@ Feature: Login screen for the user to access Ndosi automation platform
     And User clicks on Cancel button
     And User clicks on the ReviewA button
     And User click on Place an Order
-
+    And User clicks viewInvoice button
+    Then User should see the order confirmation details
 
 
 
 
 
     Examples:
-      | emailaddress     | password    | DiscountCode | DiscountsCode |deviceqty|DeliveryAdd       |
-      | sama23@gmail.com | Password123 | save10       | save20        |1        |Thulamahashe 1365  |
+      | emailaddress     | password    | DiscountCode | DiscountsCode | deviceqty | DeliveryAdd       |
+      | sama23@gmail.com | Password123 | save10       | save20        | 1         | Thulamahashe 1365 |
 
 
 

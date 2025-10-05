@@ -41,8 +41,8 @@ public class AddDeviceAfterRemoval {
     @FindBy(id = "cancel-cart-btn")
     WebElement cancelCart_id;
 
-    @FindBy(xpath = "//button[text()='Review Cart Order']")
-    WebElement revieworder_id;
+//    @FindBy(xpath = "//button[text()='Review Cart Order']")
+//    WebElement revieworder_id;
 
     @FindBy(id = "confirm-cart-btn")
     WebElement confirmcart_id;
@@ -170,14 +170,26 @@ public class AddDeviceAfterRemoval {
     }
 
     public void clickReviewAButton() {
-        driver.findElement(By.xpath("//button[@id='review-cart-btn']")).click();
-        revieworder_id.click();
+        //driver.findElement(By.xpath("//button[@id='review-cart-btn']")).click();
+        reviewCart_id.click();
         }
 
     public void clickPlaceOrder()
     {
         confirmcart_id.click();
     }
+
+    public void cliickViewInvoiceButon() {
+        WebElement viewInvoiceButton = driver.findElement(By.id("view-history-btn"));
+        viewInvoiceButton.click();
+    }
+
+    public void orderConfirmationDetails() {
+        WebElement orderConfirmation = driver.findElement(By.xpath("/html/body/div/div/main/section/div[3]/div/div[2]/div/div[2]/div/div[3]/button[1]"));
+        orderConfirmation.click();
+
+    }
+
 
 
 
