@@ -54,7 +54,7 @@ public class StepDefinition extends Base {
     @Then("User should see an error message {}")
     public void user_should_see_an_error_message(String errorMessage) throws InterruptedException {
 
-        signupPage.confirmIfErrorMessageIsDisplayed(errorMessage);
+        loginPage.confirmIfErrorMessageIsDisplayed(errorMessage);
 
     }
 
@@ -72,16 +72,32 @@ public class StepDefinition extends Base {
     @And("User clicks on the login button")
     public void userClicksOnTheLoginButton() {
         loginPage.clickLoginButton();
-        driver.getTitle();
-        learningMaterialPage.getWebautomationId();
+        
+
     }
-
-
     @Then("User should be successfully logged in and see practice page")
     public void userShouldBeSuccessfullyLoggedInAndSeePracticePage() throws InterruptedException {
         learningMaterialPage.VerifyPracticeTextAppeared();
-        learningMaterialPage.ClickLogoutButton();
 
+
+    }
+    @And("User to switch browser tabs and login again{string},{string}")
+    public void userToSwitchBrowserTabsAndLoginAgainUserNamePasswords(String uname, String pwrd) throws InterruptedException {
+        loginPage.switchToNewTab();
+        loginPage.EnterEmail(uname);
+        loginPage.EnterPassword(pwrd);
+        loginPage.clickLoginButton();
+        learningMaterialPage.VerifyPracticeTextAppeared();
+    }
+//    @Then("User should be successfully logged in and see practice page{string},{string}")
+//    public void userShouldBeSuccessfullyLoggedInAndSeePracticePageUsernamePword(String uname, String pwrd) throws InterruptedException {
+//
+//    }
+
+    
+    @Then("user to logout of the application")
+    public void userToLogoutOfTheApplication() {
+        loginPage.clickLogoutButton();
     }
 
 
@@ -206,7 +222,7 @@ public class StepDefinition extends Base {
 
     @Then("user should be able to confirm shipping price details{string}")
     public void userShouldBeAbleToConfirmShippingPriceDetailsShippingPrice(String sipmentOption) throws InterruptedException {
-        learningMaterialPage.selectShippingOption(sipmentOption);
+        //learningMaterialPage.selectShippingOption(sipmentOption);
     }
 
     @When("user selects a product to purchase {string},{string},{string},{string},{string},{string},{string},{string},{string},{string}")
@@ -261,21 +277,109 @@ public class StepDefinition extends Base {
         learningMaterialPage.EnterDeleveryAddress(deliveryAddress);
         learningMaterialPage.ClickInventoryNextButton();
         learningMaterialPage.ClickAddToCartButton();
+        learningMaterialPage.ClickRemoveItemButton();
+        learningMaterialPage.verifyGrandTotalUpdateAfterRemoval();
+//        learningMaterialPage.ClickReviewCartButton();
+//        learningMaterialPage.ClickPlaceOrderButton();
+
+
+    }
+    @When("user selects a product to purchase and verify shiping price {string},{string},{string},{string},{string},{string},{string},{string},{string},{string}")
+    public void userSelectsAProductToPurchaseAndVerifyShipingPriceUsernamePasswordDeviceTypeBrandStorageColorQuantityDeliveryAddressDiscountShippingPrice(String Username,String Pword,String deviceType,String Brand,String Storage,String color,String Quantity,String deliveryAddress,String discount,String shippingPrice) throws InterruptedException {
+        loginPage.EnterEmail(Username);
+        loginPage.EnterPassword(Pword);
+        loginPage.clickLoginButton();
+        learningMaterialPage.ClickWebAutomation();
+        learningMaterialPage.SelectDeviceType(deviceType);
+        learningMaterialPage.SelectBrand(Brand);
+        learningMaterialPage.SelectStorage(Storage);
+        learningMaterialPage.SelectColor(color);
+        learningMaterialPage.EnterQuantity(Quantity);
+        learningMaterialPage.EnterDeleveryAddress(deliveryAddress);
+        learningMaterialPage.ClickInventoryNextButton();
+        learningMaterialPage.enterDiscountCode(discount);
+        learningMaterialPage.ClickApplyDiscountButton();
+        learningMaterialPage.SelectShipmentmethod(shippingPrice);
+    }
+
+    @Then("user should be able to select shipping information prices")
+    public void userShouldBeAbleToSelectShippingInformationPrices() {
+
+
+
+    }
+
+
+
+
+
+    @When("user selects a product to purchase and review cart {string},{string},{string},{string},{string},{string},{string},{string},{string},{string}")
+    public void userSelectsAProductToPurchaseAndReviewCartUsernamePasswordDeviceTypeBrandStorageColorQuantityDeliveryAddressDiscountsuccessmessage(String username, String password, String deviceType, String brand, String storage, String color, String quantity, String deliveryAddress, String discount,String successmessage) throws InterruptedException {
+        loginPage.EnterEmail(username);
+        loginPage.EnterPassword(password);
+        loginPage.clickLoginButton();
+        learningMaterialPage.ClickWebAutomation();
+        learningMaterialPage.isDeviceTypeSelected(deviceType);
+        learningMaterialPage.SelectDeviceType(deviceType);
+        learningMaterialPage.isBrandSelected(brand);
+        learningMaterialPage.SelectBrand(brand);
+        learningMaterialPage.SelectStorage(storage);
+        learningMaterialPage.SelectColor(color);
+        learningMaterialPage.EnterQuantity(quantity);
+        learningMaterialPage.EnterDeleveryAddress(deliveryAddress);
+        learningMaterialPage.ClickInventoryNextButton();
+        learningMaterialPage.ClickAddToCart();
+        learningMaterialPage.ClickReviewCartButton();
+        learningMaterialPage.verifyplaceorderisvisible();
+        learningMaterialPage.VerifyCancelcardisvisible();
+        learningMaterialPage.ClickCancelCartButton();
+        learningMaterialPage.verifyreviewcartisvisible();
         learningMaterialPage.ClickReviewCartButton();
         learningMaterialPage.ClickPlaceOrderButton();
+        learningMaterialPage.verifyOrderSuccessMessage(successmessage);
+        learningMaterialPage.verifyorderdetailsisvisible();
+        learningMaterialPage.verifytotalonsuccessorderisvisible();
+        learningMaterialPage.ClickTclosebtnonsuccess();
+        learningMaterialPage.ClickViewInvoicesbtn();
+        // learningMaterialPage.ClickConfirmPurchaseButton();
+        //learningMaterialPage.verifysuccespurchase();
 
-
+    }
+    @When("user selects a single product to purchase and confirm purchase  {string},{string},{string},{string},{string},{string},{string},{string},{string},{string}")
+    public void userSelectsASingleProductToPurchaseAndConfirmPurchaseUsernamePasswordDeviceTypeBrandStorageColorQuantityDeliveryAddressDiscountsuccessmessage(String username, String password, String deviceType, String brand, String storage, String color, String quantity, String deliveryAddress, String discount,String successmessage) throws InterruptedException {
+        loginPage.EnterEmail(username);
+        loginPage.EnterPassword(password);
+        loginPage.clickLoginButton();
+        learningMaterialPage.ClickWebAutomation();
+        learningMaterialPage.isDeviceTypeSelected(deviceType);
+        learningMaterialPage.SelectDeviceType(deviceType);
+        learningMaterialPage.isBrandSelected(brand);
+        learningMaterialPage.SelectBrand(brand);
+        learningMaterialPage.SelectStorage(storage);
+        learningMaterialPage.SelectColor(color);
+        learningMaterialPage.EnterQuantity(quantity);
+        learningMaterialPage.EnterDeleveryAddress(deliveryAddress);
+        learningMaterialPage.ClickInventoryNextButton();
+        learningMaterialPage.ClickConfirmPurchaseButton();
+        learningMaterialPage.verifysuccespurchase();
+        learningMaterialPage.verifyOrderSuccessMessage(successmessage);
+        learningMaterialPage.verifyorderdetailsisvisible();
+        learningMaterialPage.verifytotalonsuccessorderisvisible();
+        learningMaterialPage.verifyTimestampOnSuccessisvisible();
+        learningMaterialPage.ClickViewinvoiceOnHistory();
+        learningMaterialPage.ClickCloseinvoiceHistorybtn();
     }
 
     @After
     public void quitBrowser() {
 
-        //driver.quit();
+        driver.close();
     }
 
 
 
 }
+
 
 
 

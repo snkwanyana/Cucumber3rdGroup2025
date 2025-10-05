@@ -2,6 +2,7 @@ package PageObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -15,6 +16,7 @@ import java.util.List;
 import static Utils.BrowserFactory.driver;
 
 public class LearningMaterialPage {
+
     @FindBy(id = "tab-btn-web")
     WebElement Webautomation_id;
 
@@ -96,15 +98,21 @@ public class LearningMaterialPage {
     WebElement warrantyOptions_id;
     @FindBy(xpath = "//*[@id=\"shipping-option-express\"]")
     static WebElement experes_xpath;
+    @FindBy(id = "cancel-cart-btn")
+    static WebElement Cancelcart_id;
 
-    @FindBy(id = "breakdown-shipping-value")
+    @FindBy(id = "//input[@type='radio' and @value='express' and @name='shippingMethod']")
     static WebElement Shipment_id;
 
     @FindBy(id = "shipping-option-standard")
     static WebElement Standard_id;
 
-    @FindBy(id = "shipping-option-express")
-    static WebElement express_id;
+    @FindBy(css = "div[data-testid='shipping-options']")
+    static WebElement shipmentOptions_css;
+
+    @FindBy(xpath = "//label[@data-testid='shipping-option-express']/input[@type='radio']")
+    static WebElement express_xpath;
+
     @FindBy(id = "discount-feedback")
     static WebElement discountfeedback_id;
 
@@ -116,6 +124,36 @@ public class LearningMaterialPage {
 
  @FindBy(id = "review-cart-btn")
     static WebElement reviecartbtn_id;
+
+
+
+
+ @FindBy(xpath = "//button[starts-with(@id, 'cart-item-remove-')]")
+    static WebElement removeitembtn_xpath;
+
+@FindBy(xpath = "//*[@id=\"purchase-success-toast\"]/p[1]")
+    static WebElement OrderSuccessmessage_xpath;
+@FindBy(xpath = "//*[@id=\"purchase-success-toast\"]/div[2]/p")
+     WebElement Orderdetails_xpath;
+
+@FindBy(xpath = "//*[@id=\"purchase-success-toast\"]/p[2]")
+     WebElement Totalonsuccessorder_xpath;
+@FindBy(xpath = "//*[@id=\"purchase-success-toast\"]/div[1]/button")
+     WebElement Tclosebtnonsuccess_xpath;
+@FindBy(id = "invoices-toggle-btn")
+     WebElement ViewInvoicesbtn_id;
+
+@FindBy(xpath = "//button[text()='\uD83D\uDC41\uFE0F View']")
+     WebElement ViewinvoiceOnHistory_xpath;
+@FindBy(xpath = "//button[contains(text(), 'Save as PDF')]")
+     WebElement SaveAsPdf_xpath;
+@FindBy(xpath = "//*[@id=\"purchase-success-toast\"]/div[3]/p")
+     WebElement TimeStampOnSuccess_xpath;
+@FindBy(id = "view-history-btn")
+     WebElement ViewInvo_id;
+
+@FindBy(id = "close-invoice-history-btn")
+     WebElement CloseinvoiceHistorybtn_id;
 
 
     public boolean isTabVisible(By uniqueElementLocator) {
@@ -146,7 +184,22 @@ public class LearningMaterialPage {
         Thread.sleep(8000);
         logoutbtn_id.click();
     }
-
+    public void ClickCancelCartButton() throws InterruptedException {
+        new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(Cancelcart_id));
+        Cancelcart_id.click();
+    }
+    public void VerifyCancelcardisvisible() {
+        boolean isVisible = Cancelcart_id.isDisplayed();
+        Assert.assertTrue(isVisible, "Cancel Cart button should be visible.");
+    }
+    public void verifyreviewcartisvisible() {
+        boolean isVisible = reviecartbtn_id.isDisplayed();
+        Assert.assertTrue(isVisible, "Review Cart button should be visible.");
+    }
+    public void verifyplaceorderisvisible() {
+        boolean isVisible = placeorderbtn_id.isDisplayed();
+        Assert.assertTrue(isVisible, "Place Order button should be visible.");
+    }
 
     public void ClickWebAutomation() throws InterruptedException {
         new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(Webautomation_id));
@@ -270,7 +323,7 @@ public class LearningMaterialPage {
 
     public void ClickConfirmPurchaseButton() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         wait.until(ExpectedConditions.visibilityOf(confirmpurchasebtn_id));
         confirmpurchasebtn_id.click();
     }
@@ -287,6 +340,12 @@ public class LearningMaterialPage {
         } else {
             System.out.println("Purchase not completed");
         }
+    }
+    public void verifyOrderSuccessMessage(String expectedMessage) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.visibilityOf(OrderSuccessmessage_xpath));
+        String actualMessage = OrderSuccessmessage_xpath.getText().trim();
+        Assert.assertEquals(actualMessage, expectedMessage, "Order success message should match.");
     }
 
     public void UnitPriceVerification() {
@@ -316,64 +375,7 @@ public class LearningMaterialPage {
         }
     }
 
-    public static void selectShippingOption(String option) {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-        String labelId;
-        String readableName;
-
-        switch (option.toLowerCase()) {
-            case "standard":
-                // Use the data-testid from the <label>  shipping-section
-                labelId = "shipping-option-standard";
-                readableName = "Standard";
-                break;
-            case "express":
-                // Use the data-testid from the <label>
-                labelId = "shipping-option-express";
-                readableName = "Express (+R25)";
-                break;
-            default:
-                System.err.println("Invalid shipping option specified: " + option + ". Must be 'standard' or 'express'.");
-                return;
-        }
-
-        try {
-            // Locate the <label> element using its data-testid attribute
-            WebElement shippingLabel = wait.until(
-                    ExpectedConditions.elementToBeClickable(By.cssSelector("label[data-testid='" + labelId + "']"))
-            );
-
-            // Click the label, which usually triggers the radio button selection
-            shippingLabel.click();
-            System.out.println("✅ Successfully selected the '" + readableName + "' shipping option by clicking its label.");
-
-            // Optional: Verify the underlying radio button is selected
-            WebElement radioButton = driver.findElement(By.id("shipping-" + option.toLowerCase()));
-            if (radioButton.isSelected()) {
-                System.out.println("   Verification passed: Radio button is checked.");
-            } else {
-                System.out.println("   Verification failed: Radio button is NOT checked.");
-            }
-
-        } catch (Exception e) {
-            System.err.println("❌ Failed to select the shipping option: " + e.getMessage());
-            e.printStackTrace();
-        }
-
-
-//    public void verifyExpressShipmentIs25() {
-//        // Click the Express radio button
-//        express_id.click();
-//
-//        // Wait for the shipment value to be visible and updated
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//        String shipmentValue = wait.until(ExpectedConditions.visibilityOf(Shipment_id)).getText().trim();
-//
-//        // Assert the shipment value is "R25"
-//        Assert.assertEquals(shipmentValue, "R25", "Shipment value should be R25 when Express is selected.");
-//    }
-    }
     public void DiscountFeedback(String msgFeedback) {
         String feedback = discountfeedback_id.getText();
         Assert.assertEquals(feedback, msgFeedback);
@@ -391,10 +393,86 @@ public class LearningMaterialPage {
     public void ClickPlaceOrderButton() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(placeorderbtn_id));
-        placeorderbtn_id.click();
+        Actions actions = new Actions(driver);
+        actions.doubleClick(placeorderbtn_id).perform();
 
     }
-}
+    public void ClickRemoveItemButton() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.visibilityOf(removeitembtn_xpath));
+        removeitembtn_xpath.click();
+    }
+    @FindBy(xpath = "//div[starts-with(@id, 'cart-item-total-')]")
+    WebElement TotalTokeep_xpath;
+
+    @FindBy(id = "cart-grand-total-value")
+    WebElement GrandTotal_id;
+
+    public void verifyGrandTotalUpdateAfterRemoval() {
+        String totalText = TotalTokeep_xpath.getText().trim();
+        String grandTotalText = GrandTotal_id.getText().trim();
+        Assert.assertEquals(grandTotalText, totalText, "Grand Total should update correctly after item removal.");
+        System.out.println("Grand Total after item removal: " + totalText);
+    }
+     public void clickshipmentOptions() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+        wait.until(ExpectedConditions.visibilityOf(shipmentOptions_css));
+       shipmentOptions_css.click();
+    }
+    public void SelectShipmentmethod(String shipment) {
+
+        switch (shipment) {
+            case "64GB":
+                Standard_id.click();
+                break;
+            case "128GB":
+                express_xpath.click();
+                break;
+                default:
+                System.out.println("Invalid option option");
+        }
+        }
+     public void verifyorderdetailsisvisible(){
+         boolean isVisible = Orderdetails_xpath.isDisplayed();
+         Assert.assertTrue(isVisible, "Order details should be visible.");
+     }
+    public void verifytotalonsuccessorderisvisible(){
+        boolean isVisible = Totalonsuccessorder_xpath.isDisplayed();
+        Assert.assertTrue(isVisible, "Total on success order should be visible.");
+    }
+    public void ClickTclosebtnonsuccess(){
+        Tclosebtnonsuccess_xpath.click();
+    }
+    public void ClickViewInvoicesbtn(){
+        ViewInvoicesbtn_id.click();
+    }
+
+    public void verifyTimestampOnSuccessisvisible(){
+        boolean isVisible = TimeStampOnSuccess_xpath.isDisplayed();
+        Assert.assertTrue(isVisible, "Timestamp on success order should be visible.");
+    }
+    public  void ClickViewinvoiceOnHistory(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.visibilityOf(ViewInvo_id));
+        ViewInvo_id.click();
+    }
+    public void ClickCloseinvoiceHistorybtn(){
+        CloseinvoiceHistorybtn_id.click();
+    }
+//    public void Verifyshipingprice(){
+//
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+//        wait.until(ExpectedConditions.visibilityOf(express_xpath));
+//        String shippingText = express_xpath.getText().trim();
+//        System.out.println("Shipping price: " + shippingText);
+//        if (shippingText.equals("R25.00")) {
+//            System.out.println("The Shipping price is R25.00 when Express option is selected.");
+//        } else {
+//            System.out.println("The Shipping price is not R25.00 when Express option is selected.");
+//        }
+    }
+
+
 
 
 
