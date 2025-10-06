@@ -21,7 +21,7 @@ Feature: Login screen for the user to access Ndosi automation platform
 	And User enters password <password>
 	And User clicks on the login button
 	Then User should be successfully logged in and see practice page
-	And User should be successfully logged in and see practice page
+
 
 	Examples:
 	  | email | password |
@@ -114,13 +114,13 @@ Feature: Login screen for the user to access Ndosi automation platform
   @Extrasprices
   Scenario Outline: As a user,I should be able to purchase products after logging in
 	Given  user is on learning materials
-	When user selects a product to purchase and verify shiping price '<Username>','<password>','<DeviceType>','<brand>','<Storage>','<color>','<Quantity>','<deliveryAddress>','<discount>','<ShippingPrice>'
+	When user selects a product to purchase and verify shiping price '<Username>','<password>','<DeviceType>','<brand>','<Storage>','<color>','<Quantity>','<deliveryAddress>','<discount>','<ShippingPrice>','<WarrantyPrice>'
 	And clicks Next button to proceed to checkout
 	Then user should be able to select shipping information prices
 	And user should be able to complete the purchase
 	Examples:
-	  | Username       | password | DeviceType | brand   | Storage | color | Quantity | deliveryAddress | discount | ShippingPrice |
-	  | Doll@gmail.com | Test123. | Tablet     | Samsung | 128GB   | Black | 1        | Nairobi         | Save10   | Express       |
+	  | Username       | password | DeviceType | brand   | Storage | color | Quantity | deliveryAddress | discount | ShippingPrice |WarrantyPrice|
+	  | Doll@gmail.com | Test123. | Tablet     | Samsung | 128GB   | Black | 1        | Nairobi         | Save10   | Express       |1 Year |
 
   @DiscountCodesSingleItem
   Scenario Outline: As a user,I should be able to verify Discount codes for single item purchase

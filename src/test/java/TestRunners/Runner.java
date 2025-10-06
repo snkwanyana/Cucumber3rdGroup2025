@@ -8,8 +8,8 @@ import io.cucumber.testng.CucumberOptions;
         features = "src/test/resources/Features",
         glue = {"StepDefs"},
         plugin = {"pretty", "html:target/cucumber-reports.html"},
-        monochrome = true,
-        tags = "@SwitchBrowserTabandlogin"
+        monochrome = true
+        //tags = "@Extrasprices"
 )
 public class Runner extends AbstractTestNGCucumberTests {
 }

@@ -78,6 +78,7 @@ public class StepDefinition extends Base {
     @Then("User should be successfully logged in and see practice page")
     public void userShouldBeSuccessfullyLoggedInAndSeePracticePage() throws InterruptedException {
         learningMaterialPage.VerifyPracticeTextAppeared();
+        learningMaterialPage.ClickLogoutBtn();
 
 
     }
@@ -284,8 +285,8 @@ public class StepDefinition extends Base {
 
 
     }
-    @When("user selects a product to purchase and verify shiping price {string},{string},{string},{string},{string},{string},{string},{string},{string},{string}")
-    public void userSelectsAProductToPurchaseAndVerifyShipingPriceUsernamePasswordDeviceTypeBrandStorageColorQuantityDeliveryAddressDiscountShippingPrice(String Username,String Pword,String deviceType,String Brand,String Storage,String color,String Quantity,String deliveryAddress,String discount,String shippingPrice) throws InterruptedException {
+    @When("user selects a product to purchase and verify shiping price {string},{string},{string},{string},{string},{string},{string},{string},{string},{string},{string}")
+    public void userSelectsAProductToPurchaseAndVerifyShipingPriceUsernamePasswordDeviceTypeBrandStorageColorQuantityDeliveryAddressDiscountShippingPriceWarrantyPrice(String Username,String Pword,String deviceType,String Brand,String Storage,String color,String Quantity,String deliveryAddress,String discount,String shippingPrice,String warrant) throws InterruptedException {
         loginPage.EnterEmail(Username);
         loginPage.EnterPassword(Pword);
         loginPage.clickLoginButton();
@@ -300,6 +301,9 @@ public class StepDefinition extends Base {
         learningMaterialPage.enterDiscountCode(discount);
         learningMaterialPage.ClickApplyDiscountButton();
         learningMaterialPage.SelectShipmentmethod(shippingPrice);
+        learningMaterialPage.Verifyshipingprice();
+        learningMaterialPage.SelectWarrantyOption(warrant);
+        learningMaterialPage.VerifyWarrantyPrice();
     }
 
     @Then("user should be able to select shipping information prices")

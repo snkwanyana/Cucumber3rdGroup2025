@@ -17,6 +17,7 @@ import static Utils.BrowserFactory.driver;
 
 public class LearningMaterialPage {
 
+
     @FindBy(id = "tab-btn-web")
     WebElement Webautomation_id;
 
@@ -122,38 +123,44 @@ public class LearningMaterialPage {
     @FindBy(id = "confirm-cart-btn")
     static WebElement placeorderbtn_id;
 
- @FindBy(id = "review-cart-btn")
+    @FindBy(id = "review-cart-btn")
     static WebElement reviecartbtn_id;
 
 
-
-
- @FindBy(xpath = "//button[starts-with(@id, 'cart-item-remove-')]")
+    @FindBy(xpath = "//button[starts-with(@id, 'cart-item-remove-')]")
     static WebElement removeitembtn_xpath;
 
-@FindBy(xpath = "//*[@id=\"purchase-success-toast\"]/p[1]")
+    @FindBy(xpath = "//*[@id=\"purchase-success-toast\"]/p[1]")
     static WebElement OrderSuccessmessage_xpath;
-@FindBy(xpath = "//*[@id=\"purchase-success-toast\"]/div[2]/p")
-     WebElement Orderdetails_xpath;
+    @FindBy(xpath = "//*[@id=\"purchase-success-toast\"]/div[2]/p")
+    WebElement Orderdetails_xpath;
 
-@FindBy(xpath = "//*[@id=\"purchase-success-toast\"]/p[2]")
-     WebElement Totalonsuccessorder_xpath;
-@FindBy(xpath = "//*[@id=\"purchase-success-toast\"]/div[1]/button")
-     WebElement Tclosebtnonsuccess_xpath;
-@FindBy(id = "invoices-toggle-btn")
-     WebElement ViewInvoicesbtn_id;
+    @FindBy(xpath = "//*[@id=\"purchase-success-toast\"]/p[2]")
+    WebElement Totalonsuccessorder_xpath;
+    @FindBy(xpath = "//*[@id=\"purchase-success-toast\"]/div[1]/button")
+    WebElement Tclosebtnonsuccess_xpath;
+    @FindBy(id = "invoices-toggle-btn")
+    WebElement ViewInvoicesbtn_id;
 
-@FindBy(xpath = "//button[text()='\uD83D\uDC41\uFE0F View']")
-     WebElement ViewinvoiceOnHistory_xpath;
-@FindBy(xpath = "//button[contains(text(), 'Save as PDF')]")
-     WebElement SaveAsPdf_xpath;
-@FindBy(xpath = "//*[@id=\"purchase-success-toast\"]/div[3]/p")
-     WebElement TimeStampOnSuccess_xpath;
-@FindBy(id = "view-history-btn")
-     WebElement ViewInvo_id;
+    @FindBy(xpath = "//button[text()='\uD83D\uDC41\uFE0F View']")
+    WebElement ViewinvoiceOnHistory_xpath;
+    @FindBy(xpath = "//button[contains(text(), 'Save as PDF')]")
+    WebElement SaveAsPdf_xpath;
+    @FindBy(xpath = "//*[@id=\"purchase-success-toast\"]/div[3]/p")
+    WebElement TimeStampOnSuccess_xpath;
+    @FindBy(id = "view-history-btn")
+    WebElement ViewInvo_id;
 
-@FindBy(id = "close-invoice-history-btn")
-     WebElement CloseinvoiceHistorybtn_id;
+    @FindBy(id = "close-invoice-history-btn")
+    WebElement CloseinvoiceHistorybtn_id;
+
+    @FindBy(id = "warranty-option-1yr")
+    WebElement warrantyoption1yr_id;
+
+    @FindBy(id = "warranty-option-2yr")
+    WebElement warrantyoption2yr_id;
+    @FindBy(id = "breakdown-warranty-value")
+    WebElement warrant_id;
 
 
     public boolean isTabVisible(By uniqueElementLocator) {
@@ -180,22 +187,27 @@ public class LearningMaterialPage {
         }
     }
 
-    public void ClickLogoutButton() throws InterruptedException {
-        Thread.sleep(8000);
+    public void ClickLogoutBtn() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.visibilityOf(logoutbtn_id));
         logoutbtn_id.click();
     }
+
     public void ClickCancelCartButton() throws InterruptedException {
         new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(Cancelcart_id));
         Cancelcart_id.click();
     }
+
     public void VerifyCancelcardisvisible() {
         boolean isVisible = Cancelcart_id.isDisplayed();
         Assert.assertTrue(isVisible, "Cancel Cart button should be visible.");
     }
+
     public void verifyreviewcartisvisible() {
         boolean isVisible = reviecartbtn_id.isDisplayed();
         Assert.assertTrue(isVisible, "Review Cart button should be visible.");
     }
+
     public void verifyplaceorderisvisible() {
         boolean isVisible = placeorderbtn_id.isDisplayed();
         Assert.assertTrue(isVisible, "Place Order button should be visible.");
@@ -341,6 +353,7 @@ public class LearningMaterialPage {
             System.out.println("Purchase not completed");
         }
     }
+
     public void verifyOrderSuccessMessage(String expectedMessage) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.visibilityOf(OrderSuccessmessage_xpath));
@@ -380,16 +393,19 @@ public class LearningMaterialPage {
         String feedback = discountfeedback_id.getText();
         Assert.assertEquals(feedback, msgFeedback);
     }
-    public  void ClickAddToCart() {
+
+    public void ClickAddToCart() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(addtoCart_id));
         addtoCart_id.click();
     }
+
     public void ClickReviewCartButton() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(reviecartbtn_id));
         reviecartbtn_id.click();
     }
+
     public void ClickPlaceOrderButton() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(placeorderbtn_id));
@@ -397,11 +413,13 @@ public class LearningMaterialPage {
         actions.doubleClick(placeorderbtn_id).perform();
 
     }
+
     public void ClickRemoveItemButton() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         wait.until(ExpectedConditions.visibilityOf(removeitembtn_xpath));
         removeitembtn_xpath.click();
     }
+
     @FindBy(xpath = "//div[starts-with(@id, 'cart-item-total-')]")
     WebElement TotalTokeep_xpath;
 
@@ -414,63 +432,91 @@ public class LearningMaterialPage {
         Assert.assertEquals(grandTotalText, totalText, "Grand Total should update correctly after item removal.");
         System.out.println("Grand Total after item removal: " + totalText);
     }
-     public void clickshipmentOptions() {
+
+    public void clickshipmentOptions() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
         wait.until(ExpectedConditions.visibilityOf(shipmentOptions_css));
-       shipmentOptions_css.click();
+        shipmentOptions_css.click();
     }
+
     public void SelectShipmentmethod(String shipment) {
 
         switch (shipment) {
-            case "64GB":
+            case "Standard":
                 Standard_id.click();
                 break;
-            case "128GB":
+            case "Express":
                 express_xpath.click();
                 break;
-                default:
+            default:
                 System.out.println("Invalid option option");
         }
-        }
-     public void verifyorderdetailsisvisible(){
-         boolean isVisible = Orderdetails_xpath.isDisplayed();
-         Assert.assertTrue(isVisible, "Order details should be visible.");
-     }
-    public void verifytotalonsuccessorderisvisible(){
+    }
+
+    public void SelectWarrantyOption(String warranty) {
+
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+            switch (warranty) {
+                case "1 Year":
+                    wait.until(ExpectedConditions.visibilityOf(warrantyoption1yr_id));
+                    warrantyoption1yr_id.click();
+                    break;
+                case "2 Year":
+                    wait.until(ExpectedConditions.visibilityOf(warrantyoption2yr_id));
+                    warrantyoption2yr_id.click();
+                    break;
+                default:
+                    System.out.println("Invalid option option");
+            }
+    }
+
+    public void VerifyWarrantyPrice() {
+        String warrantyText = warrant_id.getText().trim();
+        System.out.println("Warranty price: " + warrantyText);
+
+    }
+
+    public void verifyorderdetailsisvisible() {
+        boolean isVisible = Orderdetails_xpath.isDisplayed();
+        Assert.assertTrue(isVisible, "Order details should be visible.");
+    }
+
+    public void verifytotalonsuccessorderisvisible() {
         boolean isVisible = Totalonsuccessorder_xpath.isDisplayed();
         Assert.assertTrue(isVisible, "Total on success order should be visible.");
     }
-    public void ClickTclosebtnonsuccess(){
+
+    public void ClickTclosebtnonsuccess() {
         Tclosebtnonsuccess_xpath.click();
     }
-    public void ClickViewInvoicesbtn(){
+
+    public void ClickViewInvoicesbtn() {
         ViewInvoicesbtn_id.click();
     }
 
-    public void verifyTimestampOnSuccessisvisible(){
+    public void verifyTimestampOnSuccessisvisible() {
         boolean isVisible = TimeStampOnSuccess_xpath.isDisplayed();
         Assert.assertTrue(isVisible, "Timestamp on success order should be visible.");
     }
-    public  void ClickViewinvoiceOnHistory(){
+
+    public void ClickViewinvoiceOnHistory() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.visibilityOf(ViewInvo_id));
         ViewInvo_id.click();
     }
-    public void ClickCloseinvoiceHistorybtn(){
+
+    public void ClickCloseinvoiceHistorybtn() {
         CloseinvoiceHistorybtn_id.click();
     }
-//    public void Verifyshipingprice(){
-//
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-//        wait.until(ExpectedConditions.visibilityOf(express_xpath));
-//        String shippingText = express_xpath.getText().trim();
-//        System.out.println("Shipping price: " + shippingText);
-//        if (shippingText.equals("R25.00")) {
-//            System.out.println("The Shipping price is R25.00 when Express option is selected.");
-//        } else {
-//            System.out.println("The Shipping price is not R25.00 when Express option is selected.");
-//        }
+
+    public void Verifyshipingprice() {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+        wait.until(ExpectedConditions.visibilityOf(express_xpath));
+        String shippingText = express_xpath.getText().trim();
+        System.out.println("Shipping price: " + shippingText);
     }
+}
 
 
 
