@@ -3,6 +3,7 @@ package StepDefs;
 import PageObjects.AddDeviceAfterRemoval;
 import PageObjects.SelectDevicePage;
 import Utils.Base;
+import Utils.TabManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -14,6 +15,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 public class StepDefinitionLogin extends Base {
+
 
     @Given("User is on the homepage")
     public void user_is_on_the_home_page() {
@@ -58,7 +60,7 @@ public class StepDefinitionLogin extends Base {
 
     @And("User is forced to login again")
     public void user_if_forced_to_login_again() {
-        loginPage.login("sama23@gmail.com", "Password123");
+        loginPage.login("Pretty25@gmail.com", "Password123");
     }
 
     @And("User Clicks on Web Automation Advance")
@@ -297,7 +299,7 @@ public class StepDefinitionLogin extends Base {
         addaDeviceAgainAter.cliickViewInvoiceButon();
     }
 
-   @And("User should see the order confirmation details")
+    @Then("User should see the order confirmation details")
     public void user_should_see_the_order_confirmation_details() {
         addaDeviceAgainAter.orderConfirmationDetails();
     }

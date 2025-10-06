@@ -50,7 +50,7 @@ Feature: Login screen for the user to access Ndosi automation platform
     And User Select the brandA
     And User select the colorA
     And User select QuantityA
-    And User enters DeliveryemailaddA Thulamahashe 1365
+    And User enters DeliveryemailaddA Hazyview 1650
     #And Calculate the total priceA
     And User clicks on the next buttonA
     And User select the storageA
@@ -68,9 +68,10 @@ Feature: Login screen for the user to access Ndosi automation platform
 
 
 
+
     Examples:
       | emailaddress     | password    | DiscountCode | DiscountsCode | deviceqty | DeliveryAdd       |
-      | sama23@gmail.com | Password123 | save10       | save20        | 1         | Thulamahashe 1365 |
+      | pretty25@gmail.com | Password123 | save10       | save20        | 1         | Dwarsloop 1344 |
 
 
 
