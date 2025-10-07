@@ -122,7 +122,10 @@ public class SelectDevicePage {
     }
 
 
+    public void clickNextButton (){
+        WebElement nextButton = driver.findElement(By.id("inventory-next-btn"));
+        nextButton.click();
 
-
+    }
 
     }
