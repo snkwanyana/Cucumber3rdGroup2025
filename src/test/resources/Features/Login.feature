@@ -19,7 +19,7 @@ Feature: Login screen for the user to access Ndosi automation platform
     And User select the storage
     And User select the color
     And User select Quantity
-    And User enters Deliveryemailadd Thulamahashe 1365
+    And User enters Deliveryemailadd Box 705 Dwarsloop MP 1365
     And Calculate the total price
     And User clicks on the next button
     #New Page for shipping details
