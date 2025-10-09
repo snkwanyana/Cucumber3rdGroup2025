@@ -1,8 +1,6 @@
 package Utils;
 
-import PageObjects.LandingPage;
-import PageObjects.LoginPage;
-import PageObjects.SignupPage;
+import PageObjects.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
@@ -15,6 +13,8 @@ public class Base {
     public LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
     public SignupPage signupPage = PageFactory.initElements(driver, SignupPage.class);
     public LandingPage landingPage = PageFactory.initElements(driver, LandingPage.class);
+    public InventoryFormPage inventoryFormPage = PageFactory.initElements(driver, InventoryFormPage.class);
+    public InvoicePage invoicePage = PageFactory.initElements(driver, InvoicePage.class);
     public TakeScreenshots takeScreenshots = new TakeScreenshots();
 
 

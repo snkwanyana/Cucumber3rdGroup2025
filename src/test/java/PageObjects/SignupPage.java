@@ -5,16 +5,20 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import java.time.Duration;
 
 public class SignupPage {
 
-//    TakeScreenshots takeScreenshots = new TakeScreenshots();
+    //    TakeScreenshots takeScreenshots = new TakeScreenshots();
     WebDriver driver;
 
     @FindBy(id = "register-firstName")
     WebElement firstNameField_id;
-    @FindBy(id="register-lastName")
+    @FindBy(id = "register-lastName")
     WebElement LastNameField_id;
     @FindBy(xpath = "//input[@placeholder='Email']")
     WebElement emailField_xpath;
@@ -55,11 +59,20 @@ public class SignupPage {
         createCreate_xpath.click();
     }
 
-    public void confirmIfErrorMessageIsDisplayed(String errorMessage) {
-        Alert alert = driver.switchTo().alert();
+    public void confirmIfErrorMessageIsDisplayed(String expectedMessage) {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        // Wait until the alert is present
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+
+        // Get alert text and assert it matches the expected message
         String alertText = alert.getText();
-        Assert.assertEquals(alertText, errorMessage);
+        Assert.assertEquals(alertText, expectedMessage);
+
+        // Accept (close) the alert
         alert.accept();
+
     }
 
 }

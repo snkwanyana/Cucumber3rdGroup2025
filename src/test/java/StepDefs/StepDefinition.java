@@ -3,8 +3,12 @@ package StepDefs;
 import Utils.Base;
 import io.cucumber.java.After;
 import io.cucumber.java.en.*;
+import io.qameta.allure.Allure;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterTest;
+
+import java.io.ByteArrayInputStream;
 
 public class StepDefinition extends Base {
 
@@ -26,6 +30,7 @@ public class StepDefinition extends Base {
     public void user_enters_name(String name) {
         signupPage.enterFirstName(name);
         takeScreenshots.takesSnapShot(driver, "Signup Page");
+        Allure.addAttachment("Signup Page",new ByteArrayInputStream(((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES)));
 
     }
 
@@ -58,16 +63,16 @@ public class StepDefinition extends Base {
 
     }
 
-    @Then("User should see an error message {}")
-    public void user_should_see_an_error_message(String errorMessage) {
+    @Then("User should see a message {}")
+    public void user_should_see_an_error_message(String expectedMessage) {
 
-        signupPage.confirmIfErrorMessageIsDisplayed(errorMessage);
+        signupPage.confirmIfErrorMessageIsDisplayed(expectedMessage);
 
     }
-
     @After
     public void quitBrowser() {
         driver.quit();
     }
+
 
 }
