@@ -12,3 +12,4 @@ Feature: Login screen for the user to access Ndosi automation platform
     Examples:
       | emailaddress1    | password |
       | sama23@gmail.com | Password |
+      |sama23#gmail.com  | Password123 |

@@ -12,7 +12,7 @@ Feature: Sign up screen for the user to create login details
    # Then User should see an error message <errorMessage>
 
     Examples:
-      | name   | lastname | email | password         | confirmPassword | #errorMessage                                |
+      | name   |        lastname |     email |            password        | confirmPassword | #errorMessage                                |
       | The Pretty One | Malinga  | pretty25@gmail.com | Password123      | Password123 | Please fill in all fields                   |
       #| myName | surname  | test@gmail     | Password123 | Password123     | Please enter a valid email address          |
       #| myName | surname  | test@gmail.com | Passw       | Passw           | Password must be at least 8 characters long |
