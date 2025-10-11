@@ -1,69 +1,93 @@
 package PageObjects;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class InvoicePage {
+
+    @FindBy(id="invoices-toggle-btn")
+    WebElement invoiceToggleButton_id;
+
+    @FindBy(id="tab-btn-web")
+    WebElement webAutomationAdvanceButton_id;
+
+    @FindBy(xpath = "//img[@class='company-logo']")
+    WebElement companyLogo_xpath;
+
+    @FindBy(xpath = "//div[@class='customer-info']//strong[text()='Hisense Crock']")
+    WebElement customerName_xpath;
+
+    @FindBy(xpath = "//div[@class='customer-info']//div[contains(text(),'@')]")
+    WebElement customerEmail_xpath;
+
+    @FindBy(xpath = "//div[@class='invoice-info']//strong[contains(text(),'Invoice #:')]")
+    WebElement invoiceNumber_xpath;
+
+    @FindBy(xpath = "//table[@class='items-table']")
+    WebElement itemTable_xpath;
+
+    @FindBy(xpath = "//div[@class='totals']//div[contains(text(),'Total:')]")
+    WebElement totalAmount_xpath;
+
+    @FindBy(xpath = "//div[contains(text(),'Thank you for your business')]")
+    WebElement thankYouMessage_xpath;
+
+    @FindBy(xpath = "//div[@class='footer']")
+    WebElement footer_xpath;
+
+
     WebDriver driver;
 
     public InvoicePage(WebDriver driver) {
         this.driver = driver;
     }
 
-    @FindBy(className =  ".customer-info .info-line strong")
-    WebElement customerName_css;
+    // Locators using XPath or ID (Assuming IDs are not available, using XPath)
 
-    @FindBy(className = ".customer-info .info-line:nth-of-type(2)")
-    WebElement customerEmail_css;
-
-    @FindBy(className = ".customer-info .info-line:nth-of-type(3)")
-    WebElement customerAddress_css;
-
-    @FindBy(xpath="//div[contains(text(),'Status:')]/span")
-    WebElement invoiceStatus_xpath;
-
-    public void verifyCompanyLogo(){
-        WebElement logo = driver.findElement(By.cssSelector("img.company-logo"));
-        Assert.assertTrue(logo.isDisplayed());
-       // String src = logo.getAttribute("src");
-       // Assert.assertTrue("Logo should be embedded image", src.startsWith("data:image"));
+    public void clickInvoiceToggleButton(){
+        invoiceToggleButton_id.click();
     }
 
-    public void getCustomerName(String expectedName) {
-        Assert.assertEquals(expectedName, customerName_css.getText());
+
+    public void getCompanyLogo() {
+
+        companyLogo_xpath.isDisplayed();
 
     }
 
-    public void getCustomerEmail(String expectedEmail) {
-        Assert.assertEquals(expectedEmail, customerEmail_css.getText());
+    public void getCustomerName() {
+        customerName_xpath.isDisplayed();
     }
 
-    public void getCustomerAddress(String expectedAddress) {
-        Assert.assertEquals(expectedAddress, customerAddress_css.getText());
+    public void getCustomerEmail() {
+        customerEmail_xpath.isDisplayed();
+    }
+
+    public void getInvoiceNumber() {
+        invoiceNumber_xpath.isDisplayed();
+    }
+
+    public void getItemTable() {
+        itemTable_xpath.isDisplayed();
+    }
+
+    public void getTotalAmount(String expectedTotal) {
+        Assert.assertEquals(expectedTotal,totalAmount_xpath.getText().contains("R5934.60"));
+    }
+
+    public void getThankYouMessage() {
+        thankYouMessage_xpath.isDisplayed();
 
     }
 
-    public void getInvoiceStatus(String expectedStatus){
-        String getStatus = invoiceStatus_xpath.getText();
-        Assert.assertEquals(expectedStatus, getStatus.trim());
+    public void clickWebAutomationAdvance(){
+        webAutomationAdvanceButton_id.click();
     }
 
-    public String getSubtotal() {
-        return driver.findElement(By.xpath("//div[contains(text(),'Subtotal:')]")).getText().replace("Subtotal:", "").trim();
-    }
+    public void getFooter() {
+        footer_xpath.isDisplayed();
 
-    public String getShipping() {
-        return driver.findElement(By.xpath("//div[contains(text(),'Shipping:')]")).getText().replace("Shipping:", "").trim();
-    }
-
-    public String getTotal() {
-        return driver.findElement(By.xpath("//div[contains(@class,'final')]")).getText().replace("Total:", "").trim();
-    }
-
-    public String getThankYouMessage() {
-        return driver.findElement(By.cssSelector(".thank-you")).getText();
     }
 }

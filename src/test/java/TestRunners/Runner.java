@@ -9,7 +9,7 @@ import io.cucumber.testng.CucumberOptions;
             glue = {"StepDefs"},
             plugin = {"pretty", "html:target/cucumber-reports.html", "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:","io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"},
             monochrome = true,
-            tags = "@signup or @login or @devicePurchase"
+            tags = "@signup or @login or @devicePurchase or @invoice"
     )
     public class Runner extends AbstractTestNGCucumberTests {
     }
