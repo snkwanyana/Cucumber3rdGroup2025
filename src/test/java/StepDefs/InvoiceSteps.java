@@ -1,34 +1,32 @@
 package StepDefs;
 
-import Utils.Base;
+import Utils.Hooks;
 import io.cucumber.java.After;
 import io.cucumber.java.en.*;
-import org.openqa.selenium.WebDriver;
 
-public class InvoiceSteps extends Base {
-    public WebDriver driver;
-
-    public InvoiceSteps() {
-        this.driver = super.driver;
-    }
-
+public class InvoiceSteps {
     @Given("I am on the invoice page")
     public void i_am_on_the_invoice_page() {
-        landingPage.verifyLearnAutomationTheRightWayIsDisplayed();
-        landingPage.clickLearnMoreButton();
+        Hooks.base.landingPage.verifyLearnAutomationTheRightWayIsDisplayed();
+        Hooks.base.landingPage.clickLearnMoreButton();
 
-        loginPage.enterEmail("HisenseCrock@example.com");
-        loginPage.enterPassword("Pass1234");
-        loginPage.clickLoginButton();
+        Hooks.base.loginPage.enterEmail("HisenseCrock@example.com");
+        Hooks.base.loginPage.enterPassword("Pass1234");
+        Hooks.base.loginPage.clickLoginButton();
 
-        invoicePage.clickWebAutomationAdvance();
+        Hooks.base.invoicePage.clickWebAutomationAdvance();
 
+        Hooks.base.invoicePage.clickInvoiceToggleButton();
+
+        //Hooks.base.inventoryFormPage.clickViewInvoicePopUp();
+
+        //Hooks.base.inventoryFormPage.clickViewButtonInsidePop();
 
     }
 
     @Then("I should see the company logo")
     public void i_should_see_the_company_logo() {
-
+        //Hooks.base.invoicePage.getCompanyLogo();
     }
 
     @And("I should see customer details")
@@ -57,8 +55,5 @@ public class InvoiceSteps extends Base {
 
     }
 
-    @After
-    public void quitBrowser() {
-        driver.quit();
-    }
+
 }

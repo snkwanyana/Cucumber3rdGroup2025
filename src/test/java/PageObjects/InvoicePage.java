@@ -1,17 +1,22 @@
 package PageObjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import java.time.Duration;
 
 public class InvoicePage {
 
     @FindBy(id="invoices-toggle-btn")
     WebElement invoiceToggleButton_id;
 
-    @FindBy(id="tab-btn-web")
-    WebElement webAutomationAdvanceButton_id;
+    @FindBy(xpath="//span[contains(@class, 'tab-label') and contains(text(), 'Web Automation Advance')]")
+    WebElement webAutomationAdvanceTab_xpath;
 
     @FindBy(xpath = "//img[@class='company-logo']")
     WebElement companyLogo_xpath;
@@ -83,7 +88,9 @@ public class InvoicePage {
     }
 
     public void clickWebAutomationAdvance(){
-        webAutomationAdvanceButton_id.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(@class, 'tab-label') and contains(text(), 'Web Automation Advance')]")));
+        webAutomationAdvanceTab_xpath.click();
     }
 
     public void getFooter() {

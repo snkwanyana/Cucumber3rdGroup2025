@@ -12,9 +12,9 @@ Feature: Sign up screen for the user to create login details
     Then User should see a message <expectedMessage>
 
     Examples:
-      | name    | lastname | email                | password    | confirmPassword | expectedMessage                                                   |
-      | myName  | surname  | test@gmail           | Password123 | Password123     | Please enter a valid email address                                |
-      | myName  | surname  | test@gmail.com       | Passw       | Passw           | Password must be at least 8 characters long                       |
-      | myName  | surname  | test@gmail.com       | Password123 | Password        | Passwords do not match!                                           |
-      | Welcome | ICE      | WelcomeIce@gmail.com | Pass1234    | Pass1234        | Registration successful! You can now login with your credentials. |
+      | name   | lastname | email                | password    | confirmPassword | expectedMessage                                                   |
+      | myName | surname  | test@gmail           | Password123 | Password123     | Please enter a valid email address                                |
+      | myName | surname  | test@gmail.com       | Passw       | Passw           | Password must be at least 8 characters long                       |
+      | myName | surname  | test@gmail.com       | Password123 | Password        | Passwords do not match!                                           |
+      | Paper  | Trail    | PaperTrail@gmail.com | Pass1234    | Pass1234        | Registration successful! You can now login with your credentials. |
 

@@ -46,7 +46,7 @@ Feature: Multi Device Purchase Flow
     Examples:
       | deviceType1 | brand1      | storage1 | color1 | quantity1 | address1             | shipping1     | warranty1 | code1  | deviceType2 | brand2 | storage2 | color2 | quantity2 | address2            | shipping2     | warranty2 | code2  | cartTotal | expectedTotal |
       | Phone       | Samsung     | 128GB    | Black  | 3         | 187 Alberto Mansions | Standard      | None      | SAVE10 | Tablet      | Apple  | 256GB    | Gold   | 2         | 789 Park Street     | Express (+25) | 1 Year    | SAVE20 | 2         | 2571.20       |
-      | Laptop      | Macbook pro | 256GB    | White  | 5         | 321 Angola Drive     | Express (+25) | 2 Year    | SAVE10 | Phone       | Apple  | 128GB    | Blue   | 1         | 45 Kenilworth Drive | Standard      | None      | SAVE30 | 2         | 6702.6        |
+      | Laptop      | Macbook pro | 256GB    | White  | 5         | 321 Angola Drive     | Express (+25) | 2 Year    | SAVE10 | Phone       | Apple  | 128GB    | Blue   | 1         | 45 Kenilworth Drive | Standard      | None      | SAVE10 | 2         | 6654.6        |
 
 
   Scenario Outline: User removes the second device from cart before placing the order

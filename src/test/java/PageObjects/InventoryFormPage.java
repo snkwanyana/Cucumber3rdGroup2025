@@ -1,6 +1,7 @@
 package PageObjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -89,8 +90,8 @@ public class InventoryFormPage {
     @FindBy(id="purchase-device-btn")
     WebElement confirmPurchaseButton_id;
 
-    @FindBy(id="logout-button")
-    WebElement logoutButton_id;
+    @FindBy(xpath="//button[contains(@class, 'logout-btn') and contains(text(), 'Logout')]")
+    WebElement logoutButton_xpath;
 
     @FindBy(id="confirm-cart-btn")
     WebElement confirmCartButton_id;
@@ -193,36 +194,6 @@ public class InventoryFormPage {
     public void clickApplyDiscountButton()  {
         applyDiscountButton_id.click();
 
-        // Wait until any non-empty message appears
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(driver -> !discountFeedbackText_id.getText().trim().isEmpty());
-
-        // Read the displayed error or message
-        String feedbackMessage = discountFeedbackText_id.getText().trim();
-
-        // Handle known messages using switch
-        switch (feedbackMessage.toLowerCase()) {
-            case "Invalid code":
-                System.out.println("Invalid code entered. Retrying...");
-                discountCodeField_id.clear();
-                applyDiscountButton_id.click();
-
-                //wait.until(ExpectedConditions.textToBePresentInElement(discountFeedbackText_id, "Code SAVE10 applied: -10%"));
-
-                break;
-
-            case "Code SAVE10 applied: -10%":
-                System.out.println("Code SAVE10 applied: -10%");
-                break;
-
-            case "Code SAVE20 applied: -20%":
-                System.out.println("Code SAVE10 applied: -20%");
-                break;
-
-            default:
-                System.out.println("Unhandled message: \"" + feedbackMessage + "\"");
-                break;
-        }
 
     }
 
@@ -308,7 +279,17 @@ public class InventoryFormPage {
     }
 
     public void clickLogoutButton(){
-        logoutButton_id.click();
+       // WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        //wait.until(ExpectedConditions.elementToBeClickable(By.id("logout-button")));
+
+        //logoutButton_xpath.click();
+
+        WebElement logoutButton = driver.findElement(By.xpath("//button[contains(@class, 'logout-btn') and contains(text(), 'Logout')]"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(false);", logoutButton);
+        // Optionally, wait for overlays to disappear
+        logoutButton.click();
+
     }
 
 

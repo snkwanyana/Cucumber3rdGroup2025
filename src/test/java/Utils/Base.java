@@ -5,17 +5,21 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 public class Base {
+    protected final WebDriver driver;
 
-    BrowserFactory browserFactory = new BrowserFactory();
-    protected final WebDriver driver = browserFactory.startBrowser("chrome", "https://www.ndosiautomation.co.za/" +
-            " " );
-
-    public LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
-    public SignupPage signupPage = PageFactory.initElements(driver, SignupPage.class);
-    public LandingPage landingPage = PageFactory.initElements(driver, LandingPage.class);
-    public InventoryFormPage inventoryFormPage = PageFactory.initElements(driver, InventoryFormPage.class);
-    public InvoicePage invoicePage = PageFactory.initElements(driver, InvoicePage.class);
+    public LoginPage loginPage;
+    public SignupPage signupPage;
+    public LandingPage landingPage;
+    public InventoryFormPage inventoryFormPage;
+    public InvoicePage invoicePage;
     public TakeScreenshots takeScreenshots = new TakeScreenshots();
 
-
+    public Base(WebDriver driver) {
+        this.driver = driver;
+        this.loginPage = PageFactory.initElements(driver, LoginPage.class);
+        this.signupPage = PageFactory.initElements(driver, SignupPage.class);
+        this.landingPage = PageFactory.initElements(driver, LandingPage.class);
+        this.inventoryFormPage = PageFactory.initElements(driver, InventoryFormPage.class);
+        this.invoicePage = PageFactory.initElements(driver, InvoicePage.class);
+    }
 }
