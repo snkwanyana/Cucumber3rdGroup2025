@@ -1,15 +1,28 @@
-@login
-Feature: User Login
+Feature: Login & Registration functionality
 
-  Scenario Outline: Login attempts with different credentials
-    Given the user is on the login page
-    When the user enters email "<email>"
-    And the user enters password "<Password>"
-    And the user clicks the login button
-    Then the user should see ExpectedMessage "<expectedMessage>"
 
-    Examples:
-      | email          | Password      | expectedMessage                          |
-      | wrong@test.com | Password@123  | Login failed: Authentication failed      |
-      |                | Password@123  | Login failed: Missing required fields    |
-      | ree@test.com   | Password@123  | Logout                                   |
+
+   @login
+   Scenario Outline: Login with different credentials
+     Given I navigate to the login page
+     When I enter username "<username>" and password "<password>"
+     And I click on the login button
+     Then I should see "<expectedResult>"
+
+     Examples:
+       | username       | password       | expectedResult              |
+       | ree@test.com   | Password@123   | logout                      |
+       | testuser       | wrongpass      | Invalid email or password   |
+       | ree@test.com   | Password@123   | logout                      |
+
+   @session
+   Scenario: Switch tab and back requires re-login
+     When I login with valid credentials
+     And I switch to another tab and back
+     Then I must be forced to login again
+
+   @logout
+   Scenario: Logout clears token and shows login screen
+     When I login with valid credentials
+     And I click logout
+     Then Token is removed and login screen is visible

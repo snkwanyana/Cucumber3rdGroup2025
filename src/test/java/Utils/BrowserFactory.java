@@ -3,8 +3,8 @@ package Utils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -12,34 +12,35 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import java.time.Duration;
 
 public class BrowserFactory {
-    static WebDriver driver;
 
-    public static WebDriver startBrowser(String browserChoice, String url) throws InterruptedException {
+    public static WebDriver startBrowser(String browserChoice, String url) {
+        WebDriver driver;
+
         switch (browserChoice.toLowerCase()) {
             case "chrome":
-                ChromeOptions chromeOptions = new ChromeOptions();
-                driver = new ChromeDriver(chromeOptions);
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--remote-allow-origins=*");
+                driver = new ChromeDriver(options);
                 break;
             case "firefox":
                 driver = new FirefoxDriver();
                 break;
-            default:
+            case "edge":
                 driver = new EdgeDriver();
                 break;
+            default:
+                throw new IllegalArgumentException("Unsupported browser: " + browserChoice);
         }
 
-        // Open URL
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
         driver.get(url);
 
-        // Maximize window
-        driver.manage().window().maximize();
-
-        // ✅ Wait until the page is fully loaded
-        new WebDriverWait(driver, Duration.ofSeconds(100)).until(
+        new WebDriverWait(driver, Duration.ofSeconds(30)).until(
                 (ExpectedCondition<Boolean>) wd ->
                         ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete")
         );
-        Thread.sleep(100);
+
         return driver;
     }
 }

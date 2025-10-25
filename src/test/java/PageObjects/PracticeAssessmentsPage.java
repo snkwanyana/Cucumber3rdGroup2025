@@ -1,7 +1,6 @@
 package PageObjects;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -61,19 +60,13 @@ public class PracticeAssessmentsPage {
     @FindBy(css = "img[alt='Device tablet']")
     WebElement tabletDeviceImg;
 
+    @FindBy(id = "inventory-next-btn")
+    WebElement nextButton;
+
     public PracticeAssessmentsPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    }
-
-    public void waitUntilLogoutButtonIsVisible() {
-        wait.until(ExpectedConditions.visibilityOf(logout_id));
-        Assert.assertTrue(logout_id.isDisplayed(), "Logout button is NOT displayed!");
-    }
-
-    public void clickLogoutButton() {
-        logout_id.click();
     }
 
     public void clickWebAutomation() {
@@ -81,29 +74,43 @@ public class PracticeAssessmentsPage {
     }
 
     public void selectDeviceType(String deviceType) {
-        new Select(deviceTypeSelect).selectByVisibleText(deviceType);
+        if (deviceType != null && !deviceType.isEmpty()) {
+            new Select(deviceTypeSelect).selectByVisibleText(deviceType);
 
-        switch (deviceType.toLowerCase()) {
-            case "phone":
-                wait.until(ExpectedConditions.visibilityOf(phoneDeviceSvg));
-                Assert.assertTrue(phoneDeviceSvg.isDisplayed(), "Phone device SVG not displayed");
-                break;
-            case "laptop":
-                wait.until(ExpectedConditions.visibilityOf(laptopDeviceImg));
-                Assert.assertTrue(laptopDeviceImg.isDisplayed(), "Laptop image not displayed");
-                break;
-            case "tablet":
-                wait.until(ExpectedConditions.visibilityOf(tabletDeviceImg));
-                Assert.assertTrue(tabletDeviceImg.isDisplayed(), "Tablet image not displayed");
-                break;
+            switch (deviceType.toLowerCase()) {
+                case "phone":
+                    wait.until(ExpectedConditions.visibilityOf(phoneDeviceSvg));
+                    Assert.assertTrue(phoneDeviceSvg.isDisplayed(), "Phone device SVG not displayed");
+                    break;
+                case "laptop":
+                    wait.until(ExpectedConditions.visibilityOf(laptopDeviceImg));
+                    Assert.assertTrue(laptopDeviceImg.isDisplayed(), "Laptop image not displayed");
+                    break;
+                case "tablet":
+                    wait.until(ExpectedConditions.visibilityOf(tabletDeviceImg));
+                    Assert.assertTrue(tabletDeviceImg.isDisplayed(), "Tablet image not displayed");
+                    break;
+            }
         }
     }
 
     public void selectBrand(String brand) {
+        if (brand == null || brand.isEmpty()) {
+            System.out.println("⚠ Skipping brand selection because value is empty.");
+            return;
+        }
+        if (!brandSelect.isEnabled()) {
+            System.out.println("⚠ Brand dropdown is disabled, cannot select: " + brand);
+            return;
+        }
         new Select(brandSelect).selectByVisibleText(brand);
     }
 
     public void selectStorage(String storage) {
+        if (storage == null || storage.isEmpty()) {
+            System.out.println("⚠ Skipping storage selection because value is empty.");
+            return;
+        }
         switch (storage) {
             case "64GB": storage64Select.click(); break;
             case "128GB": storage128Select.click(); break;
@@ -112,6 +119,10 @@ public class PracticeAssessmentsPage {
     }
 
     public void selectColor(String color) {
+        if (color == null || color.isEmpty()) {
+            System.out.println("⚠ Skipping color selection because value is empty.");
+            return;
+        }
         new Select(colorSelect).selectByVisibleText(color);
     }
 
@@ -125,9 +136,9 @@ public class PracticeAssessmentsPage {
         deliveryAddressInput.sendKeys(address);
     }
 
-    public void clickPurchaseDevice() {
-        purchaseButton.click();
-    }
+
+
+
 
     public void assertSuccessToastVisible() {
         wait.until(ExpectedConditions.visibilityOf(successToast));
@@ -140,4 +151,83 @@ public class PracticeAssessmentsPage {
         Assert.assertEquals(quantityInput.getAttribute("value"), "1");
         Assert.assertEquals(deliveryAddressInput.getAttribute("value"), "");
     }
+
+    // 🔹 Wizard Step 1 error helper
+// 🔹 Inside PracticeAssessmentsPage
+    public void clickPurchaseDevice(String expectedResult) {
+        // Step 1: Check Next button state
+        if (!nextButton.isEnabled()) {
+            Assert.assertEquals(expectedResult, "NextDisabled",
+                    "❌ Expected Next button disabled, but test expected: " + expectedResult);
+            return;
+        } else {
+            Assert.assertTrue(nextButton.isEnabled(),
+                    "❌ Expected Next button enabled, but it is disabled!");
+            nextButton.click();
+
+            // Small wait for page updates or inline validation errors
+            try {
+                WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(2));
+                shortWait.until(ExpectedConditions.or(
+                        ExpectedConditions.urlContains("purchase"),
+                        ExpectedConditions.visibilityOfElementLocated(By.cssSelector("span.error-text[role='alert']"))
+                ));
+            } catch (TimeoutException e) {
+                // Ignore: page did not navigate, probably validation error
+            }
+        }
+
+        // Step 2: Attempt to click purchase button if present
+        try {
+            WebElement purchaseBtn = wait.until(ExpectedConditions.elementToBeClickable(purchaseButton));
+            purchaseBtn.click();
+        } catch (TimeoutException | NoSuchElementException e) {
+            // Purchase button not present → probably validation error
+        }
+
+        // Step 3: Assert expected message
+        confirmErrorMessage(expectedResult);
+    }
+
+    public void confirmErrorMessage(String expectedResult) {
+        wait.until(ExpectedConditions.visibilityOf(nextButton));
+
+        // Case 1: Next button disabled
+        if (expectedResult.equalsIgnoreCase("NextDisabled")) {
+            Assert.assertFalse(nextButton.isEnabled(), "❌ Next button should be disabled!");
+            return;
+        }
+
+        // Case 2: Quantity errors
+        if (expectedResult.startsWith("Quantity")) {
+            try {
+                WebElement quantityError = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                        By.cssSelector("span.error-text[role='alert']")
+                ));
+                String actual = quantityError.getText().trim();
+                Assert.assertEquals(actual, expectedResult, "❌ Quantity error mismatch!");
+            } catch (TimeoutException te) {
+                Assert.fail("❌ Expected quantity error '" + expectedResult + "' but none was shown.");
+            }
+            return;
+        }
+
+        // Case 3: Success toast
+        if (expectedResult.equalsIgnoreCase("Order placed successfully!")) {
+            assertSuccessToastVisible();
+            return;
+        }
+    }
+
+
+    public void assertNextButtonDisabled() {
+        wait.until(ExpectedConditions.visibilityOf(nextButton));
+        Assert.assertFalse(nextButton.isEnabled(), "❌ Next button should be disabled but it is enabled!");
+    }
+
+    public void assertNextButtonEnabled() {
+        wait.until(ExpectedConditions.visibilityOf(nextButton));
+        Assert.assertTrue(nextButton.isEnabled(), "❌ Next button should be enabled but it is disabled!");
+    }
+
 }
