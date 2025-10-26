@@ -16,7 +16,7 @@ public class InvoiceGenerationManagement extends Base {
 
     @Then("an invoice should be automatically created with a unique sequential ID")
     public void anInvoiceShouldBeAutomaticallyCreatedWithAUniqueSequentialID() {
-        history
+
 
     }
 
