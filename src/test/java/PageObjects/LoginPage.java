@@ -30,10 +30,7 @@ public class LoginPage {
     @FindBy(id="login-heading")
     WebElement loginHeading_id;
 
-    public LoginPage(WebDriver driver) {
 
-        this.driver = driver;
-    }
 
     public void clickSignupButton() {
 

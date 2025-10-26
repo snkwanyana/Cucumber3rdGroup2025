@@ -17,6 +17,8 @@ Feature: Buying multiple items
     And the user enters address <address>
     And the user clicks the Next button
     Then Step 2 should be displayed
+    When I enter "<code>" in the discount code field and click Apply
+    Then I should see the message "<message>"
     When The user clicks the add to cart button
     Then The item should be added to the cart
 
@@ -33,5 +35,7 @@ Feature: Buying multiple items
     Then The item should be added to the cart
 
     Examples:
-      | typeOrder1 | brand | storage | color | quantity | address                | typeOrder2 | brand2      | storage2 | color2 | quantity2 | address2               | email             | password    | Message |
-      | Phone      | Apple | 64GB    | Black | 1        | 123 Main St, Cityville | Laptop     | Macbook pro | 256GB    | White  | 1         | 456 Main St, Cityville | testAmy@gmail.com | Password123 |         |
+      | typeOrder1 | brand | storage | color | quantity | address                | typeOrder2 | brand2      | storage2 | color2 | quantity2 | address2               | email             | password    | Message | code    | message                        |
+      | Phone      | Apple | 64GB    | Black | 1        | 123 Main St, Cityville | Laptop     | Macbook pro | 256GB    | White  | 1         | 456 Main St, Cityville | testAmy@gmail.com | Password123 |         |  SAVE10  | Code SAVE10 applied: -10%      |
+
+

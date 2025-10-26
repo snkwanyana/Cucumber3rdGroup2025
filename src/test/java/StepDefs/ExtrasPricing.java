@@ -1,69 +1,63 @@
 package StepDefs;
+import PageObjects.ExtrasPricingShipping;
 import Utils.Base;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.testng.Assert.assertEquals;
 
 public class ExtrasPricing extends Base {
-    WebDriver drive;
-    @Given("the user is on the pricing panel")
-    public void the_user_is_on_the_pricing_panel() {
-        landingPage.clickLearnMoreButton();
-        loginPage.enterEmail("Amytest@gmail.com");
-        loginPage.enterPassword("Password123");
-        loginPage.clickLoginField();
-        welcomePage.clickWebTabButton();
-        orderingPage.selectDeviceType("Phone");
-        orderingPage.selectBrand("Apple");
-        orderingPage.selectStorage("64GB");
-        orderingPage.selectColor("Black");
-        orderingPage.setQuantity(1);
-        orderingPage.setAddress("123 Main St, Cityville");
-        orderingPage.clickNext();
+    private ExtrasPricingShipping extrasPricingShipping;
+
+    public ExtrasPricing() {
+        extrasPricingShipping = new ExtrasPricingShipping(driver);
     }
 
-    @When("the user selects {string} shipping")
+    @When("the user selects {} shipping")
     public void the_user_selects_shipping(String shipping) {
-        pricingParnel.selectShipping(shipping);
+        extrasPricingShipping.selectShipping(shipping);
+       // pricingParnel.selectShipping(shipping);
     }
 
-    @When("selects {string} warranty")
+    @When("selects {} warranty")
     public void selects_warranty(String warranty) {
-        pricingParnel.selectWarranty(warranty);
+        extrasPricingShipping.selectWarranty(warranty);
+        //pricingParnel.selectWarranty(warranty);
     }
 
-    @When("enters discount code {string}")
+    @When("enters discount code {}")
     public void enters_discount_code(String code) {
         if (code != null && !code.trim().isEmpty()) {
-            pricingParnel.enterDiscountCode(code);
+            extrasPricingShipping.applyDiscount(code);
+           // pricingParnel.enterDiscountCode(code);
         }
     }
 
-    @When("sets quantity to {int}")
-    public void sets_quantity_to(Integer qty) {
-        // Implement this if you have a quantity input in your page object
-        // pricingPanel.setQuantity(qty);
+    @Then("the discount on price breakdown should be {}")
+    public void the_discount_on_price_price_breakdown_should_be(String expected) {
+        assertEquals(expected, extrasPricingShipping.getBreakdownDiscount());
     }
 
-    @Then("the base price should be {string}")
-    public void the_base_price_should_be(String expected) {
-        assertEquals(expected, pricingParnel.getBasePrice());
+    @And("the total on Price breakdown should be {}")
+    public void the_total_on_price_breakdown_should_be_total(String expected) {
+        assertEquals(expected, extrasPricingShipping.getBreakdownTotal());
     }
 
-    @Then("the subtotal should be {string}")
-    public void the_subtotal_should_be(String expected) {
-        assertEquals(expected, pricingParnel.getBreakdownSubtotal());
+    @And("the subtotal on price breakdown should be {}")
+    public void the_subtotal_on_price_breakdown_should_be_subtotal(String expected) {
+        assertEquals(expected, extrasPricingShipping.getBreakdownSubtotal());
+
     }
 
-    @Then("the discount should be {string}")
-    public void the_discount_should_be(String expected) {
-        assertEquals(expected, pricingParnel.getBreakdownDiscount());
+    @And("the quantity on price breakdown should be {}")
+    public void the_quantity_on_price_breakdown_should_be_quantity(String expected) {
+        assertEquals(expected, extrasPricingShipping.getBreakdownQuantity());
     }
 
-    @Then("the total should be {string}")
-    public void the_total_should_be(String expected) {
-        assertEquals(expected, pricingParnel.getBreakdownTotal());
+    @Then("the base price on price breakdown should be {}")
+    public void the_base_price_on_price_breakdown_should_be_base(String expected) {
+        assertEquals(expected, extrasPricingShipping.getBasePrice());
     }
-
 }

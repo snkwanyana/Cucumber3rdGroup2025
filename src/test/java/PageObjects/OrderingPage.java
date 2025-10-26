@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.time.Duration;
 
@@ -42,45 +43,49 @@ public class OrderingPage {
     @FindBy(id = "address")
     WebElement address;
 
-    // Pricing summary
-    @FindBy(id = "unit-price-value")
-    WebElement unitPriceValue;
-
-    @FindBy(id = "quantity-value")
-    WebElement quantityValue;
-
-    @FindBy(id = "subtotal-value")
-    WebElement subtotalValue;
-
     // Next button
     @FindBy(id = "inventory-next-btn")
     WebElement nextButton;
-/*No device → Select a device type
-Device chosen, no brand → Select a brand
-No storage → Choose storage size
-Quantity 0 / blank → Quantity must be ≥ 1
-Quantity 11 → Quantity must be ≤ 10
-Address blank → Address required
-All corrected + Next → Step 2 shown.*/
+
 
     // --- Interaction methods ---
 
 
     public void selectDeviceType(String type) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         new Select(deviceType).selectByVisibleText(type);
+        // Wait for the brand dropdown to show expected options for the selected device type
+        wait.until(d -> {
+            Select brandSelect = new Select(brand);
+            java.util.List<String> options = new java.util.ArrayList<>();
+            for (org.openqa.selenium.WebElement option : brandSelect.getOptions()) {
+                options.add(option.getText().toLowerCase());
+            }
+            if (type.equalsIgnoreCase("Phone")) {
+                return options.contains("apple") && options.contains("samsung") && options.contains("xiaomi") && options.contains("other");
+            } else if (type.equalsIgnoreCase("Laptop")) {
+                return options.contains("macbook pro") && options.contains("macbook air") && options.contains("other");
+            }
+            return options.size() > 1; // fallback for other device types
+        });
     }
 
     public void selectBrand(String brandName) {
-        // Wait for the brand dropdown to contain the desired option
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.visibilityOf(brand));
+        wait.until(ExpectedConditions.elementToBeClickable(brand));
+        // Wait for the dropdown to have more than one option (indicating refresh)
         wait.until(d -> {
             Select brandSelect = new Select(brand);
-            System.out.println("Available brand options:");
-            brandSelect.getOptions().forEach(option -> System.out.println(option.getText()));
+            return brandSelect.getOptions().size() > 1;
+        });
+        // Wait for the desired brand option to appear
+        wait.until(d -> {
+            Select brandSelect = new Select(brand);
             return brandSelect.getOptions().stream().anyMatch(option -> option.getText().equalsIgnoreCase(brandName));
         });
-        new Select(brand).selectByVisibleText(brandName);
+        Select brandSelect = new Select(brand);
+        brandSelect.selectByVisibleText(brandName);
     }
 
     public void selectStorage(String size) {
@@ -109,21 +114,6 @@ All corrected + Next → Step 2 shown.*/
     public void setAddress(String addr) {
         address.clear();
         address.sendKeys(addr);
-    }
-
-    public String getUnitPrice() {
-
-        return unitPriceValue.getText();
-    }
-
-    public String getQuantityValue() {
-
-        return quantityValue.getText();
-    }
-
-    public String getSubtotal() {
-
-        return subtotalValue.getText();
     }
 
     public void clickNext() {

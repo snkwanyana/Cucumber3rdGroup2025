@@ -14,6 +14,10 @@ public class Base {
     public OrderingPage orderingPage;
     public WelcomePage welcomePage;
     public PricingParnel pricingParnel;
+    public ExtrasPricingShipping extrasPricingShipping;
+    public Cart cart;
+    public InvoiceHistoryPanel invoiceHistoryPanel;
+    public Invoice invoice;
 
     public void initializePages() {
         loginPage = PageFactory.initElements(driver, LoginPage.class);
@@ -23,5 +27,9 @@ public class Base {
         orderingPage = PageFactory.initElements(driver, OrderingPage.class);
         welcomePage = PageFactory.initElements(driver, WelcomePage.class);
         pricingParnel = PageFactory.initElements(driver, PricingParnel.class);
+        extrasPricingShipping = PageFactory.initElements(driver, ExtrasPricingShipping.class);
+        cart = PageFactory.initElements(driver, Cart.class);
+        invoiceHistoryPanel = PageFactory.initElements(driver, InvoiceHistoryPanel.class);
+        invoice = PageFactory.initElements(driver, Invoice.class);
     }
 }

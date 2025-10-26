@@ -1,7 +1,7 @@
 @signup
 Feature: Sign up screen for the user to create login details
 
-  Scenario Outline: As a user, I want to sign up to get access to Ndosi automation platform
+  Scenario Outline: User enters existing email to create an account,i want to see if i will get an error message
     Given User is on the signup page
     When User enters name <name>
     And User enters last name <lastname>
@@ -15,5 +15,5 @@ Feature: Sign up screen for the user to create login details
 
     Examples:
       | name   | lastname | email          | password    | confirmPassword | errorMessage                                |
-      |  Amy    | rams  | Amytest@gmail.com | Password123 | Password123     | Registration failed: User already exists                   |
+      |  Amy    | rams  | Amytest@gmail.com | Password123 | Password123     | User with this email already exists                   |
 

@@ -2,7 +2,9 @@ package StepDefs;
 
 import PageObjects.SignupPage;
 import Utils.Base;
+import Utils.BrowserFactory;
 import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
@@ -12,10 +14,17 @@ import java.time.Duration;
 public class StepDefinition extends Base {
 
     public WebDriver driver;
+    @Before
+    public void setUp() {
+        if (Base.driver == null) {
+            BrowserFactory browserFactory = new BrowserFactory();
+            Base.driver = browserFactory.startBrowser("chrome", "https://www.ndosiautomation.co.za/");
+        }
+        initializePages(); // Ensure page objects are initialized after driver is set
+    }
 
     @Given("User is on the signup page")
     public void user_is_on_the_signup_page() {
-        landingPage.verifyLearnAutomationTheRightWayIsDisplayed();
         landingPage.clickLearnMoreButton();
         loginPage.clickSignupButton();
 

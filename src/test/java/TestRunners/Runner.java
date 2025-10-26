@@ -6,11 +6,14 @@ import io.cucumber.testng.CucumberOptions;
 
     @CucumberOptions(
             features = {"src/test/resources/Features/login.feature",
-            "src/test/resources/Features/signup.feature"},
+            "src/test/resources/Features/signup.feature",
+                    "src/test/resources/Features/OrderingStep1.feature"
+
+              },
             glue = {"StepDefs"},
             plugin = {"pretty", "html:target/cucumber-reports.html", "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
-            monochrome = true,
-            tags = "@signup"
+            monochrome = true
+
     )
     public class Runner extends AbstractTestNGCucumberTests {
     }
