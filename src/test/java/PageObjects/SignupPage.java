@@ -28,7 +28,7 @@ public class SignupPage {
     WebElement confirmPasswordField_xpath;
 
     @FindBy(xpath = "//button[contains(text(),'Create Account')]")
-    WebElement createCreate_xpath;
+    WebElement createAccount_xpath;
 
     public SignupPage(WebDriver driver) {
         this.driver = driver;
@@ -56,7 +56,7 @@ public class SignupPage {
     }
 
     public void clickCreateAccount() {
-        createCreate_xpath.click();
+        createAccount_xpath.click();
     }
 
     public void confirmIfErrorMessageIsDisplayed(String expectedMessage) {

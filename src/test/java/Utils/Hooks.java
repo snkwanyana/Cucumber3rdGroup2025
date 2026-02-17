@@ -12,7 +12,7 @@ public class Hooks {
 
     @Before
     public void setUp() {
-        driver = BrowserFactory.startBrowser("chrome", "https://ndosiautomation.co.za/");
+        driver = BrowserFactory.startBrowser("chrome", "https://ndosisimplifiedautomation.vercel.app/");
         base = new Base(driver);
     }
 

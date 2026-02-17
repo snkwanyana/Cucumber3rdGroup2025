@@ -14,13 +14,13 @@ Feature: Login and Session Management
     Then I should be redirected to the login page
 
     Examples:
-      | email                    | password |
-      | HisenseCrock@example.com | Pass1234 |
+      | email                 | password       |
+      | Elizabeth@england.com | England@123456 |
 
   Scenario Outline: Login fails with invalid password
     Given I am on the login page
     When I enter a valid email <email> and an invalid password <invalid_password>
     Then I should see an alert containing <expectedMessage>
     Examples:
-      | email                    | invalid_password | expectedMessage           |
-      | HisenseCrock@example.com | WrongPass@1      | Invalid email or password |
+      | email                 | invalid_password | expectedMessage           |
+      | Elizabeth@england.com | WrongPass@1      | Invalid email or password |
