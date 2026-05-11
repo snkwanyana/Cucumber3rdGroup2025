@@ -7,7 +7,6 @@ import org.openqa.selenium.WebDriver;
 
 import java.io.File;
 
-
 public class TakeScreenshots {
 
     private static final String screenshotDir = System.getProperty("user.dir") + "/Screenshots";

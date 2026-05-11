@@ -2,10 +2,12 @@ package PageObjects;
 
 import Utils.TakeScreenshots;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
@@ -26,6 +28,9 @@ public class SignupPage {
     WebElement passwordField_xpath;
     @FindBy(xpath = "//input[@placeholder='Confirm Password']")
     WebElement confirmPasswordField_xpath;
+
+    @FindBy(id = "register-group")
+    WebElement groupDropdown_id;
 
     @FindBy(xpath = "//button[contains(text(),'Create Account')]")
     WebElement createAccount_xpath;
@@ -53,6 +58,13 @@ public class SignupPage {
 
     public void enterConfirmPassword(String confirmPassword) {
         confirmPasswordField_xpath.sendKeys(confirmPassword);
+    }
+
+    public void selectGroupByName(String groupName) {
+        Select select = new Select(groupDropdown_id);
+
+        // Select by visible text (e.g., "Group A (2026)")
+        select.selectByVisibleText(groupName);
     }
 
     public void clickCreateAccount() {

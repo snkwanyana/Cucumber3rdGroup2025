@@ -13,9 +13,9 @@ public class LoginSteps {
 
     @Given("I am on the login page")
     public void i_am_on_the_login_page() {
-        Hooks.base.landingPage.verifyLearnAutomationTheRightWayIsDisplayed();
+        Hooks.base.landingPage.verifyLandingPageSubTitle();
         Hooks.base.takeScreenshots.takesSnapShot(Hooks.driver, "Landing Page");
-        Hooks.base.landingPage.clickLearnMoreButton();
+        Hooks.base.landingPage.clickLoginButton();
     }
 
     @When("I enter email {} and password {} and click login")

@@ -11,8 +11,8 @@ public class DevicePurchaseSteps {
 
     @Given("I am on the login screen")
     public void i_am_on_the_login_screen() {
-        Hooks.base.landingPage.verifyLearnAutomationTheRightWayIsDisplayed();
-        Hooks.base.landingPage.clickLearnMoreButton();
+        Hooks.base.landingPage.verifyLandingPageSubTitle();
+        Hooks.base.landingPage.clickLoginButton();
     }
 
     @And("I enter valid credentials")

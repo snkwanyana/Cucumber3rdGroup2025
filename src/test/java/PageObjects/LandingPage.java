@@ -11,18 +11,18 @@ public class LandingPage {
         this.driver = driver;
     }
 
-    @FindBy(id = "nav-btn-practice")
-    WebElement LearnMoreButton_id;
+    @FindBy(xpath = "//button[.//span[text()='Login']]")
+    WebElement loginButton_xpath;
 
-    @FindBy(id = "overview-hero")
-    WebElement LearnAutomationTheRightWay_id;
+    @FindBy(xpath = "//p[@class='hero-subtitle' and text()='The Future of Quality Engineering Starts Here']")
+    WebElement subTitle_xpath;
 
-    public void verifyLearnAutomationTheRightWayIsDisplayed() {
-        LearnAutomationTheRightWay_id.isDisplayed();
+    public void verifyLandingPageSubTitle() {
+        subTitle_xpath.isDisplayed();
     }
 
-    public void clickLearnMoreButton() {
-        LearnMoreButton_id.click();
+    public void clickLoginButton() {
+        loginButton_xpath.click();
     }
 
 

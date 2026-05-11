@@ -4,7 +4,7 @@ Feature: Login and Session Management
   Scenario Outline: Successful login and session timeout handling
     Given I am on the login page
     When I enter email <email> and password <password> and click login
-    Then I should see all tabs
+    Then I should see welcome Message
     And localStorage should contain authToken
     When I navigate to a different menu tab
     And I return to the original tab
@@ -14,8 +14,8 @@ Feature: Login and Session Management
     Then I should be redirected to the login page
 
     Examples:
-      | email                 | password       |
-      | Elizabeth@england.com | England@123456 |
+      | email                     | password       |
+      | Tatalo.Mkhize@example.com | England@123456 |
 
   Scenario Outline: Login fails with invalid password
     Given I am on the login page

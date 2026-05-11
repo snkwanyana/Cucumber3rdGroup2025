@@ -7,11 +7,11 @@ import io.cucumber.java.en.*;
 public class InvoiceSteps {
     @Given("I am on the invoice page")
     public void i_am_on_the_invoice_page() {
-        Hooks.base.landingPage.verifyLearnAutomationTheRightWayIsDisplayed();
-        Hooks.base.landingPage.clickLearnMoreButton();
+        Hooks.base.landingPage.verifyLandingPageSubTitle();
+        Hooks.base.landingPage.clickLoginButton();
 
-        Hooks.base.loginPage.enterEmail("HisenseCrock@example.com");
-        Hooks.base.loginPage.enterPassword("Pass1234");
+        Hooks.base.loginPage.enterEmail("Tatalo.Mkhize@example.com");
+        Hooks.base.loginPage.enterPassword("England@123456");
         Hooks.base.loginPage.clickLoginButton();
 
         Hooks.base.invoicePage.clickWebAutomationAdvance();
