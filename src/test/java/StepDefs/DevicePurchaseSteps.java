@@ -11,14 +11,14 @@ public class DevicePurchaseSteps {
 
     @Given("I am on the login screen")
     public void i_am_on_the_login_screen() {
-        Hooks.base.landingPage.verifyLandingPageSubTitle();
+        Hooks.base.landingPage.verifyPageLogo();
         Hooks.base.landingPage.clickLoginButton();
     }
 
     @And("I enter valid credentials")
     public void i_enter_valid_credentials() {
-        Hooks.base.loginPage.enterEmail("HisenseCrock@example.com");
-        Hooks.base.loginPage.enterPassword("Pass1234");
+        Hooks.base.loginPage.enterEmail("Tatalo.Mkhize@example.com");
+        Hooks.base.loginPage.enterPassword("England@123456");
         Hooks.base.loginPage.clickLoginButton();
     }
 

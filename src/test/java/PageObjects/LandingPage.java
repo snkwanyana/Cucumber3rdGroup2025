@@ -14,11 +14,11 @@ public class LandingPage {
     @FindBy(xpath = "//button[.//span[text()='Login']]")
     WebElement loginButton_xpath;
 
-    @FindBy(xpath = "//p[@class='hero-subtitle' and text()='The Future of Quality Engineering Starts Here']")
-    WebElement subTitle_xpath;
+    @FindBy(xpath = "//img[@alt='NTA Logo' and contains(@src,'Nta Logo')]")
+    WebElement logo_xpath;
 
-    public void verifyLandingPageSubTitle() {
-        subTitle_xpath.isDisplayed();
+    public void verifyPageLogo() {
+        logo_xpath.isDisplayed();
     }
 
     public void clickLoginButton() {

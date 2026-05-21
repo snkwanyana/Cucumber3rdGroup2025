@@ -11,7 +11,7 @@ import java.io.ByteArrayInputStream;
 public class SignupSteps {
     @Given("User is on the signup page")
     public void user_is_on_the_signup_page() {
-        Hooks.base.landingPage.verifyLandingPageSubTitle();
+        Hooks.base.landingPage.verifyPageLogo();
         Hooks.base.landingPage.clickLoginButton();
         Hooks.base.loginPage.clickSignupButton();
     }
@@ -46,7 +46,6 @@ public class SignupSteps {
     public void user_selects_group(String groupName) {
         Hooks.base.signupPage.selectGroupByName(groupName);
     }
-
 
     @And("User clicks on the create account button")
     public void user_clicks_on_the_create_account_button() {

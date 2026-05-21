@@ -1,13 +1,12 @@
 package StepDefs;
 
 import Utils.Hooks;
-import io.cucumber.java.After;
 import io.cucumber.java.en.*;
 
 public class InvoiceSteps {
     @Given("I am on the invoice page")
     public void i_am_on_the_invoice_page() {
-        Hooks.base.landingPage.verifyLandingPageSubTitle();
+        Hooks.base.landingPage.verifyPageLogo();
         Hooks.base.landingPage.clickLoginButton();
 
         Hooks.base.loginPage.enterEmail("Tatalo.Mkhize@example.com");
